@@ -33,7 +33,8 @@ export const Navigation = () => {
                     key="tab_home"
                     component={ApplicationRecordPage}
                     {...TopNav({
-                        title: '商家注册'
+                        title: '商家注册',
+                        hideLeft:true
                     })}
                 />
             </Stack>
@@ -41,8 +42,10 @@ export const Navigation = () => {
                 key="management">
                 <Scene key="tab_news"
                        component={HangoutManagementPage}
-                       hideNavBar
-
+                       {...TopNav({
+                           title: '挂售管理',
+                           hideLeft:true
+                       })}
                 />
             </Stack>
 
@@ -50,7 +53,10 @@ export const Navigation = () => {
                 key="me">
                 <Scene key="tab_discover"
                        component={PersonalPage}
-                       hideNavBar
+                       {...TopNav({
+                           title: '个人',
+                           hideLeft:true
+                       })}
                 />
             </Stack>
         </Tabs>
