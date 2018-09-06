@@ -68,5 +68,17 @@ export default class Router {
         })
     }
 
+    toChangeInfoPage(){
+        this.push({
+            name: 'ChangeInfoPage'
+        })
+    }
+
+    toSettingPage(){
+        this.push({
+            name: 'SettingPage'
+        })
+    }
+
 
 }

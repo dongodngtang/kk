@@ -55,7 +55,9 @@ export const Navigation = () => {
                        component={PersonalPage}
                        {...TopNav({
                            title: '个人',
-                           hideLeft:true
+                           hideLeft:true,
+                           rightTitle:'设置',
+                           onRight: () => router.toSettingPage()
                        })}
                 />
             </Stack>

@@ -11,6 +11,8 @@ import RegisterPageTwo from "../page/account/RegisterPageTwo";
 import RegisterPageThree from "../page/account/RegisterPageThree";
 import ApplicationRecordPage from "../page/record/ApplicationRecordPage";
 import SellInfoPage from '../page/personal/SellInfoPage';
+import SettingPage from '../page/personal/SettingPage';
+import ChangeInfoPage from "../page/personal/ChangeInfoPage";
 
 let config = {
     titleStyle: {fontSize: 18, color: "#FFFFFF"},
@@ -70,6 +72,18 @@ export const Scenes = () => {
                    title: '成功出售'
                })}
                component={SellInfoPage}/>
+
+        <Scene key="SettingPage"
+               {...TopNav({
+                   title: '设置'
+               })}
+               component={SettingPage}/>
+
+        <Scene key="ChangeInfoPage"
+               {...TopNav({
+                   title: '信息修改'
+               })}
+               component={ChangeInfoPage}/>
 
     </Scene>
 

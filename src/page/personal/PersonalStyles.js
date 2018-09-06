@@ -62,5 +62,15 @@ export default StyleSheet.create({
     countTxt:{
         color: "#AAAAAA",
         fontSize: 14
+    },
+    setBottom:{
+        width:'100%',
+        paddingTop:16,
+        paddingBottom:13,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'#E54A2E',
+        position:'absolute',
+        bottom: 0,
     }
 })
