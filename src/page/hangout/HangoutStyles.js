@@ -15,8 +15,8 @@ export default StyleSheet.create({
         flex: 1, backgroundColor: '#F3F3F3'
     },
     roomView: {
+        width:Metrics.screenWidth - 34,
         height: 50,
-        width: 340,
         backgroundColor: "#E54A2E",
         alignItems: 'center',
         justifyContent: 'center'
@@ -62,5 +62,13 @@ export default StyleSheet.create({
     cancelTxt:{
         color: "#666666",
         fontSize: 14
+    },
+    obtainedTxt:{
+        marginTop:34,
+        marginLeft:36,
+        marginRight:36,
+        color:"#444444",
+        fontSize:18,
+        fontWeight:'bold'
     }
 })

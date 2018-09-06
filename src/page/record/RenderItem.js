@@ -40,11 +40,14 @@ export default class RenderItem extends Component {
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.changePrice]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle();
+                                      this.props.toggle && this.props.toggle(1);
                                   }}>
                     <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}>
+                <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}
+                                  onPress={() => {
+                                      this.props.toggle && this.props.toggle(2);
+                                  }}>
                     <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                 </TouchableOpacity>
             </View>

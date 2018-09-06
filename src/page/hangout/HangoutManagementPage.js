@@ -31,11 +31,106 @@ export default class HangoutManagementPage extends Component {
 
     state = {
         visible: false,
-        clickArea: false
+        clickArea: false,
+        index: 1
     };
 
     componentDidMount() {
         this.price = ''
+    };
+
+
+    clickBtn = () => {
+        if (this.state.index === 1) {
+            return (
+                <TouchableOpacity style={{
+                    width: Metrics.screenWidth - 34,
+                    height: 200,
+                    alignItems: 'center',
+                    backgroundColor: 'white'
+                }}
+                                  activeOpacity={1}
+                                  onPress={() => {
+
+                                  }}>
+                    <View style={styles.roomView}>
+                        <Text style={styles.roomTxt}>修改房间价格</Text>
+                    </View>
+
+                    <View style={styles.changeView}>
+                        <TextInput
+                            keyboardType={'numeric'}
+                            style={{
+                                paddingTop: 0,
+                                paddingBottom: 0,
+                                width: 230,
+                                height: 40,
+                                fontSize: 14
+                            }}
+                            maxLength={11}
+                            numberOfLines={1}
+                            placeholderTextColor={'#DDDDDD'}
+                            placeholder={'输入修改房间价格'}
+                            value={this.price + ''}
+                            clearTextOnFocus={true}
+                            underlineColorAndroid={'transparent'}
+                            onChangeText={txt => {
+                                this.price = txt
+                            }}
+
+                        />
+                    </View>
+
+                    <View style={styles.priceBtnView}>
+                        <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
+                                          onPress={() => {
+                                              this.toggle && this.toggle(1);
+                                          }}>
+                            <Text style={styles.confirmTxt}>确定</Text>
+                        </TouchableOpacity>
+                        <View style={{flex: 1}}/>
+                        <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
+                                          onPress={() => {
+                                              this.toggle && this.toggle(1);
+                                          }}>
+                            <Text style={styles.cancelTxt}>取消</Text>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <TouchableOpacity style={{
+                    width: Metrics.screenWidth - 34,
+                    height: 200,
+                    alignItems: 'center',
+                    backgroundColor: 'white'
+                }}
+                                  activeOpacity={1}
+                                  onPress={() => {
+
+                                  }}>
+                    <Text style={styles.obtainedTxt}>房间下架后，记录将会被删除</Text>
+                    <Text style={[styles.obtainedTxt,{marginTop:2}]}>请问是否下架？</Text>
+
+                    <View style={styles.priceBtnView}>
+                        <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
+                                          onPress={() => {
+                                              this.toggle && this.toggle(2);
+                                          }}>
+                            <Text style={styles.confirmTxt}>确定</Text>
+                        </TouchableOpacity>
+                        <View style={{flex: 1}}/>
+                        <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
+                                          onPress={() => {
+                                              this.toggle && this.toggle(2);
+                                          }}>
+                            <Text style={styles.cancelTxt}>取消</Text>
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
     }
 
     render() {
@@ -56,6 +151,8 @@ export default class HangoutManagementPage extends Component {
                     emptyView={() => <View style={{alignItems: 'center', justifyContent: 'center'}}><Text
                         style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
                 />
+
+
                 {this.state.visible ? <TouchableOpacity
                     activeOpacity={1}
                     style={{
@@ -67,74 +164,23 @@ export default class HangoutManagementPage extends Component {
                         justifyContent: 'center'
                     }}
                     onPress={() => {
-                        this.toggle()
+                        this.toggle(0)
                     }}>
-                    <TouchableOpacity style={{
-                        marginLeft: 17,
-                        marginRight: 17,
-                        height: 200,
-                        alignItems: 'center',
-                        backgroundColor: 'white'
-                    }}
-                                      activeOpacity={1}
-                                      onPress={() => {
 
-                                      }}>
-                        <View style={styles.roomView}>
-                            <Text style={styles.roomTxt}>修改房间价格</Text>
-                        </View>
-
-                        <View style={styles.changeView}>
-                            <TextInput
-                                keyboardType={'numeric'}
-                                style={{
-                                    paddingTop: 0,
-                                    paddingBottom: 0,
-                                    width: 230,
-                                    height: 40,
-                                    fontSize: 14
-                                }}
-                                maxLength={11}
-                                numberOfLines={1}
-                                placeholderTextColor={'#DDDDDD'}
-                                placeholder={'输入修改房间价格'}
-                                value={this.price + ''}
-                                clearTextOnFocus={true}
-                                underlineColorAndroid={'transparent'}
-                                onChangeText={txt => {
-                                    this.price = txt
-                                }}
-
-                            />
-                        </View>
-
-                        <View style={styles.priceBtnView}>
-                            <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
-                                              onPress={() => {
-                                                  this.toggle && this.toggle();
-                                              }}>
-                                <Text style={styles.confirmTxt}>确定</Text>
-                            </TouchableOpacity>
-                            <View style={{flex:1}}/>
-                            <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
-                                              onPress={() => {
-                                                  this.toggle && this.toggle();
-                                              }}>
-                                <Text style={styles.cancelTxt}>取消</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
+                    {this.clickBtn()}
 
                 </TouchableOpacity> : null}
+
 
             </View>
 
         )
     };
 
-    toggle = () => {
+    toggle = (index) => {
         this.setState({
-            visible: !this.state.visible
+            visible: !this.state.visible,
+            index: index
         })
     }
 
