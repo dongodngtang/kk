@@ -8,7 +8,8 @@ const images = {
     personal2:require('../static/personal2.png'),
     record:require('../static/record.png'),
     record2:require('../static/record2.png'),
-    manage2:require('../static/manage2.png')
+    manage2:require('../static/manage2.png'),
+    right:require('../static/right.png')
 
 }
 
