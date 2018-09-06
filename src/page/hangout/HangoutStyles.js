@@ -70,5 +70,38 @@ export default StyleSheet.create({
         color:"#444444",
         fontSize:18,
         fontWeight:'bold'
+    },
+
+    messageView:{
+        paddingTop:12,
+        paddingBottom:12,
+        backgroundColor:"#DDDDDD"
+    },
+    massageTxt:{
+        color: "#444444",
+        fontSize: 14,
+        marginLeft:17,
+        marginRight:17,
+        fontWeight:'bold'
+    },
+    hangoutHotel_View:{
+        flexDirection:'row',
+        alignItems:'center',
+        backgroundColor:'white',
+        paddingLeft:17,
+        paddingRight:17,
+        paddingTop:15,
+        paddingBottom:15,
+        marginBottom:1
+    },
+    text1:{
+        color: "#444444",
+        fontSize: 14,
+        width:70
+    },
+    text2:{
+        color: "#CCCCCC",
+        fontSize: 14,
+        marginLeft:40
     }
 })
