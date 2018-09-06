@@ -19,8 +19,8 @@ let config = {
 export const Scenes = () => {
 
     return <Scene key="root">
-
         {Navigation()}
+
         <Scene key="Home"
                {...TopNav({
                    title: '澳门旅行商家版',
@@ -56,10 +56,11 @@ export const Scenes = () => {
 
         <Scene key="ApplicationRecordPage"
                {...TopNav({
-                   title: '申请记录'
+                   title: '申请记录',
+                   hideLeft:true
                })}
                component={ApplicationRecordPage}>
-
+            {Navigation()}
         </Scene>
 
     </Scene>
