@@ -16,13 +16,15 @@ export default class PersonalPage extends Component {
                         style={styles.money}>{get_thousand_num(1000)}元</Text></Text>
 
                     <View style={styles.withdrawView}>
-                        <Text style={styles.withdraw}>已提现   <Text>{get_thousand_num(32425327372372)}元</Text></Text>
+                        <Text style={styles.withdraw}>已提现   <Text>{get_thousand_num(10000000)}元</Text></Text>
                         <Text style={[styles.withdraw, {marginLeft: 56}]}>可提现   <Text
-                            style={styles.money3}>{get_thousand_num(32425327372372)}元</Text></Text>
+                            style={styles.money3}>{get_thousand_num(10000000)}元</Text></Text>
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.applicationView}>
+                <TouchableOpacity style={styles.applicationView} onPress={()=>{
+                    router.toSellInfoPage()
+                }}>
                     <Text style={styles.application_withdraw}>申请提现</Text>
                     <View style={{flex: 1}}/>
                     <Text style={styles.countTxt}>12间</Text>

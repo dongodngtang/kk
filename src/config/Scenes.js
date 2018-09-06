@@ -10,6 +10,7 @@ import {Navigation} from '../page/navagation/Navigation';
 import RegisterPageTwo from "../page/account/RegisterPageTwo";
 import RegisterPageThree from "../page/account/RegisterPageThree";
 import ApplicationRecordPage from "../page/record/ApplicationRecordPage";
+import SellInfoPage from '../page/personal/SellInfoPage';
 
 let config = {
     titleStyle: {fontSize: 18, color: "#FFFFFF"},
@@ -62,6 +63,12 @@ export const Scenes = () => {
                component={ApplicationRecordPage}>
             {Navigation()}
         </Scene>
+
+        <Scene key="SellInfoPage"
+               {...TopNav({
+                   title: '成功出售'
+               })}
+               component={SellInfoPage}/>
 
     </Scene>
 

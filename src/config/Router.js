@@ -57,5 +57,11 @@ export default class Router {
         })
     }
 
+    toSellInfoPage(){
+        this.push({
+            name: 'SellInfoPage'
+        })
+    }
+
 
 }

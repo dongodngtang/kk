@@ -24,7 +24,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'white',
         paddingTop: 17,
-        paddingBottom: 17
+        paddingBottom: 13
     },
     itemView: {
         flexDirection: 'column',
@@ -98,6 +98,13 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         borderWidth: 1,
         borderColor: "#979797"
+    },
+    withdrawPrice:{
+        backgroundColor:'#E54A2E'
+    },
+    sellsuccess:{
+        backgroundColor:'#FFBBBB',
+        marginLeft:14
     }
 
 })

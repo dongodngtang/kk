@@ -7,7 +7,7 @@ import {strNotNull} from '../../utils/ComonHelper'
 
 export default class RenderItem extends Component {
 
-    judgeBtn = () => {
+    recordBtn = () => {
         const {id} = this.props;
         if (id === 2) {
             return (
@@ -22,6 +22,19 @@ export default class RenderItem extends Component {
         }
     };
 
+    judgeBtn = () => {
+        const {type} = this.props;
+
+        if (type === 'record') {
+            return this.recordBtn()
+        } else if (type === 'hangout') {
+            return this._hangoutBtn()
+        } else if (type === 'sell') {
+            return this.sellBtn()
+        }
+    };
+
+
     _hangoutBtn = () => {
         return (
             <View style={styles.btnPage}>
@@ -33,6 +46,23 @@ export default class RenderItem extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}>
                     <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    };
+
+    sellBtn = () => {
+        return (
+            <View style={styles.btnPage}>
+                <TouchableOpacity style={[styles.btnView, styles.withdrawPrice]}
+                                  onPress={() => {
+
+                                  }}>
+                    <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.btnView, styles.sellsuccess]}
+                                  activeOpacity={1}>
+                    <Text style={{fontSize: 14, color: "#FFFFFF"}}>出售成功</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -60,7 +90,8 @@ export default class RenderItem extends Component {
                     <Text style={styles.price}>{`联系人：${contact} ${phone}`}</Text>
                 </TouchableOpacity>
 
-                {this.props.type === 'record' ? this.judgeBtn() : this._hangoutBtn()}
+
+                {this.judgeBtn()}
 
             </View>
 
