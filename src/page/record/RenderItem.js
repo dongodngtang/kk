@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} from 'react-native';
 import styles from './RecordStyles';
 import ItemBottom from './ItemBottom';
+import {Images, Styles, Metrics, Colors} from '../../config/Theme'
+import {strNotNull} from '../../utils/ComonHelper'
 
 export default class RenderItem extends Component {
 
@@ -23,7 +25,10 @@ export default class RenderItem extends Component {
     _hangoutBtn = () => {
         return (
             <View style={styles.btnPage}>
-                <TouchableOpacity style={[styles.btnView, styles.changePrice]}>
+                <TouchableOpacity style={[styles.btnView, styles.changePrice]}
+                                  onPress={() => {
+                                      this.props.toggle && this.props.toggle();
+                                  }}>
                     <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}>

@@ -20,9 +20,9 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
-    itemPage:{
+    itemPage: {
         flexDirection: 'column',
-        backgroundColor:'white',
+        backgroundColor: 'white',
         paddingTop: 17,
         paddingBottom: 17
     },
@@ -59,44 +59,45 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: 'center',
         justifyContent: 'flex-end',
-        marginRight:17,
-        marginLeft:17
+        marginRight: 17,
+        marginLeft: 17
     },
-    btnView:{
-        width:80,
-        height:34,
+    btnView: {
+        width: 80,
+        height: 34,
         alignItems: 'center',
-        justifyContent:'center',
-        borderRadius:2
+        justifyContent: 'center',
+        borderRadius: 2
     },
-    obtainedView:{
-        backgroundColor:'white',
-        borderWidth:1
+    obtainedView: {
+        backgroundColor: 'white',
+        borderWidth: 1
     },
-    salingView:{
-        backgroundColor:'#4A90E2',
-        marginLeft:16,
-        borderWidth:1,
-        borderColor:'#4A90E2'
+    salingView: {
+        backgroundColor: '#4A90E2',
+        marginLeft: 16,
+        borderWidth: 1,
+        borderColor: '#4A90E2'
     },
-    btn:{
-        paddingTop:14,
-        marginLeft:17,
-        marginRight:17
+    btn: {
+        paddingTop: 14,
+        marginLeft: 17,
+        marginRight: 17
     },
-    txt2:{
+    txt2: {
         color: "#FF8484",
         fontSize: 14
     },
-    changePrice:{
-        backgroundColor:'white',
-        borderWidth:1,
-        borderColor:"#E54A2E",
-        marginRight:17
+    changePrice: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: "#E54A2E",
+        marginRight: 17
     },
-    obtainedView2:{
-        backgroundColor:'white',
-        borderWidth:1,
-        borderColor:"#979797"
+    obtainedView2: {
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: "#979797"
     }
+
 })

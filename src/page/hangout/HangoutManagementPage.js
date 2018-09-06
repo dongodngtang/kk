@@ -5,6 +5,7 @@ import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
 import RenderItem from '../record/RenderItem'
+import {strNotNull} from "../../utils/ComonHelper";
 
 const items = [{
     title: '巴黎人酒店 豪华双人房1天',
@@ -28,6 +29,15 @@ const items = [{
 
 export default class HangoutManagementPage extends Component {
 
+    state = {
+        visible: false,
+        clickArea: false
+    };
+
+    componentDidMount() {
+        this.price = ''
+    }
+
     render() {
         return (
             <View style={styles.backgroundStyle2}>
@@ -46,9 +56,86 @@ export default class HangoutManagementPage extends Component {
                     emptyView={() => <View style={{alignItems: 'center', justifyContent: 'center'}}><Text
                         style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
                 />
+                {this.state.visible ? <TouchableOpacity
+                    activeOpacity={1}
+                    style={{
+                        backgroundColor: 'rgba(0,0,0,0.6)',
+                        position: 'absolute',
+                        height: Metrics.screenHeight - 55,
+                        width: Metrics.screenWidth,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                    onPress={() => {
+                        this.toggle()
+                    }}>
+                    <TouchableOpacity style={{
+                        marginLeft: 17,
+                        marginRight: 17,
+                        height: 200,
+                        alignItems: 'center',
+                        backgroundColor: 'white'
+                    }}
+                                      activeOpacity={1}
+                                      onPress={() => {
+
+                                      }}>
+                        <View style={styles.roomView}>
+                            <Text style={styles.roomTxt}>修改房间价格</Text>
+                        </View>
+
+                        <View style={styles.changeView}>
+                            <TextInput
+                                keyboardType={'numeric'}
+                                style={{
+                                    paddingTop: 0,
+                                    paddingBottom: 0,
+                                    width: 230,
+                                    height: 40,
+                                    fontSize: 14
+                                }}
+                                maxLength={11}
+                                numberOfLines={1}
+                                placeholderTextColor={'#DDDDDD'}
+                                placeholder={'输入修改房间价格'}
+                                value={this.price + ''}
+                                clearTextOnFocus={true}
+                                underlineColorAndroid={'transparent'}
+                                onChangeText={txt => {
+                                    this.price = txt
+                                }}
+
+                            />
+                        </View>
+
+                        <View style={styles.priceBtnView}>
+                            <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
+                                              onPress={() => {
+                                                  this.toggle && this.toggle();
+                                              }}>
+                                <Text style={styles.confirmTxt}>确定</Text>
+                            </TouchableOpacity>
+                            <View style={{flex:1}}/>
+                            <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
+                                              onPress={() => {
+                                                  this.toggle && this.toggle();
+                                              }}>
+                                <Text style={styles.cancelTxt}>取消</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
+
+                </TouchableOpacity> : null}
+
             </View>
 
         )
+    };
+
+    toggle = () => {
+        this.setState({
+            visible: !this.state.visible
+        })
     }
 
     _separator = () => {
@@ -73,6 +160,6 @@ export default class HangoutManagementPage extends Component {
     };
 
     renderItem = (item, index) => {
-        return <RenderItem item={item} type={'hangout'}/>
+        return <RenderItem item={item} type={'hangout'} toggle={this.toggle}/>
     };
 }
