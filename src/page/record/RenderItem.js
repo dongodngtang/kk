@@ -20,6 +20,19 @@ export default class RenderItem extends Component {
         }
     };
 
+    _hangoutBtn = () => {
+        return (
+            <View style={styles.btnPage}>
+                <TouchableOpacity style={[styles.btnView, styles.changePrice]}>
+                    <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}>
+                    <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
 
     render() {
         const {title, time, price, start_time, end_time, contact, phone} = this.props.item;
@@ -27,9 +40,9 @@ export default class RenderItem extends Component {
             <View style={styles.itemPage}>
                 <TouchableOpacity
                     style={[styles.itemView, {
-                        borderBottomWidth: this.props.id !== 1 ? 1 : 0,
+                        borderBottomWidth: this.props.type === 'hangout' || (this.props.id && this.props.id) !== 1 ? 1 : 0,
                         borderColor: '#F3F3F3',
-                        paddingBottom: this.props.id === 1 ? 0 : 16
+                        paddingBottom: this.props.id && this.props.id === 1 ? 0 : 16
                     }]}>
                     <View style={styles.one}>
                         <Text style={styles.txt}>{title}</Text>
@@ -42,7 +55,7 @@ export default class RenderItem extends Component {
                     <Text style={styles.price}>{`联系人：${contact} ${phone}`}</Text>
                 </TouchableOpacity>
 
-                {this.judgeBtn()}
+                {this.props.type === 'record' ? this.judgeBtn() : this._hangoutBtn()}
 
             </View>
 

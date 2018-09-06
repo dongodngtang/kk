@@ -63,10 +63,8 @@ export default StyleSheet.create({
         marginLeft:17
     },
     btnView:{
-        paddingTop:8,
-        paddingBottom:8,
-        paddingLeft:28,
-        paddingRight:28,
+        width:80,
+        height:34,
         alignItems: 'center',
         justifyContent:'center',
         borderRadius:2
@@ -89,5 +87,16 @@ export default StyleSheet.create({
     txt2:{
         color: "#FF8484",
         fontSize: 14
+    },
+    changePrice:{
+        backgroundColor:'white',
+        borderWidth:1,
+        borderColor:"#E54A2E",
+        marginRight:17
+    },
+    obtainedView2:{
+        backgroundColor:'white',
+        borderWidth:1,
+        borderColor:"#979797"
     }
 })

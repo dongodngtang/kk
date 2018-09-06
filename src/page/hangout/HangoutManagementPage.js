@@ -73,6 +73,6 @@ export default class HangoutManagementPage extends Component {
     };
 
     renderItem = (item, index) => {
-        return <RenderItem item={item}/>
+        return <RenderItem item={item} type={'hangout'}/>
     };
 }
