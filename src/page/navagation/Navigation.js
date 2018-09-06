@@ -44,7 +44,9 @@ export const Navigation = () => {
                        component={HangoutManagementPage}
                        {...TopNav({
                            title: '挂售管理',
-                           hideLeft:true
+                           hideLeft:true,
+                           rightTitle:'挂售',
+                           onRight: () => router.toHangoutHotelPage()
                        })}
                 />
             </Stack>

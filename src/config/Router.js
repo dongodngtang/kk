@@ -81,4 +81,11 @@ export default class Router {
     }
 
 
+    toHangoutHotelPage(){
+        this.push({
+            name: 'HangoutHotelPage'
+        })
+    }
+
+
 }

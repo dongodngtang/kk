@@ -13,6 +13,7 @@ import ApplicationRecordPage from "../page/record/ApplicationRecordPage";
 import SellInfoPage from '../page/personal/SellInfoPage';
 import SettingPage from '../page/personal/SettingPage';
 import ChangeInfoPage from "../page/personal/ChangeInfoPage";
+import HangoutHotelPage from "../page/hangout/HangoutHotelPage";
 
 let config = {
     titleStyle: {fontSize: 18, color: "#FFFFFF"},
@@ -84,6 +85,12 @@ export const Scenes = () => {
                    title: '信息修改'
                })}
                component={ChangeInfoPage}/>
+
+        <Scene key="HangoutHotelPage"
+               {...TopNav({
+                   title: '房间挂售申请'
+               })}
+               component={HangoutHotelPage}/>
 
     </Scene>
 
