@@ -1,6 +1,6 @@
 import React, {Component, PureComponent} from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
-import {Scene, Stack, Tabs} from 'react-native-router-flux';
+import {Scene, Stack, Tabs, ActionConst} from 'react-native-router-flux';
 import {Images, Styles, Metrics, Colors} from '../config/Theme'
 import Home from '../page/Home';
 import RegisterPage from "../page/account/RegisterPage";
@@ -21,13 +21,13 @@ export const Scenes = () => {
 
     return <Scene key="root">
         {Navigation()}
-
         <Scene key="Home"
                {...TopNav({
                    title: '澳门旅行商家版',
                    hideLeft: true
                })}
                component={Home}/>
+
 
         <Scene key="Login"
                {...TopNav({
@@ -55,13 +55,14 @@ export const Scenes = () => {
                })}
                component={RegisterPageThree}/>
 
-        <Scene key="ApplicationRecordPage"
+        <Scene type={ActionConst.RESET}
+               key="Main"
                {...TopNav({
                    title: '申请记录',
-                   hideLeft:true
+                   hideLeft: true
                })}
                component={ApplicationRecordPage}>
-            {Navigation()}
+
         </Scene>
 
         <Scene key="SellInfoPage"
@@ -74,7 +75,7 @@ export const Scenes = () => {
 
 }
 
-const TopNav = (props) => {
+export const TopNav = (props) => {
 
     return {
         ...props,

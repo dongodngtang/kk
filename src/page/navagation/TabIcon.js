@@ -1,24 +1,20 @@
 import React, {
-    PureComponent
+    Component
 } from 'react';
 import {
     Text, Image, View, StyleSheet,
     TouchableOpacity
 } from 'react-native';
 import {Images,Colors} from '../../Themes';
-import {connect} from 'react-redux';
+import {logMsg} from "../../config/utils";
 
 
-class TabIcon extends PureComponent {
 
-    componentDidMount() {
-        setTimeout(() => {
-            this.forceUpdate()
-        }, 300)
-    }
+export default class TabIcon extends Component {
 
     render() {
         const {tab, focused} = this.props;
+        logMsg(this.props)
         return (
             <View>
                 <View style={{flexDirection: 'column', alignItems: 'center'}}>
@@ -40,7 +36,6 @@ class TabIcon extends PureComponent {
                 return '申请记录';
             case 'management':
                 return '挂售管理';
-
             case 'me':
                 return '个人';
         }
@@ -54,11 +49,11 @@ class TabIcon extends PureComponent {
     _imageTab = (tab, focused) => {
         switch (tab) {
             case 'record':
-                return focused ? Images.record : Images.record2;
+                return focused ? Images.record2 : Images.record;
             case 'management':
-                return focused ? Images.manage : Images.manage2;
+                return focused ? Images.manage2 : Images.manage;
             case 'me':
-                return focused ? Images.personal : Images.personal2;
+                return focused ? Images.personal2 : Images.personal;
         }
     };
 
@@ -72,7 +67,7 @@ class TabIcon extends PureComponent {
                 return styles.bgRankStyle2;
         }
     }
-};
+}
 
 const styles = StyleSheet.create({
 
@@ -99,12 +94,3 @@ const styles = StyleSheet.create({
         width: 16
     },
 });
-
-const bindAction = dispatch => ({});
-
-const mapStateToProps = state => ({
-
-    // actionType: state.AccountState.actionType,
-});
-
-export default connect(mapStateToProps, bindAction)(TabIcon);

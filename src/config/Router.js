@@ -26,6 +26,11 @@ export default class Router {
         )
     }
 
+    popToTopRefresh() {
+        Actions.reset('Main');
+
+    }
+
 
     toRegisterPage(){
         this.push({

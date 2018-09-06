@@ -7,6 +7,7 @@ import ApplicationRecordPage from '../record/ApplicationRecordPage';
 import HangoutManagementPage from '../hangout/HangoutManagementPage';
 import PersonalPage from '../personal/PersonalPage';
 import BottomNavigation from './BottomNavigation';
+import {TopNav} from "../../config/Scenes";
 
 
 export const Navigation = () => {
@@ -14,7 +15,7 @@ export const Navigation = () => {
 
     return (
         <Tabs
-
+            hideNavBar
             type="reset"
             style={styles.tabs}
             lazy
@@ -26,16 +27,18 @@ export const Navigation = () => {
             tabBarComponent={BottomNavigation}
         >
             <Stack
-                key="tab_1"
+                key="record"
             >
                 <Scene
-                    init
                     key="tab_home"
                     component={ApplicationRecordPage}
-                    hideNavBar
+                    {...TopNav({
+                        title: '商家注册'
+                    })}
                 />
             </Stack>
-            <Stack key="tab_2">
+            <Stack
+                key="management">
                 <Scene key="tab_news"
                        component={HangoutManagementPage}
                        hideNavBar
@@ -43,7 +46,8 @@ export const Navigation = () => {
                 />
             </Stack>
 
-            <Stack key="tab_3">
+            <Stack
+                key="me">
                 <Scene key="tab_discover"
                        component={PersonalPage}
                        hideNavBar

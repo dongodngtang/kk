@@ -16,7 +16,7 @@ export default class BottomNavigation extends Component {
         return (
             <View style={styleBN.navigation}>
 
-                {routes.map((item, index) => {
+                {routes.map((item, tabIndex) => {
                     return <TouchableOpacity
                         key={item.key}
                         onPress={() => {
@@ -24,7 +24,8 @@ export default class BottomNavigation extends Component {
 
                         }}
                         style={styleBN.navigations}>
-                        <Text>{item.key}</Text>
+                       <TabIcon tab={item.key}
+                                focused={tabIndex===index}/>
                     </TouchableOpacity>
                 })}
 

@@ -49,7 +49,7 @@ export default class RegisterPageThree extends Component {
 
                 <TouchableOpacity style={styles.nextBtn}
                                   onPress={() => {
-                                      global.router.toApplicationRecordPage()
+                                      global.router.popToTopRefresh()
                                   }}>
                     <Text style={styles.nextTxt}>完成</Text>
                 </TouchableOpacity>
