@@ -4,14 +4,37 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {get_thousand_num} from '../../utils/ComonHelper'
+import {isEmptyObject} from '../../utils/ComonHelper';
+import moment from 'moment';
 
 export default class HangoutHotelPage extends Component {
 
+    state = {
+        timeShow: false,
+        date: {begin_date: "", end_date: "", counts: 0}
+    }
+
     componentDidMount() {
         this.price = '';
-        this.number = ''
+        this.number = '';
+        this.init();
     }
+
+    init = () => {
+        this.setState({
+            date: {
+                begin_date: moment().format('YYYY-MM-DD'),
+                end_date: moment().add('hours', 24).format('YYYY-MM-DD'),
+                counts: 1
+            }
+        })
+    };
+
+    showSpecInfo = (temp) => {
+        this.setState({
+            timeShow: !this.state.timeShow
+        })
+    };
 
     render() {
         return (
@@ -37,7 +60,7 @@ export default class HangoutHotelPage extends Component {
                             paddingBottom: 0,
                             width: 230,
                             fontSize: 14,
-                            marginLeft:40
+                            marginLeft: 40
                         }}
                         maxLength={11}
                         numberOfLines={1}
@@ -52,7 +75,10 @@ export default class HangoutHotelPage extends Component {
 
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.hangoutHotel_View}>
+                <TouchableOpacity style={styles.hangoutHotel_View}
+                                  onPress={() => {
+                                      this.showSpecInfo()
+                                  }}>
                     <Text style={styles.text1}>入住时间</Text>
                     <Text style={styles.text2}>请填写克入住时间</Text>
                 </TouchableOpacity>
@@ -65,7 +91,7 @@ export default class HangoutHotelPage extends Component {
                             paddingBottom: 0,
                             width: 230,
                             fontSize: 14,
-                            marginLeft:40
+                            marginLeft: 40
                         }}
                         maxLength={11}
                         numberOfLines={1}
@@ -80,7 +106,20 @@ export default class HangoutHotelPage extends Component {
 
                     />
                 </View>
+
+                {this.state.timeShow ? <TimeSpecificationInfo
+                    _change={this._change}
+                    showSpecInfo={this.showSpecInfo}/> : null}
             </ScrollView>
         )
     }
+
+    _change = (date) => {
+        if (!isEmptyObject(date)) {
+            this.setState({
+                date: date
+            })
+        }
+        console.log("第一次的时间：", this.state.date)
+    };
 }
