@@ -4,6 +4,7 @@ import styles from './AccountStyles';
 import {Colors, Images} from "../../Themes";
 import ExtArea from './ExtArea';
 import { isStrNull, showToast } from '../../config/utils';
+import { postCode } from '../../service/AccountDao';
 
 export default class RegisterPage extends Component {
 
@@ -58,7 +59,8 @@ export default class RegisterPage extends Component {
                                           showToast('手机号不能为空')
                                           return
                                       }
-                                      router.toRegisterPageTwo(mobile,ext)
+                                      this.sendCode()
+                                   
                                   }}>
                     <Text style={styles.nextTxt}>下一步</Text>
                 </TouchableOpacity>
@@ -75,6 +77,20 @@ export default class RegisterPage extends Component {
                     changed_ext={this.changed_ext}/>
             </View>
         )
+    }
+
+    sendCode =()=>{
+        const {mobile,ext} = this.state;
+        let body = {
+            option_type:'register',
+            mobile,
+            ext
+        }
+        postCode(body,data=>{
+            router.toRegisterPageTwo(mobile,ext)
+        },err=>{
+            showToast(err)
+        })
     }
 
     changed_ext = (code) => {

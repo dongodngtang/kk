@@ -16,7 +16,7 @@ export default class RegisterPageTwo extends Component {
     };
 
     componentDidMount(){
-       this.sendCode()
+        this.countDownButton && this.countDownButton._shouldStartCountting(true)
     }
 
     sendCode =(counting)=>{
