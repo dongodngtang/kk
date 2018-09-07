@@ -3,11 +3,11 @@ import {Platform, ScrollView, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
-import {UltimateFlatList} from '../../components';
 import {isEmptyObject, convertDate, showToast, strNotNull,alertOrder} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
 import {postRoom_requests} from "../../service/HangoutDao";
+import {logMsg} from "../../config/utils";
 
 let time_index = 1;
 let hotel_index = 1;
@@ -19,6 +19,7 @@ export default class HangoutHotelPage extends Component {
         super(props)
         props.navigation.setParams({
             onLeft: () => {
+                logMsg('拉萨的法律框架')
                 props.params.refresh && props.params.refresh()
                 router.pop()
             }

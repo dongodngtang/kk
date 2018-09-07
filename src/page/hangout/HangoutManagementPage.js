@@ -7,6 +7,7 @@ import {UltimateFlatList} from '../../components';
 import RenderItem from '../record/RenderItem'
 import {strNotNull} from "../../utils/ComonHelper";
 import {getRoomRequest} from "../../service/RecordDao";
+import {logMsg} from "../../config/utils";
 
 
 export default class HangoutManagementPage extends Component {
@@ -15,7 +16,7 @@ export default class HangoutManagementPage extends Component {
         super(props)
 
         props.navigation.setParams({
-            onRight: () => router.toHangoutHotelPage(this.listView.refresh),
+            onRight: () => router.toHangoutHotelPage(this.refresh),
             rightTitle:'挂售'
         })
     }
@@ -25,6 +26,11 @@ export default class HangoutManagementPage extends Component {
         clickArea: false,
         index: 1
     };
+
+    refresh = ()=>{
+        logMsg('刷新水淀粉')
+        this.listView.refresh && this.listView.refresh()
+    }
 
     componentDidMount() {
         this.price = ''

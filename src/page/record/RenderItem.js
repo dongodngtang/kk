@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './RecordStyles';
 import ItemBottom from './ItemBottom';
 import {Images, Styles, Metrics, Colors} from '../../config/Theme'
-import {strNotNull} from '../../utils/ComonHelper'
+import {convertDate,utcDate} from '../../utils/ComonHelper'
 
 export default class RenderItem extends Component {
 
@@ -73,7 +73,7 @@ export default class RenderItem extends Component {
 
 
     render() {
-        const {title, time, price, start_time, end_time, contact, phone} = this.props.item;
+        const {hotel_title, created_at, price, room_title, checkin_date} = this.props.item;
         return (
             <View style={styles.itemPage}>
                 <TouchableOpacity
@@ -82,16 +82,18 @@ export default class RenderItem extends Component {
                         borderColor: '#F3F3F3',
                         paddingBottom: this.props.id && this.props.id === 1 ? 0 : 16
                     }]}>
-                    <View style={styles.one}>
-                        <Text style={styles.txt}>{title}</Text>
+
+                    <View style={[styles.one]}>
+                        <Text style={[styles.txt,{width:'70%'}]}>{hotel_title}    {room_title}</Text>
                         <View style={{flex: 1}}/>
-                        <Text style={styles.time}>{time}</Text>
+                        <Text style={styles.time}>{utcDate(created_at,'YYYY-MM-DD mm:ss')}</Text>
                     </View>
                     <Text style={[styles.price, {marginBottom: 6, fontWeight: 'bold'}]}>售价：<Text
                         style={styles.priceRed}>¥{price}</Text></Text>
-                    <Text style={[styles.price, {marginBottom: 12}]}>{`挂售时间：${start_time}至${end_time}`}</Text>
-                    <Text style={styles.price}>{`联系人：${contact} ${phone}`}</Text>
+                    <Text style={[styles.price, {marginBottom: 12}]}>{`入住时间：${checkin_date}`}</Text>
+                    <Text style={styles.price}>{`联系人：${global.loginUser.nick_name} ${global.loginUser.contact}`}</Text>
                 </TouchableOpacity>
+
 
 
                 {this.judgeBtn()}
