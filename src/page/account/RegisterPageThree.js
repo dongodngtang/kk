@@ -25,7 +25,7 @@ export default class RegisterPageThree extends Component {
                                underlineColorAndroid='transparent'
                                onChangeText={text => {
                                    this.setState({
-                                       mobile: text,
+                                       name: text,
                                        phoneClear: text.length > 0
                                    })
                                }}
