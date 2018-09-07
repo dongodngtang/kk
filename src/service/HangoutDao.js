@@ -13,3 +13,9 @@ export function getRoomList(body, resolve, reject) {
         resolve(ret.data)
     }, reject)
 }
+
+export function postRoom_requests(body, resolve, reject) {
+    post(api.sale_room_requests, body, ret => {
+        resolve(ret.data)
+    }, reject)
+}

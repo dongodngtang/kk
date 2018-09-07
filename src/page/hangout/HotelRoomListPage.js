@@ -80,7 +80,9 @@ export default class HotelRoomListPage extends PureComponent {
     _renderItem = (item, index) => {
         const {id, images, notes, price, tags, title, discount_amount} = item;
         return (
-            <View style={styles.itemView}>
+            <TouchableOpacity style={styles.itemView} onPress={()=>{
+                this.props.params._change_room(item)
+            }}>
                 <ImageMessage images={images}/>
                 <Message item={item}/>
 
@@ -112,7 +114,7 @@ export default class HotelRoomListPage extends PureComponent {
                         }}>{item.saleable_num <= 0 ? '售罄' : '预定'}</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     };
 

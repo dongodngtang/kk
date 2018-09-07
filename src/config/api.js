@@ -17,6 +17,7 @@ const api = {
     account_verify: 'merchant/verify_vcode',//校验验证码是否正确
     account:'merchant/account',
     room_list: room_list,//获取酒店房间列表
+    sale_room_requests:'merchant/sale_room_requests',// 创建房间挂售申请
 }
 
 function hotels(body) {

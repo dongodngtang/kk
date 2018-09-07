@@ -107,11 +107,12 @@ export default class Router {
     }
 
 
-    toHotelRoomListPage(hotel_item){
+    toHotelRoomListPage(hotel_item,_change_room){
         this.push({
             name: 'HotelRoomListPage',
             params:{
-                hotel_item
+                hotel_item,
+                _change_room
             }
         })
     }

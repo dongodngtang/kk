@@ -7,6 +7,7 @@ import {UltimateFlatList} from '../../components';
 import {isEmptyObject, convertDate, showToast} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
+import {postRoom_requests} from "../../service/HangoutDao";
 
 let time_index = 1;
 let hotel_index = 1;
@@ -18,12 +19,13 @@ export default class HangoutHotelPage extends Component {
         timeShow: false,
         date: {begin_date: "", end_date: "", counts: 0},
         hotel_item: {},
-        room_item: {}
+        room_item: {},
+        card_img: ''
     }
 
     componentDidMount() {
         this.price = '';
-        this.number = '';
+        this.room_num = '';
         this.init();
     }
 
@@ -54,6 +56,7 @@ export default class HangoutHotelPage extends Component {
             hotel_item: item
         })
     };
+
     _change_room = (item) => {
         if (isEmptyObject(item)) {
             room_index = 1;
@@ -90,7 +93,7 @@ export default class HangoutHotelPage extends Component {
                                 showToast("请先选择酒店")
                             } else {
                                 ++room_index;
-                                router.toHotelRoomListPage(hotel_item);
+                                router.toHotelRoomListPage(hotel_item,this._change_room);
                             }
 
                         }}>
@@ -112,11 +115,11 @@ export default class HangoutHotelPage extends Component {
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={'请填写酒店房号'}
-                            value={this.number + ''}
+                            value={this.room_num + ''}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
-                                this.number = txt
+                                this.room_num = txt
                             }}
 
                         />
@@ -164,12 +167,31 @@ export default class HangoutHotelPage extends Component {
                     _change={this._change}
                     showSpecInfo={this.showSpecInfo}/> : null}
 
-                <TouchableOpacity style={styles.hangout_btnView}>
+                <TouchableOpacity style={styles.hangout_btnView} onPress={() => {
+                    this.judgeMessage()
+                }}>
                     <Text style={styles.hangout_btnTxt}>准备好了，申请挂售</Text>
                 </TouchableOpacity>
             </View>
         )
     }
+
+    judgeMessage = () => {
+        const {date, hotel_item, room_item, card_img} = this.state;
+        let body = {
+            hotel_id: hotel_item.id,
+            room_id: room_item.id,
+            room_num: this.room_num,
+            checkin_date: date.begin_date,
+            price: this.price,
+            card_img: card_img
+        };
+        postRoom_requests(body, data => {
+
+        }, err => {
+            showToast(err)
+        })
+    };
 
     _change = (date) => {
         if (!isEmptyObject(date)) {
