@@ -14,6 +14,8 @@ import SellInfoPage from '../page/personal/SellInfoPage';
 import SettingPage from '../page/personal/SettingPage';
 import ChangeInfoPage from "../page/personal/ChangeInfoPage";
 import HangoutHotelPage from "../page/hangout/HangoutHotelPage";
+import HotelListPage from "../page/hangout/HotelListPage";
+import {strNotNull} from "../utils/ComonHelper";
 
 let config = {
     titleStyle: { fontSize: 18, color: "#FFFFFF" },
@@ -92,6 +94,14 @@ export const Scenes = () => {
             })}
             component={HangoutHotelPage} />
 
+        <Scene key="HotelListPage"
+               {...TopNav({
+                   title: '选择酒店',
+                   onRight: () => router.toRegisterPage(),
+                   renderRightButton: Images.search
+               })}
+               component={HotelListPage}/>
+
     </Scene>
 
 }
@@ -107,7 +117,7 @@ export const TopNav = (props) => {
 class NavBar extends PureComponent {
 
     render() {
-        const { component, title, hideLeft, rightTitle, onLeft, onRight } = this.props;
+        const {component, title, hideLeft, rightTitle, onLeft, onRight, renderRightButton} = this.props;
 
         let pageMsg = `当前界面${component.displayName}`;
         return <View style={Styles.navTop}>
@@ -140,11 +150,21 @@ class NavBar extends PureComponent {
                     this.props.onRight && this.props.onRight()
                 }}
                 style={Styles.left}>
-                {rightTitle ? <Text
-                    style={{ fontSize: 14, color: 'white' }}>{rightTitle}</Text> : null}
+
+                {this.right_content(rightTitle, renderRightButton)}
+
 
             </TouchableOpacity>
 
         </View>
+    }
+
+    right_content = (rightTitle, rightButtonImage) => {
+        if (strNotNull(rightTitle)) {
+            return <Text
+                style={{fontSize: 14, color: 'white'}}>{rightTitle}</Text>
+        } else if (strNotNull(rightButtonImage)) {
+            return <Image style={{height: 17, width: 17, marginLeft: 15, marginRight: 9}} source={rightButtonImage}/>
+        }
     }
 }

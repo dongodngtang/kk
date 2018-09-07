@@ -96,4 +96,14 @@ export default class Router {
     }
 
 
+    toHotelListPage(date){
+        this.push({
+            name: 'HotelListPage',
+            params:{
+                date
+            }
+        })
+    }
+
+
 }
