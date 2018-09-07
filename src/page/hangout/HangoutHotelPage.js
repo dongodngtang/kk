@@ -8,7 +8,8 @@ import {isEmptyObject, convertDate} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
 
-let index = 1;
+let time_index = 1;
+let hotel_index = 1;
 
 export default class HangoutHotelPage extends Component {
 
@@ -50,7 +51,12 @@ export default class HangoutHotelPage extends Component {
 
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>挂售酒店</Text>
-                        <Text style={styles.text2}>请选择挂售酒店</Text>
+                        <TouchableOpacity onPress={() => {
+                            ++hotel_index;
+                            router.toHotelListPage()
+                        }}>
+                            <Text style={styles.text2}>请选择挂售酒店</Text>
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>酒店房型</Text>
@@ -59,12 +65,11 @@ export default class HangoutHotelPage extends Component {
                     <TouchableOpacity style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>房号</Text>
                         <TextInput
-                            keyboardType={'numeric'}
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 width: 230,
-                                fontSize: 14,
+                                fontSize: 16,
                                 marginLeft: 40
                             }}
                             maxLength={11}
@@ -83,10 +88,10 @@ export default class HangoutHotelPage extends Component {
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>入住时间</Text>
                         <TouchableOpacity onPress={() => {
-                            ++index;
+                            ++time_index;
                             this.showSpecInfo()
                         }}>
-                            {index === 1 ? <Text style={styles.text2}>请填写克入住时间</Text> :
+                            {time_index === 1 ? <Text style={styles.text2}>请填写克入住时间</Text> :
 
                                 <Text
                                     style={styles.timeTxt}>{`${convertDate(date.begin_date, 'M月DD日')} - ${convertDate(date.end_date, 'M月DD日')}`}</Text>
@@ -101,7 +106,7 @@ export default class HangoutHotelPage extends Component {
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 width: 230,
-                                fontSize: 14,
+                                fontSize: 16,
                                 marginLeft: 40
                             }}
                             maxLength={11}

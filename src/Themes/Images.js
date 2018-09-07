@@ -9,7 +9,10 @@ const images = {
     record:require('../static/record.png'),
     record2:require('../static/record2.png'),
     manage:require('../static/manage2.png'),
-    right:require('../static/right.png')
+    right:require('../static/right.png'),
+    load_error:require('../static/load_error.png'),
+    load_no_data:require('../static/load_no_data.png'),
+    load_wifi:require('../static/load_wifi.png')
 
 }
 

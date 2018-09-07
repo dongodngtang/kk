@@ -88,4 +88,11 @@ export default class Router {
     }
 
 
+    toHotelListPage(){
+        this.push({
+            name: 'HotelListPage'
+        })
+    }
+
+
 }
