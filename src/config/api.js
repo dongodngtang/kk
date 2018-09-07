@@ -16,11 +16,18 @@ const api = {
     v_codes: 'merchant/v_codes',// 发送验证码
     account_verify: 'merchant/verify_vcode',//校验验证码是否正确
     account:'merchant/account',
+    room_list: room_list,//获取酒店房间列表
 }
 
 function hotels(body) {
     const {request_type} = body;
     return `merchant/sale_room_requests?request_type=${request_type}`
 }
+
+function room_list(body) {
+    const {begin_date, id} = body;
+    return `hotels/${id}/rooms?date=${begin_date}`
+}
+
 
 export default api

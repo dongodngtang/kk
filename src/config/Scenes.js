@@ -15,6 +15,7 @@ import SettingPage from '../page/personal/SettingPage';
 import ChangeInfoPage from "../page/personal/ChangeInfoPage";
 import HangoutHotelPage from "../page/hangout/HangoutHotelPage";
 import HotelListPage from "../page/hangout/HotelListPage";
+import HotelRoomListPage from "../page/hangout/HotelRoomListPage";
 import {strNotNull} from "../utils/ComonHelper";
 
 let config = {
@@ -98,6 +99,9 @@ export const Scenes = () => {
                hideNavBar
                component={HotelListPage}/>
 
+        <Scene key="HotelRoomListPage"
+               hideNavBar
+               component={HotelRoomListPage}/>
     </Scene>
 
 }

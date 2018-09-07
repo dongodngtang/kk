@@ -107,4 +107,14 @@ export default class Router {
     }
 
 
+    toHotelRoomListPage(hotel_item){
+        this.push({
+            name: 'HotelRoomListPage',
+            params:{
+                hotel_item
+            }
+        })
+    }
+
+
 }

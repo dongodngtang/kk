@@ -4,12 +4,13 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {isEmptyObject, convertDate} from '../../utils/ComonHelper';
+import {isEmptyObject, convertDate, showToast} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
 
 let time_index = 1;
 let hotel_index = 1;
+let room_index = 1;
 
 export default class HangoutHotelPage extends Component {
 
@@ -17,7 +18,7 @@ export default class HangoutHotelPage extends Component {
         timeShow: false,
         date: {begin_date: "", end_date: "", counts: 0},
         hotel_item: {},
-        room_name: ''
+        room_item: {}
     }
 
     componentDidMount() {
@@ -46,16 +47,24 @@ export default class HangoutHotelPage extends Component {
     };
 
     _change_hotel = (item) => {
-        if(isEmptyObject(item)){
-            hotel_index =1;
+        if (isEmptyObject(item)) {
+            hotel_index = 1;
         }
         this.setState({
             hotel_item: item
         })
     };
+    _change_room = (item) => {
+        if (isEmptyObject(item)) {
+            room_index = 1;
+        }
+        this.setState({
+            room_item: item
+        })
+    };
 
     render() {
-        const {date,hotel_item} = this.state;
+        const {date, hotel_item, room_item} = this.state;
         return (
             <View style={styles.backgroundStyle2}>
                 <ScrollView>
@@ -74,10 +83,21 @@ export default class HangoutHotelPage extends Component {
 
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                    <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>酒店房型</Text>
-                        <Text style={styles.text2}>请选择酒店房型</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            if(isEmptyObject(hotel_item)){
+                                showToast("请先选择酒店")
+                            }else{
+                                ++room_index;
+                                router.toHotelRoomListPage(hotel_item);
+                            }
+
+                        }}>
+                            {room_index === 1 ? <Text style={styles.text2}>请选择酒店房型</Text> :
+                                <Text style={styles.timeTxt}>{room_item.title}</Text>}
+                        </TouchableOpacity>
+                    </View>
                     <TouchableOpacity style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>房号</Text>
                         <TextInput
