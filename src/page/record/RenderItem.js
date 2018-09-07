@@ -86,7 +86,7 @@ export default class RenderItem extends Component {
                     <View style={[styles.one]}>
                         <Text style={[styles.txt,{width:'70%'}]}>{hotel_title}    {room_title}</Text>
                         <View style={{flex: 1}}/>
-                        <Text style={styles.time}>{utcDate(created_at,'YYYY-MM-DD mm:ss')}</Text>
+                        <Text style={styles.time}>{utcDate(created_at,'YYYY-MM-DD HH:mm')}</Text>
                     </View>
                     <Text style={[styles.price, {marginBottom: 6, fontWeight: 'bold'}]}>售价：<Text
                         style={styles.priceRed}>¥{price}</Text></Text>
