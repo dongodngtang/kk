@@ -10,52 +10,8 @@ import {isEmptyObject} from '../../utils/ComonHelper';
 import styles from './RecordStyles';
 import ItemBottom from "./ItemBottom";
 import RenderItem from './RenderItem'
+import {getRoomRequest} from "../../service/RecordDao";
 
-const items = [{
-    title: '巴黎人酒店 豪华双人房1天',
-    time: '2018-8-12 13:23',
-    price: '2999',
-    start_time: '',
-    end_time: '',
-    contact: 'hhh',
-    phone: '13640988285'
-},
-    {
-        title: '巴黎人酒店 豪华双人房1天',
-        time: '2018-8-12 13:23',
-        price: '2999',
-        start_time: '',
-        end_time: '',
-        contact: 'hhh',
-        phone: '13640988285'
-    },
-    {
-        title: '巴黎人酒店 豪华双人房1天',
-        time: '2018-8-12 13:23',
-        price: '2999',
-        start_time: '',
-        end_time: '',
-        contact: 'hhh',
-        phone: '13640988285'
-    },
-    {
-        title: '巴黎人酒店 豪华双人房1天',
-        time: '2018-8-12 13:23',
-        price: '2999',
-        start_time: '',
-        end_time: '',
-        contact: 'hhh',
-        phone: '13640988285'
-    },
-    {
-        title: '巴黎人酒店 豪华双人房1天',
-        time: '2018-8-12 13:23',
-        price: '2999',
-        start_time: '',
-        end_time: '',
-        contact: 'hhh',
-        phone: '13640988285'
-    }]
 
 export default class RecordList extends Component {
 
@@ -64,7 +20,7 @@ export default class RecordList extends Component {
     };
 
     componentDidMount(){
-        this.id = this.props.category.id
+        this.type = this.props.category.type
     }
 
     render() {
@@ -103,7 +59,17 @@ export default class RecordList extends Component {
 
 
     searchRefresh = (startFetch, abortFetch) => {
-        startFetch(items, 6)
+        getRoomRequest({
+            page:1,
+            page_size: 20,
+            request_type: this.props.category.type
+        }, data => {
+            console.log(`${this.props.category.type}_recordList`, data)
+            startFetch(data.items, 18)
+        }, err => {
+            console.log('err',err)
+            abortFetch()
+        })
 
     };
 

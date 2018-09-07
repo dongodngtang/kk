@@ -7,7 +7,11 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import {isEmptyObject, logMsg} from "../../config/utils";
 import RecordList from './RecordList';
 
-const categories = [{id: 1, name: '审核中'}, {id: 2, name: '未通过'}, {id: 3, name: '已通过'}];
+const categories = [{id: 1, name: '审核中', type: 'pending'}, {id: 2, name: '未通过', type: 'refused'}, {
+    id: 3,
+    name: '已通过',
+    type: 'passed'
+}];
 
 export default class ApplicationRecordPage extends Component {
 
@@ -22,7 +26,7 @@ export default class ApplicationRecordPage extends Component {
                     {categories.map((item, key) => {
                         logMsg(item)
 
-                        return  <RecordList
+                        return <RecordList
                             tabLabel={item.name}
                             category={item}
                             key={`record${key}`}

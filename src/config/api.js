@@ -12,12 +12,14 @@ const api = {
     production: 'http://test.kkapi.deshpro.com/v1/',
     recommends: 'recommends',//首页推荐
     hotels: 'hotels',
-    login:'merchant/account/login',//登录
+    login: 'merchant/account/login',//登录
     v_codes: 'merchant/v_codes',// 发送验证码
     account_verify: 'merchant/verify_vcode',//校验验证码是否正确
-    account:'merchant/account',
+    account: 'merchant/account',
     room_list: room_list,//获取酒店房间列表
-    sale_room_requests:'merchant/sale_room_requests',// 创建房间挂售申请
+    sale_room_requests: 'merchant/sale_room_requests',// 创建房间挂售申请
+    room_request_list: room_request_list,//房间挂售申请列表
+
 }
 
 function hotels(body) {
@@ -28,6 +30,11 @@ function hotels(body) {
 function room_list(body) {
     const {begin_date, id} = body;
     return `hotels/${id}/rooms?date=${begin_date}`
+}
+
+function room_request_list(body) {
+    const {request_type} = body;
+    return `merchant/sale_room_requests?request_type=${request_type}`
 }
 
 
