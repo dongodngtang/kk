@@ -4,7 +4,7 @@ import styles from './PersonalStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {get_thousand_num} from '../../utils/ComonHelper'
+import {get_thousand_num, logMsg} from '../../utils/ComonHelper'
 import {setLoginUser} from "../../service/AccountDao";
 import {isEmpty} from "../../config/utils";
 

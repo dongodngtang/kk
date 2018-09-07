@@ -21,6 +21,10 @@ export default class ChangeInfoPage extends Component {
           nick_name: this.name,
           contact: this.phone
         }, data => {
+          const {contact,nick_name} = data;
+          global.loginUser.nick_name = nick_name
+          global.loginUser.contact = contact
+
           props.params.refresh && props.params.refresh()
           showToast('修改成功')
           router.pop()

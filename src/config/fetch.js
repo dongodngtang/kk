@@ -39,7 +39,7 @@ if (__DEV__) {
 }
 
 export function setToken(access_token) {
-  client.setHeader('X-DP-ACCESS-TOKEN', access_token)
+  client.setHeader('x-access-token', access_token)
 }
 
 
