@@ -117,7 +117,7 @@ export default class CountDownButton extends React.Component {
     }
 
     render() {
-        const {onClick, style, textStyle, enable, disableColor} = this.props
+        const {onClick, style, textStyle, enable, disableColor,disableBg} = this.props
         const {counting, timerTitle, selfEnable} = this.state
         return (
             <TouchableOpacity activeOpacity={counting ? 1 : 0.8} onPress={() => {
@@ -129,7 +129,7 @@ export default class CountDownButton extends React.Component {
                     width: 120, height: 44,
                     justifyContent: 'center', alignItems: 'center',
                     backgroundColor: '#06c8d0'
-                }, style]}>
+                }, style,{backgroundColor:((!counting && enable && selfEnable) ?style.backgroundColor:disableBg||'red')}]}>
                     <Text
                         style={[{fontSize: 16}, textStyle, {color: ((!counting && enable && selfEnable) ? (textStyle ? textStyle.color : 'blue') : disableColor || 'gray')}]}>{timerTitle}</Text>
                 </View>
