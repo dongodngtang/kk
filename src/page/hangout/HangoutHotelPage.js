@@ -4,7 +4,7 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {isEmptyObject, convertDate, showToast} from '../../utils/ComonHelper';
+import {isEmptyObject, convertDate, showToast, strNotNull} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
 import {postRoom_requests} from "../../service/HangoutDao";
@@ -93,7 +93,7 @@ export default class HangoutHotelPage extends Component {
                                 showToast("请先选择酒店")
                             } else {
                                 ++room_index;
-                                router.toHotelRoomListPage(hotel_item,this._change_room);
+                                router.toHotelRoomListPage(hotel_item, this._change_room);
                             }
 
                         }}>
@@ -178,6 +178,13 @@ export default class HangoutHotelPage extends Component {
 
     judgeMessage = () => {
         const {date, hotel_item, room_item, card_img} = this.state;
+        if (isEmptyObject(hotel_item) || isEmptyObject(room_item) || !strNotNull(this.room_num) || !strNotNull(this.price) || isEmptyObject(date)) {
+            showToast("请填写完整信息")
+            return;
+        }else if(!strNotNull(card_img)) {
+            showToast("请上传房卡图片")
+            return;
+        }
         let body = {
             hotel_id: hotel_item.id,
             room_id: room_item.id,
