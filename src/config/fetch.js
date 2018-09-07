@@ -10,6 +10,7 @@
 import {create, SERVER_ERROR, TIMEOUT_ERROR, NETWORK_ERROR} from 'apisauce';
 import api from './api'
 import {isStrNull, logMsg, showToast} from "./utils";
+import {setLoginUser} from "../service/AccountDao";
 
 
 let TAG = 'Http:';
@@ -93,14 +94,14 @@ function handle(res, resolve, reject) {
 function errReject(res) {
   logMsg('错误', res)
   const {status, problem, data, ok} = res;
-  if (ok) {
-    if (status === 401) {
-
-    }
+  if (status === 401) {
+    setToken('')
+    setLoginUser({})
+    router.toLoginPage()
+    showToast('用户登录过期')
   } else {
     showToast(problem)
   }
-
 }
 
 

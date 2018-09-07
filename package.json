@@ -17,6 +17,7 @@
     "react-native-root-toast": "^3.0.1",
     "react-native-router-flux": "^4.0.1",
     "react-native-scrollable-tab-view": "git+https://github.com/happypancake/react-native-scrollable-tab-view.git",
+    "react-native-storage": "^0.2.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0"
   },
