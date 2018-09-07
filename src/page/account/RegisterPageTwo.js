@@ -3,8 +3,9 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './AccountStyles';
 import {Colors, Images} from "../../Themes";
 import {CountDownButton, Button, Input} from "../../components";
-import { postCode } from '../../service/AccountDao';
+import { postCode, codeVerify } from '../../service/AccountDao';
 import { showToast, logMsg } from '../../utils/ComonHelper';
+import { isStrNull } from '../../config/utils';
 
 export default class RegisterPageTwo extends Component {
 
@@ -14,7 +15,11 @@ export default class RegisterPageTwo extends Component {
         getCodeDisable:false
     };
 
-    sendCode =()=>{
+    componentDidMount(){
+       this.sendCode()
+    }
+
+    sendCode =(counting)=>{
         const {mobile,ext} = this.props.params;
         let body = {
             option_type:'register',
@@ -22,7 +27,8 @@ export default class RegisterPageTwo extends Component {
             ext
         }
         postCode(body,data=>{
-            this.countDownButton && this.countDownButton._shouldStartCountting(true)
+            counting?counting(true):this.countDownButton && this.countDownButton._shouldStartCountting(true)
+
             showToast('验证码已发送')
         },err=>{
             showToast(err)
@@ -43,7 +49,7 @@ export default class RegisterPageTwo extends Component {
                         style={{backgroundColor: getCodeDisable ? Colors._BBBB : Colors._E54}}
                         textStyle={styles.down_txt}
                         enable
-                        onClick={this.sendCode()}/>
+                        onClick={this.sendCode}/>
                 </View>
 
                 <TouchableOpacity style={[styles.input_view, {marginTop: 1}]}>
@@ -64,7 +70,22 @@ export default class RegisterPageTwo extends Component {
 
                 <TouchableOpacity style={styles.nextBtn}
                                   onPress={() => {
-                                      global.router.toRegisterPageThree()
+                                      if(isStrNull(vcode)){
+                                          showToast('验证码不能为空')
+                                          return
+                                      }
+                                      let body = {
+                                          mobile,
+                                          ext,
+                                          option_type:'register',
+                                          vcode
+                                      }
+                                      codeVerify(body,data=>{
+                                        global.router.toRegisterPageThree(body)
+                                      },err=>{
+                                          showToast(err)
+                                      })
+                                     
                                   }}>
                     <Text style={styles.nextTxt}>下一步</Text>
                 </TouchableOpacity>

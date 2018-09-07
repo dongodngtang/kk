@@ -27,8 +27,7 @@ export default class Router {
     }
 
     popToTopRefresh() {
-        Actions.reset('Main');
-
+        this.popTo({name: 'Home'})
     }
 
     toNavigation(){
@@ -52,9 +51,10 @@ export default class Router {
         })
     }
 
-    toRegisterPageThree() {
+    toRegisterPageThree(params) {
         this.push({
-            name: 'RegisterPageThree'
+            name: 'RegisterPageThree',
+            params
         })
     }
 

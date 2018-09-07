@@ -122,7 +122,6 @@ export default class CountDownButton extends React.Component {
         return (
             <TouchableOpacity activeOpacity={counting ? 1 : 0.8} onPress={() => {
                 if (!counting && enable && selfEnable) {
-
                     onClick && onClick(this._shouldStartCountting)
                 }
             }}>
