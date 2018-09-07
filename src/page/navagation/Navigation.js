@@ -33,7 +33,7 @@ export const Navigation = () => {
                     key="tab_home"
                     component={ApplicationRecordPage}
                     {...TopNav({
-                        title: '商家注册',
+                        title: '申请记录',
                         hideLeft:true
                     })}
                 />

@@ -26,14 +26,14 @@ let config = {
 export const Scenes = () => {
 
     return <Scene key="root">
-        {Navigation()}
+
         <Scene key="Home"
             {...TopNav({
                 title: '澳门旅行商家版',
                 hideLeft: true
             })}
             component={Home} />
-
+        {Navigation()}
 
         <Scene key="Login"
             {...TopNav({
@@ -67,9 +67,7 @@ export const Scenes = () => {
                 title: '申请记录',
                 hideLeft: true
             })}
-            component={ApplicationRecordPage}>
-
-        </Scene>
+            component={ApplicationRecordPage}/>
 
         <Scene key="SellInfoPage"
             {...TopNav({
