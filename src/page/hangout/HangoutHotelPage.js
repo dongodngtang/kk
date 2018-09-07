@@ -4,9 +4,11 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {isEmptyObject} from '../../utils/ComonHelper';
+import {isEmptyObject, convertDate} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
+
+let index = 1;
 
 export default class HangoutHotelPage extends Component {
 
@@ -38,6 +40,7 @@ export default class HangoutHotelPage extends Component {
     };
 
     render() {
+        const {date} = this.state;
         return (
             <View style={styles.backgroundStyle2}>
                 <ScrollView>
@@ -45,10 +48,10 @@ export default class HangoutHotelPage extends Component {
                         <Text style={styles.massageTxt}>基本信息</Text>
                     </View>
 
-                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                    <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>挂售酒店</Text>
                         <Text style={styles.text2}>请选择挂售酒店</Text>
-                    </TouchableOpacity>
+                    </View>
                     <TouchableOpacity style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>酒店房型</Text>
                         <Text style={styles.text2}>请选择酒店房型</Text>
@@ -77,13 +80,19 @@ export default class HangoutHotelPage extends Component {
 
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.hangoutHotel_View}
-                                      onPress={() => {
-                                          this.showSpecInfo()
-                                      }}>
+                    <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>入住时间</Text>
-                        <Text style={styles.text2}>请填写克入住时间</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            ++index;
+                            this.showSpecInfo()
+                        }}>
+                            {index === 1 ? <Text style={styles.text2}>请填写克入住时间</Text> :
+
+                                <Text
+                                    style={styles.timeTxt}>{`${convertDate(date.begin_date, 'M月DD日')} - ${convertDate(date.end_date, 'M月DD日')}`}</Text>
+                            }
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>挂售金额</Text>
                         <TextInput

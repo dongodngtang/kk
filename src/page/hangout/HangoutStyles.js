@@ -103,5 +103,15 @@ export default StyleSheet.create({
         color: "#CCCCCC",
         fontSize: 14,
         marginLeft:40
+    },
+    timeView:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        width:70
+    },
+    timeTxt:{
+        color: "#444444",
+        fontSize: 16,
+        marginLeft:40
     }
 })
