@@ -88,9 +88,12 @@ export default class Router {
     }
 
 
-    toHotelListPage(){
+    toHotelListPage(date){
         this.push({
-            name: 'HotelListPage'
+            name: 'HotelListPage',
+            params:{
+                date
+            }
         })
     }
 

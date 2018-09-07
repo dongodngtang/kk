@@ -113,5 +113,66 @@ export default StyleSheet.create({
         color: "#444444",
         fontSize: 16,
         marginLeft:40
+    },
+
+
+    selectView: {
+        backgroundColor: 'white',
+        paddingLeft: 18,
+        paddingRight: 18,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    item: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: "flex-start",
+        backgroundColor: "white",
+        paddingTop: 17,
+        paddingBottom: 17
+    },
+    message: {
+        flex: 1,
+        flexDirection: 'column',
+        marginLeft: 12,
+        marginTop: 7,
+        marginRight: 22
+    },
+    name: {
+        color: '#161718',
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    stars: {
+        width: 14,
+        height: 14,
+        marginRight: 4
+    },
+    starView: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        marginTop: 9
+    },
+    location: {
+        color: '#999999',
+        fontSize: 12,
+        marginTop: 8
+    },
+    priceView: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        marginTop: 3
+    },
+    price: {
+        color: '#FF3F3F',
+        fontSize: 20
+    },
+    view: {
+        width: 48,
+        height: 18,
+        borderWidth: 1,
+        borderRadius: 2,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })

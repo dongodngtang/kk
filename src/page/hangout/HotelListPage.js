@@ -2,15 +2,14 @@ import React, {PureComponent} from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity
 } from 'react-native';
-import {Colors, Fonts, Images, ApplicationStyles, Metrics} from '../../Themes';
-
+import {Colors, Fonts, Images,  Metrics} from '../../Themes';
+import SearchBar from './SearchBar';
+import styles from './HangoutStyles';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
-import {ImageLoad, UltimateListView} from "../../components";
+import {ImageLoad, UltimateListView,RejectPage} from "../../components";
 import {LoadErrorView, NoDataView} from '../../components/load';
-import I18n from "react-native-i18n";
+import {hotels} from '../../services/HangoutDao';
 import {isEmptyObject, logMsg} from "../../utils/ComonHelper";
-import moment from "moment/moment";
-import RejectPage from "../comm/RejectPage";
 
 const categorie1 = [{id: 0, name: '全部', type: '', isSelect: true},
     {id: 1, name: '氹仔区', type: 'dangzai', isSelect: false}, {
@@ -38,7 +37,6 @@ export default class HotelListPage extends PureComponent {
     keyword = '';
 
     state = {
-        timeShow: false,
         changeTime: this.props.params.date,
         select1: false,
         select2: false,
@@ -49,21 +47,7 @@ export default class HotelListPage extends PureComponent {
         reject_problem: ''
     };
 
-    showSpecInfo = (temp) => {
-        this.setState({
-            timeShow: !this.state.timeShow
-        })
-    };
 
-
-    _change = (date) => {
-        console.log("changeTime:", date)
-        this.setState({
-            changeTime: date
-        });
-        this.listView && this.listView.refresh();
-        console.log("第二次选择的时间：", this.state.changeTime)
-    };
 
     refresh = () => {
         this.setState({
@@ -78,18 +62,15 @@ export default class HotelListPage extends PureComponent {
 
         if (this.state.reject_problem === 'NETWORK_ERROR') {
             return (
-                <View style={ApplicationStyles.bgContainer}>
-                    <SearchBar
-                        onChangeText={keyword => {
-                            this.keyword = keyword;
-                            this.listView && this.listView.refresh()
-                        }}
-                        showSpecInfo={this.showSpecInfo}
-                        changeTime={changeTime}
-                        _click={'HotelListPage'}/>
-                    {timeShow ? <TimeSpecificationInfo
-                        showSpecInfo={this.showSpecInfo}
-                        _change={this._change}/> : null}
+                <View style={styles.backgroundStyle2}>
+                    {/*<SearchBar*/}
+                        {/*onChangeText={keyword => {*/}
+                            {/*this.keyword = keyword;*/}
+                            {/*this.listView && this.listView.refresh()*/}
+                        {/*}}*/}
+                        {/*showSpecInfo={this.showSpecInfo}*/}
+                        {/*_click={'HotelListPage'}/>*/}
+
                     <View style={styles.selectView}>
                         {categorie_area.map((item, index, arr) => {
                             return <TouchableOpacity
@@ -146,18 +127,14 @@ export default class HotelListPage extends PureComponent {
             )
         }
 
-        return (<View style={ApplicationStyles.bgContainer}>
-                <SearchBar
-                    onChangeText={keyword => {
-                        this.keyword = keyword;
-                        this.listView && this.listView.refresh()
-                    }}
-                    showSpecInfo={this.showSpecInfo}
-                    changeTime={changeTime}
-                    _click={'HotelListPage'}/>
-                {timeShow ? <TimeSpecificationInfo
-                    showSpecInfo={this.showSpecInfo}
-                    _change={this._change}/> : null}
+        return (<View style={styles.backgroundStyle2}>
+                {/*<SearchBar*/}
+                    {/*onChangeText={keyword => {*/}
+                        {/*this.keyword = keyword;*/}
+                        {/*this.listView && this.listView.refresh()*/}
+                    {/*}}*/}
+                    {/*showSpecInfo={this.showSpecInfo}*/}
+                    {/*_click={'HotelListPage'}/>*/}
 
                 <View style={styles.selectView}>
                     {categorie_area.map((item, index, arr) => {
@@ -215,11 +192,11 @@ export default class HotelListPage extends PureComponent {
                     ref={(ref) => this.listView = ref}
                     onFetch={this.onFetch}
                     item={this._renderItem}
-                    refreshableTitlePull={I18n.t('pull_refresh')}
-                    refreshableTitleRelease={I18n.t('release_refresh')}
-                    dateTitle={I18n.t('last_refresh')}
-                    allLoadedText={I18n.t('no_more')}
-                    waitingSpinnerText={I18n.t('loading')}
+                    refreshableTitlePull={'下拉刷新'}
+                    refreshableTitleRelease={'释放刷新'}
+                    dateTitle={'最后刷新'}
+                    allLoadedText={'已经没有啦！'}
+                    waitingSpinnerText={'加载中...'}
                     emptyView={() => <NoDataView/>}
                 />
             </View>
@@ -281,7 +258,7 @@ export default class HotelListPage extends PureComponent {
         return (
             <TouchableOpacity style={styles.item} key={index}
                               onPress={() => {
-                                  router.toHotelDetail(item, changeTime)
+                                  // router.toHotelDetail(item, changeTime)
                               }}>
                 <ImageLoad
                     style={{width: 67, height: 95, marginLeft: 12}}
@@ -316,66 +293,4 @@ export default class HotelListPage extends PureComponent {
 
 
 }
-const styles = StyleSheet.create({
-    selectView: {
-        backgroundColor: 'white',
-        paddingLeft: 18,
-        paddingRight: 18,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    list: {},
-    item: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: "flex-start",
-        backgroundColor: "white",
-        paddingTop: 17,
-        paddingBottom: 17
-    },
-    message: {
-        flex: 1,
-        flexDirection: 'column',
-        marginLeft: 12,
-        marginTop: 7,
-        marginRight: 22
-    },
-    name: {
-        color: '#161718',
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    stars: {
-        width: 14,
-        height: 14,
-        marginRight: 4
-    },
-    starView: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        marginTop: 9
-    },
-    location: {
-        color: '#999999',
-        fontSize: 12,
-        marginTop: 8
-    },
-    priceView: {
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        marginTop: 3
-    },
-    price: {
-        color: '#FF3F3F',
-        fontSize: 20
-    },
-    view: {
-        width: 48,
-        height: 18,
-        borderWidth: 1,
-        borderRadius: 2,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
 

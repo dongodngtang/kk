@@ -53,7 +53,7 @@ export default class HangoutHotelPage extends Component {
                         <Text style={styles.text1}>挂售酒店</Text>
                         <TouchableOpacity onPress={() => {
                             ++hotel_index;
-                            router.toHotelListPage()
+                            router.toHotelListPage(this.state.date)
                         }}>
                             <Text style={styles.text2}>请选择挂售酒店</Text>
                         </TouchableOpacity>
@@ -91,7 +91,7 @@ export default class HangoutHotelPage extends Component {
                             ++time_index;
                             this.showSpecInfo()
                         }}>
-                            {time_index === 1 ? <Text style={styles.text2}>请填写克入住时间</Text> :
+                            {time_index === 1 ? <Text style={styles.text2}>请填写入住时间</Text> :
 
                                 <Text
                                     style={styles.timeTxt}>{`${convertDate(date.begin_date, 'M月DD日')} - ${convertDate(date.end_date, 'M月DD日')}`}</Text>
