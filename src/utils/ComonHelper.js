@@ -2,6 +2,7 @@
 import Toast from 'react-native-root-toast';
 import _ from 'lodash';
 import moment from 'moment';
+import {Alert} from 'react-native'
 
 
 export const util = _;
@@ -74,3 +75,17 @@ export function utcDate(utc, formate) {
     if (strNotNull(utc))
         return moment.unix(utc).format(formate)
 }
+
+//正在开发提示
+export function alertOrder(str, callback) {
+    Alert.alert(str, '', [{
+        text: `取消`, onPress: () => {
+
+        }
+    }, {
+        text: `确认`, onPress: () => {
+            callback()
+        }
+    }])
+}
+

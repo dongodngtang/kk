@@ -8,25 +8,6 @@ import RenderItem from '../record/RenderItem'
 import {strNotNull} from "../../utils/ComonHelper";
 import {getRoomRequest} from "../../service/RecordDao";
 
-const items = [{
-    title: '巴黎人酒店 豪华双人房1天',
-    time: '2018-8-12 13:23',
-    price: '2999',
-    start_time: '',
-    end_time: '',
-    contact: 'hhh',
-    phone: '13640988285'
-},
-    {
-        title: '巴黎人酒店 豪华双人房1天',
-        time: '2018-8-12 13:23',
-        price: '2999',
-        start_time: '',
-        end_time: '',
-        contact: 'hhh',
-        phone: '13640988285'
-    }];
-
 
 export default class HangoutManagementPage extends Component {
 
@@ -34,7 +15,7 @@ export default class HangoutManagementPage extends Component {
         super(props)
 
         props.navigation.setParams({
-            onRight: () => router.toHangoutHotelPage(),
+            onRight: () => router.toHangoutHotelPage(this.listView.refresh),
             rightTitle:'挂售'
         })
     }

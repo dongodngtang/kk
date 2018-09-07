@@ -4,7 +4,7 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {isEmptyObject, convertDate, showToast, strNotNull} from '../../utils/ComonHelper';
+import {isEmptyObject, convertDate, showToast, strNotNull,alertOrder} from '../../utils/ComonHelper';
 import moment from 'moment';
 import TimeSpecificationInfo from './TimeSpecificationInfo';
 import {postRoom_requests} from "../../service/HangoutDao";
@@ -14,6 +14,18 @@ let hotel_index = 1;
 let room_index = 1;
 
 export default class HangoutHotelPage extends Component {
+
+    constructor(props) {
+        super(props)
+        props.navigation.setParams({
+            onLeft: () => {
+                props.params.refresh && props.params.refresh()
+                router.pop()
+            }
+
+        })
+    }
+
 
     state = {
         timeShow: false,
@@ -208,14 +220,17 @@ export default class HangoutHotelPage extends Component {
             room_num: this.room_num,
             checkin_date: date.begin_date,
             price: this.price,
-            card_img: card_img
+            card_img: 'http://kkh5.deshpro.com/images/default_img.png'
         };
-        postRoom_requests(body, data => {
-            showToast("申请成功");
-            router.pop();
-        }, err => {
-            showToast(err)
-        })
+
+        alertOrder("确认挂售？", () => {
+            postRoom_requests(body, data => {
+                showToast("申请成功");
+                router.pop();
+            }, err => {
+                showToast(err)
+            })
+        });
     };
 
     _change = (date) => {

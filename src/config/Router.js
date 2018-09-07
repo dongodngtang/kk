@@ -84,9 +84,12 @@ export default class Router {
     }
 
 
-    toHangoutHotelPage(){
+    toHangoutHotelPage(refresh){
         this.push({
-            name: 'HangoutHotelPage'
+            name: 'HangoutHotelPage',
+            params:{
+                refresh
+            }
         })
     }
 
