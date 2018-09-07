@@ -12,8 +12,9 @@ const api = {
     production: 'https://kkapi.deshpro.com/v1/',
     recommends: 'recommends',//首页推荐
     login:'merchant/account/login',//登录
-    v_codes: 'merchant/account',// 发送验证码
-    account_verify: 'merchant/account',//校验验证码是否正确
+    v_codes: 'merchant/v_codes',// 发送验证码
+    account_verify: 'merchant/verify_vcode',//校验验证码是否正确
+    account:'merchant/account',
 }
 
 export default api

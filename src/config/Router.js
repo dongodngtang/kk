@@ -31,6 +31,11 @@ export default class Router {
 
     }
 
+    toNavigation(){
+        this.push({
+            name:'Navigation'
+        })
+    }
 
     toRegisterPage(){
         this.push({
@@ -38,9 +43,12 @@ export default class Router {
         })
     }
 
-    toRegisterPageTwo(){
+    toRegisterPageTwo(mobile,ext){
         this.push({
-            name:'RegisterPageTwo'
+            name:'RegisterPageTwo',
+            params:{
+                mobile,ext
+            }
         })
     }
 
