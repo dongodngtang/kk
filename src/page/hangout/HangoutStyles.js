@@ -185,7 +185,8 @@ export default StyleSheet.create({
         bottom:20,
         backgroundColor:'#E54A2E',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        borderRadius:2
     },
     hangout_btnTxt:{
         color: '#FFFFFF',
