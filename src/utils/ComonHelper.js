@@ -1,6 +1,7 @@
 /*对象是否为空对象*/
 import Toast from 'react-native-root-toast';
 import _ from 'lodash';
+import moment from 'moment';
 
 
 export const util = _;
@@ -59,4 +60,17 @@ export function get_thousand_num(num) {
             return n.slice(0, len % 3) + n.slice(len % 3).replace(/(\d{3})/g, ',$1');
         }
     });
+}
+
+
+/*日期转化*/
+export function convertDate(date, formate) {
+    if (strNotNull(date))
+        return moment(date).format(formate)
+}
+
+//UTC 时间转化
+export function utcDate(utc, formate) {
+    if (strNotNull(utc))
+        return moment.unix(utc).format(formate)
 }

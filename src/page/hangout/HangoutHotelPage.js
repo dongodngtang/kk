@@ -6,6 +6,7 @@ import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
 import {isEmptyObject} from '../../utils/ComonHelper';
 import moment from 'moment';
+import TimeSpecificationInfo from './TimeSpecificationInfo';
 
 export default class HangoutHotelPage extends Component {
 
@@ -38,79 +39,81 @@ export default class HangoutHotelPage extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.backgroundStyle2}>
-                <View style={styles.messageView}>
-                    <Text style={styles.massageTxt}>基本信息</Text>
-                </View>
+            <View style={styles.backgroundStyle2}>
+                <ScrollView>
+                    <View style={styles.messageView}>
+                        <Text style={styles.massageTxt}>基本信息</Text>
+                    </View>
 
-                <TouchableOpacity style={styles.hangoutHotel_View}>
-                    <Text style={styles.text1}>挂售酒店</Text>
-                    <Text style={styles.text2}>请选择挂售酒店</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.hangoutHotel_View}>
-                    <Text style={styles.text1}>酒店房型</Text>
-                    <Text style={styles.text2}>请选择酒店房型</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.hangoutHotel_View}>
-                    <Text style={styles.text1}>房号</Text>
-                    <TextInput
-                        keyboardType={'numeric'}
-                        style={{
-                            paddingTop: 0,
-                            paddingBottom: 0,
-                            width: 230,
-                            fontSize: 14,
-                            marginLeft: 40
-                        }}
-                        maxLength={11}
-                        numberOfLines={1}
-                        placeholderTextColor={'#CCCCCC'}
-                        placeholder={'请填写酒店房号'}
-                        value={this.number + ''}
-                        clearTextOnFocus={true}
-                        underlineColorAndroid={'transparent'}
-                        onChangeText={txt => {
-                            this.number = txt
-                        }}
+                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                        <Text style={styles.text1}>挂售酒店</Text>
+                        <Text style={styles.text2}>请选择挂售酒店</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                        <Text style={styles.text1}>酒店房型</Text>
+                        <Text style={styles.text2}>请选择酒店房型</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                        <Text style={styles.text1}>房号</Text>
+                        <TextInput
+                            keyboardType={'numeric'}
+                            style={{
+                                paddingTop: 0,
+                                paddingBottom: 0,
+                                width: 230,
+                                fontSize: 14,
+                                marginLeft: 40
+                            }}
+                            maxLength={11}
+                            numberOfLines={1}
+                            placeholderTextColor={'#CCCCCC'}
+                            placeholder={'请填写酒店房号'}
+                            value={this.number + ''}
+                            clearTextOnFocus={true}
+                            underlineColorAndroid={'transparent'}
+                            onChangeText={txt => {
+                                this.number = txt
+                            }}
 
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.hangoutHotel_View}
-                                  onPress={() => {
-                                      this.showSpecInfo()
-                                  }}>
-                    <Text style={styles.text1}>入住时间</Text>
-                    <Text style={styles.text2}>请填写克入住时间</Text>
-                </TouchableOpacity>
-                <View style={styles.hangoutHotel_View}>
-                    <Text style={styles.text1}>挂售金额</Text>
-                    <TextInput
-                        keyboardType={'numeric'}
-                        style={{
-                            paddingTop: 0,
-                            paddingBottom: 0,
-                            width: 230,
-                            fontSize: 14,
-                            marginLeft: 40
-                        }}
-                        maxLength={11}
-                        numberOfLines={1}
-                        placeholderTextColor={'#CCCCCC'}
-                        placeholder={'请填写挂售金额'}
-                        value={this.price + ''}
-                        clearTextOnFocus={true}
-                        underlineColorAndroid={'transparent'}
-                        onChangeText={txt => {
-                            this.price = txt
-                        }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.hangoutHotel_View}
+                                      onPress={() => {
+                                          this.showSpecInfo()
+                                      }}>
+                        <Text style={styles.text1}>入住时间</Text>
+                        <Text style={styles.text2}>请填写克入住时间</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hangoutHotel_View}>
+                        <Text style={styles.text1}>挂售金额</Text>
+                        <TextInput
+                            keyboardType={'numeric'}
+                            style={{
+                                paddingTop: 0,
+                                paddingBottom: 0,
+                                width: 230,
+                                fontSize: 14,
+                                marginLeft: 40
+                            }}
+                            maxLength={11}
+                            numberOfLines={1}
+                            placeholderTextColor={'#CCCCCC'}
+                            placeholder={'请填写挂售金额'}
+                            value={this.price + ''}
+                            clearTextOnFocus={true}
+                            underlineColorAndroid={'transparent'}
+                            onChangeText={txt => {
+                                this.price = txt
+                            }}
 
-                    />
-                </View>
+                        />
+                    </View>
+                </ScrollView>
 
                 {this.state.timeShow ? <TimeSpecificationInfo
                     _change={this._change}
                     showSpecInfo={this.showSpecInfo}/> : null}
-            </ScrollView>
+            </View>
         )
     }
 
