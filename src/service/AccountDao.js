@@ -30,7 +30,8 @@ export function initApp() {
   console.log('初始化APP')
   storage.load({key: 'LoginUser'}).then(ret => {
     setLoginUser(ret);
-    router.toNavigation()
+    if (!isEmpty(ret))
+      router.toNavigation()
   })
 
 }
@@ -38,8 +39,8 @@ export function initApp() {
 export function setLoginUser(login) {
   logMsg('登录用户信息', login)
   global.loginUser = login;
-  if(!isEmpty(login))
-  setToken(login.access_token)
+  if (!isEmpty(login))
+    setToken(login.access_token)
   storage.save({
     key: 'LoginUser',
     data: login
