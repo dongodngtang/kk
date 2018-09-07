@@ -17,7 +17,7 @@ let TAG = 'Http:';
 
 // define the api
 const client = create({
-    baseURL: api.production,
+    baseURL: api.test,
     timeout: 20000,
     headers: {
         'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',

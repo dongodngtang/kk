@@ -9,6 +9,7 @@ export default class App extends Component{
     componentWillMount() {
         this.router = this.router || new Route();
         global.router = this.router;
+        global.loginUser = null;
 
     };
 

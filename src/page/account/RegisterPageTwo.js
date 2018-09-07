@@ -28,8 +28,6 @@ export default class RegisterPageTwo extends Component {
         }
         postCode(body,data=>{
             counting?counting(true):this.countDownButton && this.countDownButton._shouldStartCountting(true)
-
-            showToast('验证码已发送')
         },err=>{
             showToast(err)
         })

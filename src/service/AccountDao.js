@@ -1,6 +1,7 @@
 import api from '../config/api'
 import { get, post, put ,setToken} from '../config/fetch'
 import { logMsg } from '../config/utils';
+import { showToast } from '../utils/ComonHelper';
 
 /**
  * 发送验证码 
@@ -11,6 +12,7 @@ import { logMsg } from '../config/utils';
  */
 export function postCode(body, resolve, reject) {
     post(api.v_codes, body, ret => {
+        showToast('验证码已发送')
         resolve(ret.data)
     }, reject)
 }

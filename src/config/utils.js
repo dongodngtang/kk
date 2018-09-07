@@ -10,7 +10,7 @@ import React from 'react';
 import {Alert} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
-
+import Toast from 'react-native-root-toast';
 export const YYYYMMDD = 'YYYY-MM-DD'
 
 let locations = [];//定位城市列表
@@ -23,7 +23,15 @@ let following_ids = [];
 
 
 export function showToast(msg) {
-
+    if (!isStrNull(msg)) {
+        const toast = Toast.show(msg, {
+            testID: 'deshproToast', position: 200, duration: Toast.durations.SHORT,
+            shadow: false,
+            onHidden: (siblingManager) => {
+                Toast.hide(toast)
+            }
+        });
+    }
 }
 
 export function isEmptyObject(e) {
