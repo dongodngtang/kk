@@ -4,9 +4,7 @@ import {
     ScrollView, FlatList
 } from 'react-native';
 import {Colors, Fonts, Images,Metrics} from '../../Themes';
-import {NavigationBar} from '../../components';
 import {isEmptyObject, convertDate} from "../../utils/ComonHelper";
-import I18n from "react-native-i18n";
 import * as Animatable from 'react-native-animatable';
 import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
 import moment from 'moment'
