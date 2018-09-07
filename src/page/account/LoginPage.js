@@ -102,6 +102,7 @@ export default class LoginPage extends Component {
 
                 <TouchableOpacity style={styles.nextBtn}
                     onPress={() => {
+        
                         if (isStrNull(mobile) || isStrNull(vcode)) {
                             showToast('内容不能为空')
                             return
