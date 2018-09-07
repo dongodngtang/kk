@@ -86,9 +86,9 @@ export default class HangoutHotelPage extends Component {
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>酒店房型</Text>
                         <TouchableOpacity onPress={() => {
-                            if(isEmptyObject(hotel_item)){
+                            if (isEmptyObject(hotel_item)) {
                                 showToast("请先选择酒店")
-                            }else{
+                            } else {
                                 ++room_index;
                                 router.toHotelRoomListPage(hotel_item);
                             }
@@ -163,6 +163,10 @@ export default class HangoutHotelPage extends Component {
                 {this.state.timeShow ? <TimeSpecificationInfo
                     _change={this._change}
                     showSpecInfo={this.showSpecInfo}/> : null}
+
+                <TouchableOpacity style={styles.hangout_btnView}>
+                    <Text style={styles.hangout_btnTxt}>准备好了，申请挂售</Text>
+                </TouchableOpacity>
             </View>
         )
     }

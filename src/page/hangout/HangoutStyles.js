@@ -174,5 +174,21 @@ export default StyleSheet.create({
         borderRadius: 2,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    hangout_btnView:{
+        width:Metrics.screenWidth - 34,
+        alignSelf:'center',
+        position:'absolute',
+        paddingTop:16,
+        paddingBottom:16,
+        bottom:20,
+        backgroundColor:'#E54A2E',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    hangout_btnTxt:{
+        color: '#FFFFFF',
+        fontSize: 14
     }
 })
