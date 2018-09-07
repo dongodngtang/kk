@@ -30,6 +30,15 @@ const items = [{
 
 export default class HangoutManagementPage extends Component {
 
+    constructor(props) {
+        super(props)
+
+        props.navigation.setParams({
+            onRight: () => router.toHangoutHotelPage(),
+            rightTitle:'挂售'
+        })
+    }
+
     state = {
         visible: false,
         clickArea: false,
