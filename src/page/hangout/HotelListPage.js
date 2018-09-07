@@ -2,13 +2,12 @@ import React, {PureComponent} from 'react';
 import {
     StyleSheet, Text, View, FlatList, Image, TouchableOpacity
 } from 'react-native';
-import {Colors, Fonts, Images,  Metrics} from '../../Themes';
+import {Colors, Fonts, Images, Metrics} from '../../Themes';
 import SearchBar from './SearchBar';
 import styles from './HangoutStyles';
-import TimeSpecificationInfo from './TimeSpecificationInfo';
-import {ImageLoad, UltimateListView,RejectPage} from "../../components";
+import {ImageLoad, UltimateListView, RejectPage} from "../../components";
 import {LoadErrorView, NoDataView} from '../../components/load';
-import {hotels} from '../../services/HangoutDao';
+import {hotels} from '../../service/HangoutDao';
 import {isEmptyObject, logMsg} from "../../utils/ComonHelper";
 
 const categorie1 = [{id: 0, name: '全部', type: '', isSelect: true},
@@ -42,16 +41,15 @@ export default class HotelListPage extends PureComponent {
         select2: false,
         region_keyword: '',
         order_keyword: '',
+        reject_problem: '',
         categorie_area: categorie1,
-        categorie_price: categorie2,
-        reject_problem: ''
+        categorie_price: categorie2
     };
-
 
 
     refresh = () => {
         this.setState({
-            reject_problem:''
+            reject_problem: ''
         });
         this.listView && this.listView.refresh();
     };
@@ -63,14 +61,6 @@ export default class HotelListPage extends PureComponent {
         if (this.state.reject_problem === 'NETWORK_ERROR') {
             return (
                 <View style={styles.backgroundStyle2}>
-                    {/*<SearchBar*/}
-                        {/*onChangeText={keyword => {*/}
-                            {/*this.keyword = keyword;*/}
-                            {/*this.listView && this.listView.refresh()*/}
-                        {/*}}*/}
-                        {/*showSpecInfo={this.showSpecInfo}*/}
-                        {/*_click={'HotelListPage'}/>*/}
-
                     <View style={styles.selectView}>
                         {categorie_area.map((item, index, arr) => {
                             return <TouchableOpacity
@@ -121,6 +111,7 @@ export default class HotelListPage extends PureComponent {
                             </TouchableOpacity>
                         })}
                     </View>
+
                     <RejectPage refresh={this.refresh}/>
                 </View>
 
@@ -128,13 +119,6 @@ export default class HotelListPage extends PureComponent {
         }
 
         return (<View style={styles.backgroundStyle2}>
-                {/*<SearchBar*/}
-                    {/*onChangeText={keyword => {*/}
-                        {/*this.keyword = keyword;*/}
-                        {/*this.listView && this.listView.refresh()*/}
-                    {/*}}*/}
-                    {/*showSpecInfo={this.showSpecInfo}*/}
-                    {/*_click={'HotelListPage'}/>*/}
 
                 <View style={styles.selectView}>
                     {categorie_area.map((item, index, arr) => {
@@ -154,7 +138,10 @@ export default class HotelListPage extends PureComponent {
                                 })
                             }}>
                             <Text
-                                style={{color: item.isSelect ? '#E54A2E' : '#888888', fontSize: 12}}>{item.name}</Text>
+                                style={{
+                                    color: item.isSelect ? '#E54A2E' : '#888888',
+                                    fontSize: 12
+                                }}>{item.name}</Text>
                         </TouchableOpacity>
                     })}
                     {categorie_price.map((item, index, arr) => {
@@ -183,9 +170,8 @@ export default class HotelListPage extends PureComponent {
                         </TouchableOpacity>
                     })}
                 </View>
-
                 <UltimateListView
-                    style={{paddingTop: 6}}
+                    header={() => <View style={{height: 6}}/>}
                     ListHeaderComponent={this._separator}
                     separator={this._separator}
                     keyExtractor={(item, index) => index + "item"}

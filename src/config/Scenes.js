@@ -25,7 +25,7 @@ let config = {
 export const Scenes = () => {
 
     return <Scene key="root">
-
+        {Navigation()}
         <Scene key="Home"
             {...TopNav({
                 title: '澳门旅行商家版',
@@ -33,7 +33,7 @@ export const Scenes = () => {
             })}
             component={Home} />
 
-        {Navigation()}
+
         <Scene key="Login"
             {...TopNav({
                 title: '短信验证登录',
