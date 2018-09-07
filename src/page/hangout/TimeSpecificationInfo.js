@@ -188,7 +188,7 @@ export default class TimeSpecificationInfo extends PureComponent {
                     }}>
                         <TouchableOpacity
                             onPress={() => {
-                                this.props.showSpecInfo();
+                                this.props.showSpecInfo('取消');
                             }}
                             style={{justifyContent: 'center', alignItems: 'center', height: 55, width: 60}}>
                             <Text style={{color: '#E54A2E', fontSize: 12}}>取消</Text>

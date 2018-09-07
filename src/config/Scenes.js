@@ -95,11 +95,7 @@ export const Scenes = () => {
             component={HangoutHotelPage} />
 
         <Scene key="HotelListPage"
-               {...TopNav({
-                   title: '选择酒店',
-                   onRight: () => router.toRegisterPage(),
-                   renderRightButton: Images.search
-               })}
+               hideNavBar
                component={HotelListPage}/>
 
     </Scene>

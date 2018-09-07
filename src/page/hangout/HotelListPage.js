@@ -61,6 +61,13 @@ export default class HotelListPage extends PureComponent {
         if (this.state.reject_problem === 'NETWORK_ERROR') {
             return (
                 <View style={styles.backgroundStyle2}>
+                    <SearchBar
+                        onChangeText={keyword => {
+                            this.keyword = keyword;
+                            this.listView && this.listView.refresh()
+                        }}
+                        _click={'HotelListPage'}/>
+
                     <View style={styles.selectView}>
                         {categorie_area.map((item, index, arr) => {
                             return <TouchableOpacity
@@ -119,6 +126,12 @@ export default class HotelListPage extends PureComponent {
         }
 
         return (<View style={styles.backgroundStyle2}>
+                <SearchBar
+                    onChangeText={keyword => {
+                        this.keyword = keyword;
+                        this.listView && this.listView.refresh()
+                    }}
+                    _click={'HotelListPage'}/>
 
                 <View style={styles.selectView}>
                     {categorie_area.map((item, index, arr) => {

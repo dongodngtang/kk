@@ -15,7 +15,9 @@ export default class HangoutHotelPage extends Component {
 
     state = {
         timeShow: false,
-        date: {begin_date: "", end_date: "", counts: 0}
+        date: {begin_date: "", end_date: "", counts: 0},
+        hotel_name: '',
+        room_name: ''
     }
 
     componentDidMount() {
@@ -35,8 +37,17 @@ export default class HangoutHotelPage extends Component {
     };
 
     showSpecInfo = (temp) => {
+        if (temp === '取消') {
+            time_index = 1
+        }
         this.setState({
             timeShow: !this.state.timeShow
+        })
+    };
+
+    _change_hotel = (temp) => {
+        this.setState({
+            hotel_name: temp
         })
     };
 
@@ -53,9 +64,11 @@ export default class HangoutHotelPage extends Component {
                         <Text style={styles.text1}>挂售酒店</Text>
                         <TouchableOpacity onPress={() => {
                             ++hotel_index;
-                            router.toHotelListPage(this.state.date)
+                            router.toHotelListPage(this.state.date, this._change_hotel)
                         }}>
-                            <Text style={styles.text2}>请选择挂售酒店</Text>
+                            {hotel_index === 1 ? <Text style={styles.text2}>请选择挂售酒店</Text> :
+                                <Text>{this.state.hotel_name}</Text>}
+
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={styles.hangoutHotel_View}>
