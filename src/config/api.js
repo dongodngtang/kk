@@ -11,10 +11,11 @@ const api = {
     staging: 'http://106.75.136.9:8801/v10/',
     production: 'http://test.kkapi.deshpro.com/v1/',
     recommends: 'recommends',//首页推荐
-    login: 'merchant/account/login',//登录
-    v_codes: 'merchant/account',// 发送验证码
-    account_verify: 'merchant/account',//校验验证码是否正确
-    hotels: 'hotels'
+    hotels: 'hotels',
+    login:'merchant/account/login',//登录
+    v_codes: 'merchant/v_codes',// 发送验证码
+    account_verify: 'merchant/verify_vcode',//校验验证码是否正确
+    account:'merchant/account',
 }
 
 function hotels(body) {

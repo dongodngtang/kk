@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './AccountStyles';
 import {Colors, Images} from "../../Themes";
 import ExtArea from './ExtArea';
+import { isStrNull, showToast } from '../../config/utils';
 
 export default class RegisterPage extends Component {
 
@@ -13,7 +14,7 @@ export default class RegisterPage extends Component {
     };
 
     render() {
-        const {ext, phoneClear, mobile} = this.state;
+        const {ext, phoneClear,mobile} = this.state;
         return (
             <View style={styles.backgroundStyle2}>
                 <Text style={styles.registerTxt}>手机号注册</Text>
@@ -53,7 +54,11 @@ export default class RegisterPage extends Component {
 
                 <TouchableOpacity style={styles.nextBtn}
                                   onPress={() => {
-                                      global.router.toRegisterPageTwo()
+                                      if(isStrNull(mobile)){
+                                          showToast('手机号不能为空')
+                                          return
+                                      }
+                                      router.toRegisterPageTwo(mobile,ext)
                                   }}>
                     <Text style={styles.nextTxt}>下一步</Text>
                 </TouchableOpacity>

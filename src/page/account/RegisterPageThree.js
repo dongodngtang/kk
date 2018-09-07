@@ -3,6 +3,8 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './AccountStyles';
 import {Colors, Images} from "../../Themes";
 import ExtArea from './ExtArea';
+import { postRegister } from '../../service/AccountDao';
+import { showToast } from '../../config/utils';
 
 export default class RegisterPageThree extends Component {
 
@@ -49,7 +51,20 @@ export default class RegisterPageThree extends Component {
 
                 <TouchableOpacity style={styles.nextBtn}
                                   onPress={() => {
-                                      global.router.popToTopRefresh()
+                                      const {mobile,ext,vcode} = this.props.params;
+                                      let body = {
+                                        contact:other_mobile,
+                                        nick_name:name,
+                                        ext,
+                                        mobile,
+                                        vcode
+                                      }
+                                      postRegister(body,data=>{
+                                        global.router.popToTopRefresh()
+                                      },err=>{
+                                          showToast(err)
+                                      })
+                                     
                                   }}>
                     <Text style={styles.nextTxt}>完成</Text>
                 </TouchableOpacity>

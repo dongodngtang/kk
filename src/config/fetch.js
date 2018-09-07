@@ -17,7 +17,7 @@ let TAG = 'Http:';
 
 // define the api
 const client = create({
-    baseURL: api.production,
+    baseURL: api.test,
     timeout: 20000,
     headers: {
         'X-DP-APP-KEY': '467109f4b44be6398c17f6c058dfa7ee',
@@ -89,10 +89,15 @@ function handle(res, resolve, reject) {
 
 
 function errReject(res) {
-    const {status, problem, data} = res;
-    if (status === 401) {
+    const {status, problem, data,ok} = res;
+    if(ok){
+        if (status === 401) {
 
+        }
+    }else{
+        showToast(problem)
     }
+   
 }
 
 

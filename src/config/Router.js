@@ -27,10 +27,14 @@ export default class Router {
     }
 
     popToTopRefresh() {
-        Actions.reset('Main');
-
+        this.push({name: 'Navigation'})
     }
 
+    toNavigation(){
+        this.push({
+            name:'Navigation'
+        })
+    }
 
     toRegisterPage(){
         this.push({
@@ -38,15 +42,19 @@ export default class Router {
         })
     }
 
-    toRegisterPageTwo(){
+    toRegisterPageTwo(mobile,ext){
         this.push({
-            name:'RegisterPageTwo'
+            name:'RegisterPageTwo',
+            params:{
+                mobile,ext
+            }
         })
     }
 
-    toRegisterPageThree() {
+    toRegisterPageThree(params) {
         this.push({
-            name: 'RegisterPageThree'
+            name: 'RegisterPageThree',
+            params
         })
     }
 
