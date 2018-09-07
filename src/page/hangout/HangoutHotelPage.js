@@ -16,7 +16,7 @@ export default class HangoutHotelPage extends Component {
     state = {
         timeShow: false,
         date: {begin_date: "", end_date: "", counts: 0},
-        hotel_name: '',
+        hotel_item: {},
         room_name: ''
     }
 
@@ -45,14 +45,17 @@ export default class HangoutHotelPage extends Component {
         })
     };
 
-    _change_hotel = (temp) => {
+    _change_hotel = (item) => {
+        if(isEmptyObject(item)){
+            hotel_index =1;
+        }
         this.setState({
-            hotel_name: temp
+            hotel_item: item
         })
     };
 
     render() {
-        const {date} = this.state;
+        const {date,hotel_item} = this.state;
         return (
             <View style={styles.backgroundStyle2}>
                 <ScrollView>
@@ -67,7 +70,7 @@ export default class HangoutHotelPage extends Component {
                             router.toHotelListPage(this.state.date, this._change_hotel)
                         }}>
                             {hotel_index === 1 ? <Text style={styles.text2}>请选择挂售酒店</Text> :
-                                <Text>{this.state.hotel_name}</Text>}
+                                <Text style={styles.timeTxt}>{hotel_item.title}</Text>}
 
                         </TouchableOpacity>
                     </View>

@@ -257,7 +257,8 @@ export default class HotelListPage extends PureComponent {
         return (
             <TouchableOpacity style={styles.item} key={index}
                               onPress={() => {
-                                  // router.toHotelDetail(item, changeTime)
+                                  this.props.params._change_hotel(item);
+                                  router.pop();
                               }}>
                 <ImageLoad
                     style={{width: 67, height: 95, marginLeft: 12}}

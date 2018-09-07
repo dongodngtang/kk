@@ -19,7 +19,7 @@ export default class SearchBar extends PureComponent {
             <View style={styles.navContent}>
                 <TouchableOpacity
                     onPress={() => {
-                        global.router.pop()
+                        global.router.pop();
                     }}
                     style={{
                         height: 40, width: 50,
