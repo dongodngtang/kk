@@ -91,8 +91,7 @@ export default StyleSheet.create({
         paddingLeft:17,
         paddingRight:17,
         paddingTop:15,
-        paddingBottom:15,
-        marginBottom:1
+        paddingBottom:15
     },
     text1:{
         color: "#444444",
@@ -191,5 +190,22 @@ export default StyleSheet.create({
     hangout_btnTxt:{
         color: '#FFFFFF',
         fontSize: 14
+    },
+    photoTxt:{
+        color: '#CCCCCC',
+        fontSize: 14
+    },
+    promptView:{
+        marginLeft:20,
+        marginRight:20,
+        flexDirection:'column',
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:30
+    },
+    promptTxt:{
+        color: '#CCCCCC',
+        fontSize: 12,
+        marginTop:12
     }
 })

@@ -69,12 +69,12 @@ export default class HangoutHotelPage extends Component {
     render() {
         const {date, hotel_item, room_item} = this.state;
         return (
-            <View style={styles.backgroundStyle2}>
+            <View style={styles.backgroundStyle}>
                 <ScrollView>
                     <View style={styles.messageView}>
                         <Text style={styles.massageTxt}>基本信息</Text>
                     </View>
-
+                    <View style={{width:Metrics.screenWidth,height:8,backgroundColor:'#F3F3F3'}}/>
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>挂售酒店</Text>
                         <TouchableOpacity onPress={() => {
@@ -86,6 +86,7 @@ export default class HangoutHotelPage extends Component {
 
                         </TouchableOpacity>
                     </View>
+                    <View style={{width:Metrics.screenWidth,height:1,backgroundColor:'#F3F3F3',alignSelf:'center'}}/>
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>酒店房型</Text>
                         <TouchableOpacity onPress={() => {
@@ -101,7 +102,8 @@ export default class HangoutHotelPage extends Component {
                                 <Text style={styles.timeTxt}>{room_item.title}</Text>}
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.hangoutHotel_View}>
+                    <View style={{width:Metrics.screenWidth,height:1,backgroundColor:'#F3F3F3',alignSelf:'center'}}/>
+                    <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>房号</Text>
                         <TextInput
                             style={{
@@ -123,7 +125,8 @@ export default class HangoutHotelPage extends Component {
                             }}
 
                         />
-                    </TouchableOpacity>
+                    </View>
+                    <View style={{width:Metrics.screenWidth,height:1,backgroundColor:'#F3F3F3',alignSelf:'center'}}/>
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>入住时间</Text>
                         <TouchableOpacity onPress={() => {
@@ -137,6 +140,7 @@ export default class HangoutHotelPage extends Component {
                             }
                         </TouchableOpacity>
                     </View>
+                    <View style={{width:Metrics.screenWidth,height:1,backgroundColor:'#F3F3F3',alignSelf:'center'}}/>
                     <View style={styles.hangoutHotel_View}>
                         <Text style={styles.text1}>挂售金额</Text>
                         <TextInput
@@ -160,6 +164,19 @@ export default class HangoutHotelPage extends Component {
                             }}
 
                         />
+                    </View>
+                    <View style={{width:Metrics.screenWidth,height:20,backgroundColor:'#F3F3F3',alignSelf:'center'}}/>
+                    <View style={[styles.hangoutHotel_View]}>
+                        <Text style={styles.text1}>房卡</Text>
+                        <TouchableOpacity>
+
+                        </TouchableOpacity>
+                        <Text style={styles.photoTxt}>需清晰展示您挂售酒店名称与房间编号</Text>
+                    </View>
+
+                    <View style={styles.promptView}>
+                        <View style={{width:Metrics.screenWidth - 40,height:1,backgroundColor:"#DDDDDD",alignSelf:'center'}}/>
+                        <Text  style={styles.promptTxt}>提示：房间出售成功后平台将会抽取价格的10%的服务费</Text>
                     </View>
                 </ScrollView>
 
@@ -194,7 +211,8 @@ export default class HangoutHotelPage extends Component {
             card_img: card_img
         };
         postRoom_requests(body, data => {
-
+            showToast("申请成功");
+            router.pop();
         }, err => {
             showToast(err)
         })

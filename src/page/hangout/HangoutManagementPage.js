@@ -6,6 +6,7 @@ import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
 import RenderItem from '../record/RenderItem'
 import {strNotNull} from "../../utils/ComonHelper";
+import {getRoomRequest} from "../../service/RecordDao";
 
 const items = [{
     title: '巴黎人酒店 豪华双人房1天',
@@ -148,7 +149,7 @@ export default class HangoutManagementPage extends Component {
                     allLoadedText={'已经没有啦！'}
                     waitingSpinnerText={'加载中...'}
                     separator={this._separator}
-                    emptyView={() => <View style={{alignItems: 'center', justifyContent: 'center'}}><Text
+                    emptyView={() => <View style={{flex:1,alignItems: 'center', justifyContent: 'center'}}><Text
                         style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
                 />
 
@@ -201,7 +202,17 @@ export default class HangoutManagementPage extends Component {
 
 
     searchRefresh = (startFetch, abortFetch) => {
-        startFetch(items, 6)
+        getRoomRequest({
+            page:1,
+            page_size: 20,
+            request_type: 'on_offer'
+        }, data => {
+            console.log(`on_offer_recordList`, data)
+            startFetch(data.items, 18)
+        }, err => {
+            console.log('err',err)
+            abortFetch()
+        })
 
     };
 
