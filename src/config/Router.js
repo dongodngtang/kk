@@ -27,7 +27,7 @@ export default class Router {
     }
 
     popToTopRefresh() {
-        this.popTo({name: 'Home'})
+        this.popTo({name: 'Navigation'})
     }
 
     toNavigation(){

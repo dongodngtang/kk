@@ -89,10 +89,15 @@ function handle(res, resolve, reject) {
 
 
 function errReject(res) {
-    const {status, problem, data} = res;
-    if (status === 401) {
+    const {status, problem, data,ok} = res;
+    if(ok){
+        if (status === 401) {
 
+        }
+    }else{
+        showToast(problem)
     }
+   
 }
 
 
