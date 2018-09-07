@@ -82,38 +82,39 @@ export default class HotelRoomListPage extends PureComponent {
         return (
             <TouchableOpacity style={styles.itemView} onPress={()=>{
                 this.props.params._change_room(item)
+                router.pop();
             }}>
                 <ImageMessage images={images}/>
                 <Message item={item}/>
 
-                <View style={styles.priceView}>
-                    <Text style={{color: "#FF3F3F", fontSize: 20}}><Text
-                        style={{color: "#FF3F3F", fontSize: 12}}>¥</Text>{this._discount(price, discount_amount)}</Text>
+                {/*<View style={styles.priceView}>*/}
+                    {/*<Text style={{color: "#FF3F3F", fontSize: 20}}><Text*/}
+                        {/*style={{color: "#FF3F3F", fontSize: 12}}>¥</Text>{this._discount(price, discount_amount)}</Text>*/}
 
 
-                    <View style={{flexDirection: 'row', alignItems: "center"}}>
-                        <Text style={{color: "#AAAAAA", fontSize: 12, marginRight: 4}}>原价</Text>
-                        <Text
-                            style={{color: "#AAAAAA", fontSize: 12, textDecorationLine: 'line-through'}}>¥{price}</Text>
-                    </View>
+                    {/*<View style={{flexDirection: 'row', alignItems: "center"}}>*/}
+                        {/*<Text style={{color: "#AAAAAA", fontSize: 12, marginRight: 4}}>原价</Text>*/}
+                        {/*<Text*/}
+                            {/*style={{color: "#AAAAAA", fontSize: 12, textDecorationLine: 'line-through'}}>¥{price}</Text>*/}
+                    {/*</View>*/}
 
 
-                    <TouchableOpacity
-                        style={[styles.reservation, {backgroundColor: item.saleable_num <= 0 ? '#F3F3F3' : '#FF6448'}]}
-                        onPress={() => {
-                            if (item.saleable_num > 0) {
-                                if (isEmptyObject(global.login_user)) {
-                                    router.toLoginFirstPage()
-                                } else
-                                    router.toRoomReservationPage(item, this.state.last_change_time)
-                            }
-                        }}>
-                        <Text style={{
-                            color: item.saleable_num <= 0 ? '#888888' : "#FFFFFF",
-                            fontSize: 14
-                        }}>{item.saleable_num <= 0 ? '售罄' : '预定'}</Text>
-                    </TouchableOpacity>
-                </View>
+                    {/*<TouchableOpacity*/}
+                        {/*style={[styles.reservation, {backgroundColor: item.saleable_num <= 0 ? '#F3F3F3' : '#FF6448'}]}*/}
+                        {/*onPress={() => {*/}
+                            {/*if (item.saleable_num > 0) {*/}
+                                {/*if (isEmptyObject(global.login_user)) {*/}
+                                    {/*router.toLoginFirstPage()*/}
+                                {/*} else*/}
+                                    {/*router.toRoomReservationPage(item, this.state.last_change_time)*/}
+                            {/*}*/}
+                        {/*}}>*/}
+                        {/*<Text style={{*/}
+                            {/*color: item.saleable_num <= 0 ? '#888888' : "#FFFFFF",*/}
+                            {/*fontSize: 14*/}
+                        {/*}}>{item.saleable_num <= 0 ? '售罄' : '预定'}</Text>*/}
+                    {/*</TouchableOpacity>*/}
+                {/*</View>*/}
             </TouchableOpacity>
         )
     };

@@ -32,7 +32,7 @@ export default class HangoutHotelPage extends Component {
         date: {begin_date: "", end_date: "", counts: 0},
         hotel_item: {},
         room_item: {},
-        card_img: ''
+        card_img: 'http://kkh5.deshpro.com/images/default_img.png'
     }
 
     componentDidMount() {
@@ -220,12 +220,12 @@ export default class HangoutHotelPage extends Component {
             room_num: this.room_num,
             checkin_date: date.begin_date,
             price: this.price,
-            card_img: 'http://kkh5.deshpro.com/images/default_img.png'
+            card_img: card_img
         };
 
         alertOrder("确认挂售？", () => {
             postRoom_requests(body, data => {
-                showToast("申请成功");
+                showToast("挂售成功");
                 router.pop();
             }, err => {
                 showToast(err)
