@@ -10,6 +10,7 @@ import {postRoom_requests} from "../../service/HangoutDao";
 import {fileName, isEmpty, isStrNull, logMsg} from "../../config/utils";
 import ImagePicker from 'react-native-image-crop-picker';
 import {Styles} from "../../config/Theme";
+import Loading from "../../components/Loading";
 
 const option = {
     compressImageMaxWidth: 1024,
@@ -297,6 +298,8 @@ export default class HangoutHotelPage extends Component {
                     btnArray={this.selectImage}
                     ref={ref => this.popAction = ref}
                 />
+
+                <Loading ref={ref=>this.loading = ref}/>
             </View>
         )
     }
@@ -343,6 +346,7 @@ export default class HangoutHotelPage extends Component {
     }
 
     judgeMessage = () => {
+
         const {date, hotel_item, room_item, card_img} = this.state;
         if (isEmptyObject(hotel_item) || isEmptyObject(room_item) || !strNotNull(this.room_num) || !strNotNull(this.price) || isEmptyObject(date)) {
             showToast("请填写完整信息")
@@ -374,11 +378,14 @@ export default class HangoutHotelPage extends Component {
 
 
         alertOrder("确认挂售？", () => {
+            this.loading && this.loading.open()
             postRoom_requests(formData, data => {
+                this.loading && this.loading.close()
                 logMsg(data)
                 showToast("挂售成功");
                 router.pop();
             }, err => {
+                this.loading && this.loading.close()
                 showToast(err)
             })
         });

@@ -81,6 +81,8 @@ export default class LoginPage extends Component {
 
 
                     <CountDownButton
+                        disableBg={'#F3F3F3'}
+                        disableColor={'#747474'}
                         style={{ height: 50, backgroundColor: getCodeDisable ? Colors._BBBB : Colors._E54 }}
                         textStyle={styles.down_txt}
                         enable

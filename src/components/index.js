@@ -7,6 +7,7 @@ import BtnLong from "./BtnLong";
 import ImageLoad from "./ImageLoad";
 import RejectPage from "./RejectPage";
 import PopAction from './PopAction'
+import Loading from "./Loading";
 
 export {
     CountDownButton,
@@ -17,5 +18,6 @@ export {
     UltimateListView,
     ImageLoad,
     RejectPage,
-    PopAction
+    PopAction,
+    Loading
 }

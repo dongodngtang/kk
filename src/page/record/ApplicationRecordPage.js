@@ -16,6 +16,7 @@ const categories = [{id: 1, name: '审核中', type: 'pending'}, {id: 2, name: '
 export default class ApplicationRecordPage extends Component {
 
     render() {
+        logMsg('申请记录',this)
         return (
             <View style={styles.backgroundStyle2}>
 

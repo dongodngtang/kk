@@ -10,7 +10,7 @@ import React from 'react';
 import {Alert} from 'react-native';
 import _ from 'lodash'
 import moment from 'moment'
-import Toast from 'react-native-root-toast';
+import Toast from '../components/toast';
 
 export const YYYYMMDD = 'YYYY-MM-DD'
 

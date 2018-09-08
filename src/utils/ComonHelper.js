@@ -1,5 +1,5 @@
 /*对象是否为空对象*/
-import Toast from 'react-native-root-toast';
+import Toast from '../components/toast';
 import _ from 'lodash';
 import moment from 'moment';
 import {Alert} from 'react-native'
