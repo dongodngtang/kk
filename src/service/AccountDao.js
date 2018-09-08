@@ -77,3 +77,10 @@ export function putInfo(body, resolve, reject) {
   }, reject)
 }
 
+export function getContacts(resolve, reject) {
+    get(api.contacts, {}, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
+

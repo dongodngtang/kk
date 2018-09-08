@@ -128,6 +128,11 @@ export default class Router {
     })
   }
 
+    toBusinessPage() {
+        this.push({
 
+            name: 'BusinessPage',
+        })
+    }
 
 }

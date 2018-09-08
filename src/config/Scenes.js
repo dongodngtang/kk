@@ -17,6 +17,7 @@ import HangoutHotelPage from "../page/hangout/HangoutHotelPage";
 import HotelListPage from "../page/hangout/HotelListPage";
 import HotelRoomListPage from "../page/hangout/HotelRoomListPage";
 import {strNotNull} from "../utils/ComonHelper";
+import BusinessPage from "../page/personal/BusinessPage";
 
 let config = {
     titleStyle: { fontSize: 18, color: "#FFFFFF" },
@@ -100,6 +101,12 @@ export const Scenes = () => {
         <Scene key="HotelRoomListPage"
                hideNavBar
                component={HotelRoomListPage}/>
+
+        <Scene key="BusinessPage"
+               {...TopNav({
+                   title: '商务合作'
+               })}
+               component={BusinessPage}/>
     </Scene>
 
 }

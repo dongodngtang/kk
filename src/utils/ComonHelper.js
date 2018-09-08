@@ -3,7 +3,7 @@ import Toast from 'react-native-root-toast';
 import _ from 'lodash';
 import moment from 'moment';
 import {Alert} from 'react-native'
-
+import Communications from 'react-native-communications';
 
 export const util = _;
 
@@ -88,4 +88,10 @@ export function alertOrder(str, callback) {
         }
     }])
 }
+
+/*拨打电话*/
+export function call(phone) {
+    Communications.phonecall(phone, false)
+}
+
 
