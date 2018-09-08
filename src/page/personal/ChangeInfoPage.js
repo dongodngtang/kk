@@ -4,9 +4,10 @@ import styles from './PersonalStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {get_thousand_num} from '../../utils/ComonHelper'
+import {alertOrder, get_thousand_num} from '../../utils/ComonHelper'
 import {putInfo, setLoginUser} from "../../service/AccountDao";
-import {showToast} from "../../config/utils";
+import {logMsg, showAlert, showToast} from "../../config/utils";
+import {postRoom_requests} from "../../service/HangoutDao";
 
 export default class ChangeInfoPage extends Component {
 
@@ -17,23 +18,29 @@ export default class ChangeInfoPage extends Component {
         this.phone = contact
         props.navigation.setParams({
             onLeft: () => {
-                putInfo({
-                    nick_name: this.name,
-                    contact: this.phone
-                }, data => {
-                    const {contact, nick_name} = data;
-                    global.loginUser.nick_name = nick_name
-                    global.loginUser.contact = contact
-                    setLoginUser(global.loginUser)
+                router.pop()
+            },
 
-                    props.params.refresh && props.params.refresh()
-                    showToast('修改成功')
-                    router.pop()
-                }, err => {
-                    showToast(err)
-                })
+            onRight: () => {
+                alertOrder("确认保存？", () => {
+                    putInfo({
+                        nick_name: this.name,
+                        contact: this.phone
+                    }, data => {
+                        const {contact, nick_name} = data;
+                        global.loginUser.nick_name = nick_name
+                        global.loginUser.contact = contact
+                        setLoginUser(global.loginUser)
 
-            }
+                        props.params.refresh && props.params.refresh()
+                        showToast('修改成功')
+                        router.pop()
+                    }, err => {
+                        showToast(err)
+                    })
+                });
+            },
+            rightTitle:'保存'
 
         })
     }
