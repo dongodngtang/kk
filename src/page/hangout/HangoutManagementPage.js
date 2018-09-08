@@ -28,7 +28,6 @@ export default class HangoutManagementPage extends Component {
     };
 
     refresh = ()=>{
-        logMsg('刷新水淀粉')
         this.listView.refresh && this.listView.refresh()
     }
 

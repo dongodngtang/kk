@@ -22,7 +22,8 @@ const images = {
         price2: require('../static/macau/price2.png'),
         price1_red: require('../static/macau/price1_red.png'),
         price2_red: require('../static/macau/price2_red.png')
-    }
+    },
+    room_card_add:require('../static/room_card_add.png')
 
 }
 

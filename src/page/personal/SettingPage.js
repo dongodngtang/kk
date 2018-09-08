@@ -4,9 +4,10 @@ import styles from './PersonalStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {get_thousand_num, logMsg} from '../../utils/ComonHelper'
+import {alertOrder, get_thousand_num, logMsg, showToast} from '../../utils/ComonHelper'
 import {setLoginUser} from "../../service/AccountDao";
 import {isEmpty} from "../../config/utils";
+import {postRoom_requests} from "../../service/HangoutDao";
 
 export default class PersonalPage extends Component {
 
@@ -47,9 +48,10 @@ export default class PersonalPage extends Component {
           style={styles.setBottom}
           activeOpacity={0}
           onPress={() => {
-
-            setLoginUser({})
-            router.popToTop()
+              alertOrder("确认退出？", () => {
+                  setLoginUser({})
+                  router.popToTop()
+              });
 
           }}>
           <Text style={{color: "#FFFFFF", fontSize: 18}}>退出登录</Text>

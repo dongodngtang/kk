@@ -15,7 +15,7 @@ export default StyleSheet.create({
         flex: 1, backgroundColor: '#F3F3F3'
     },
     roomView: {
-        width:Metrics.screenWidth - 34,
+        width: Metrics.screenWidth - 34,
         height: 50,
         backgroundColor: "#E54A2E",
         alignItems: 'center',
@@ -33,7 +33,7 @@ export default StyleSheet.create({
         borderBottomColor: "#DDDDDD"
     },
     priceBtnView: {
-        flex:1,
+        flex: 1,
         marginTop: 30,
         marginLeft: 52,
         marginRight: 52,
@@ -47,71 +47,71 @@ export default StyleSheet.create({
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius:2
+        borderRadius: 2
     },
-    confirmBtn:{
-        borderColor:'#E54A2E'
+    confirmBtn: {
+        borderColor: '#E54A2E'
     },
-    cancelBtn:{
-        borderColor:'#666666'
+    cancelBtn: {
+        borderColor: '#666666'
     },
-    confirmTxt:{
+    confirmTxt: {
         color: "#E54A2E",
         fontSize: 14
     },
-    cancelTxt:{
+    cancelTxt: {
         color: "#666666",
         fontSize: 14
     },
-    obtainedTxt:{
-        marginTop:34,
-        marginLeft:36,
-        marginRight:36,
-        color:"#444444",
-        fontSize:18,
-        fontWeight:'bold'
+    obtainedTxt: {
+        marginTop: 34,
+        marginLeft: 36,
+        marginRight: 36,
+        color: "#444444",
+        fontSize: 18,
+        fontWeight: 'bold'
     },
 
-    messageView:{
-        paddingTop:12,
-        paddingBottom:12,
-        backgroundColor:"#DDDDDD"
+    messageView: {
+        paddingTop: 12,
+        paddingBottom: 12,
+        backgroundColor: "#DDDDDD"
     },
-    massageTxt:{
+    massageTxt: {
         color: "#444444",
         fontSize: 14,
-        marginLeft:17,
-        marginRight:17,
-        fontWeight:'bold'
+        marginLeft: 17,
+        marginRight: 17,
+        fontWeight: 'bold'
     },
-    hangoutHotel_View:{
-        flexDirection:'row',
-        alignItems:'center',
-        backgroundColor:'white',
-        paddingLeft:17,
-        paddingRight:17,
-        paddingTop:15,
-        paddingBottom:15
-    },
-    text1:{
-        color: "#444444",
-        fontSize: 14,
-        width:70
-    },
-    text2:{
-        color: "#CCCCCC",
-        fontSize: 14,
-        marginLeft:40
-    },
-    timeView:{
+    hangoutHotel_View: {
         flexDirection: 'row',
         alignItems: 'center',
-        width:70
+        backgroundColor: 'white',
+        paddingLeft: 17,
+        paddingRight: 17,
+        paddingTop: 15,
+        paddingBottom: 15
     },
-    timeTxt:{
+    text1: {
+        color: "#444444",
+        fontSize: 14,
+        width: 70
+    },
+    text2: {
+        color: "#CCCCCC",
+        fontSize: 14,
+        marginLeft: 40
+    },
+    timeView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: 70
+    },
+    timeTxt: {
         color: "#444444",
         fontSize: 16,
-        marginLeft:40
+        marginLeft: 40
     },
 
 
@@ -175,37 +175,71 @@ export default StyleSheet.create({
         justifyContent: 'center'
     },
 
-    hangout_btnView:{
-        width:Metrics.screenWidth - 34,
-        alignSelf:'center',
-        position:'absolute',
-        paddingTop:16,
-        paddingBottom:16,
-        bottom:20,
-        backgroundColor:'#E54A2E',
-        alignItems:'center',
-        justifyContent:'center',
-        borderRadius:2
+    hangout_btnView: {
+        width: Metrics.screenWidth - 34,
+        alignSelf: 'center',
+        position: 'absolute',
+        paddingTop: 16,
+        paddingBottom: 16,
+        bottom: 20,
+        backgroundColor: '#E54A2E',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 2
     },
-    hangout_btnTxt:{
+    hangout_btnTxt: {
         color: '#FFFFFF',
         fontSize: 14
     },
-    photoTxt:{
+    photoTxt: {
         color: '#CCCCCC',
         fontSize: 14
     },
-    promptView:{
-        marginLeft:20,
-        marginRight:20,
-        flexDirection:'column',
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:30
+    promptView: {
+        marginLeft: 20,
+        marginRight: 20,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 30
     },
-    promptTxt:{
+    promptTxt: {
         color: '#CCCCCC',
         fontSize: 12,
-        marginTop:12
+        marginTop: 12
+    },
+    room_card_View: {
+        width: 60,
+        height: 60,
+        borderWidth: 1,
+        borderColor: "#F3F3F3"
+    },
+    pick_image: {
+        width: 60,
+        height: 60,
+        marginRight: 10,
+        marginBottom: 10
+    },
+
+    btn_pick: {
+        width: 60,
+        height: 60,
+        marginRight: 10,
+        marginBottom: 10
+    },
+    card_imgs: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+
+    },
+    btn_del: {
+        position: 'absolute',
+        height: 15,
+        width: 30,
+        backgroundColor: 'red',
+        top: 5,
+        zIndex:9
     }
 })
