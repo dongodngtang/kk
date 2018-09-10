@@ -77,7 +77,7 @@ export default class RecordList extends Component {
 
     renderItem = (item, index) => {
 
-        return <RenderItem item={item} id={this.id} type={'record'}/>
+        return <RenderItem item={item} id={this.props.category.id} type={'record'}/>
     };
 }
 

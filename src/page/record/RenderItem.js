@@ -3,16 +3,16 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './RecordStyles';
 import ItemBottom from './ItemBottom';
 import {Images, Styles, Metrics, Colors} from '../../config/Theme'
-import {convertDate,utcDate} from '../../utils/ComonHelper'
+import {convertDate, utcDate} from '../../utils/ComonHelper'
 
 export default class RenderItem extends Component {
 
-    recordBtn = () => {
+    recordBtn = (item) => {
         const {id} = this.props;
         if (id === 2) {
             return (
                 <View style={styles.btn}>
-                    <Text style={styles.txt2}>原因：您的房间信息核对失败</Text>
+                    <Text style={styles.txt2}>原因：{item.refused_memo}</Text>
                 </View>
             )
         } else if (id === 3) {
@@ -22,11 +22,10 @@ export default class RenderItem extends Component {
         }
     };
 
-    judgeBtn = () => {
+    judgeBtn = (item) => {
         const {type} = this.props;
-
         if (type === 'record') {
-            return this.recordBtn()
+            return this.recordBtn(item)
         } else if (type === 'hangout') {
             return this._hangoutBtn()
         } else if (type === 'sell') {
@@ -73,6 +72,7 @@ export default class RenderItem extends Component {
 
 
     render() {
+        const {item} = this.props;
         const {hotel_title, created_at, price, room_title, checkin_date} = this.props.item;
         return (
             <View style={styles.itemPage}>
@@ -84,9 +84,9 @@ export default class RenderItem extends Component {
                     }]}>
 
                     <View style={[styles.one]}>
-                        <Text style={[styles.txt,{width:'70%'}]}>{hotel_title}    {room_title}</Text>
+                        <Text style={[styles.txt, {width: '70%'}]}>{hotel_title} {room_title}</Text>
                         <View style={{flex: 1}}/>
-                        <Text style={styles.time}>{utcDate(created_at,'YYYY-MM-DD HH:mm')}</Text>
+                        <Text style={styles.time}>{utcDate(created_at, 'YYYY-MM-DD HH:mm')}</Text>
                     </View>
                     <Text style={[styles.price, {marginBottom: 6, fontWeight: 'bold'}]}>售价：<Text
                         style={styles.priceRed}>¥{price}</Text></Text>
@@ -95,8 +95,7 @@ export default class RenderItem extends Component {
                 </TouchableOpacity>
 
 
-
-                {this.judgeBtn()}
+                {this.judgeBtn(item)}
 
             </View>
 
