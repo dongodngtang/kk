@@ -27,25 +27,26 @@ export default class RenderItem extends Component {
         if (type === 'record') {
             return this.recordBtn(item)
         } else if (type === 'hangout') {
-            return this._hangoutBtn()
+            return this._hangoutBtn(item)
         } else if (type === 'sell') {
             return this.sellBtn()
         }
     };
 
 
-    _hangoutBtn = () => {
+    _hangoutBtn = (item) => {
+        const {id} = this.props.item;
         return (
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.changePrice]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle('change_price');
+                                      this.props.toggle && this.props.toggle('change_price',id);
                                   }}>
                     <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle('obtained');
+                                      this.props.toggle && this.props.toggle('obtained',id);
                                   }}>
                     <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                 </TouchableOpacity>

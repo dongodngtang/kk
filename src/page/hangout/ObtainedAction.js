@@ -10,13 +10,15 @@ export default class ObtainedAction extends Component {
 
     state = {
         visible: false,
-        change_type: ''
+        change_type: '',
+        id: ''
     };
 
-    toggle = (type) => {
+    toggle = (type, id) => {
         this.setState({
             visible: !this.state.visible,
-            change_type: type
+            change_type: type,
+            id: id
         })
     };
 
@@ -31,7 +33,7 @@ export default class ObtainedAction extends Component {
                 <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.6)'}}>
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={this.toggle} style={{flex: 1,alignItems:'center',justifyContent:'center'}}>
+                        onPress={this.toggle} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         {this.btnArrayView()}
                     </TouchableOpacity>
 
@@ -44,7 +46,8 @@ export default class ObtainedAction extends Component {
     }
 
     btnArrayView = () => {
-        const {change_type} = this.state;
+        const {change_type, id} = this.state;
+        console.log("弹窗", this.state);
         if (change_type === 'change_price') {
             return <TouchableOpacity style={{
                 width: Metrics.screenWidth - 34,
@@ -118,14 +121,12 @@ export default class ObtainedAction extends Component {
                     <View style={styles.priceBtnView}>
                         <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
                                           onPress={() => {
-                                              alertOrder("确认下架？", () => {
-                                                  postCancelRoom({id: this.props.id}, data => {
-                                                      showToast("下架成功");
-                                                      this.toggle && this.toggle('obtained');
-                                                      this.props.refresh && this.props.refresh();
-                                                  }, err => {
+                                              postCancelRoom({id: this.state.id}, data => {
+                                                  showToast("下架成功");
+                                                  this.toggle && this.toggle('obtained');
+                                                  this.props.refresh && this.props.refresh();
+                                              }, err => {
 
-                                                  })
                                               })
                                           }}>
                             <Text style={styles.confirmTxt}>确定</Text>

@@ -18,7 +18,7 @@ export default class ItemBottom extends Component {
                     <TouchableOpacity style={[styles.btnView, styles.obtainedView]}
                                       onPress={() => {
 
-                                          this.props.toggle &&  this.props.toggle('obtained')
+                                          this.props.toggle &&  this.props.toggle('obtained',id)
                                       }}>
                         <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                     </TouchableOpacity> : null}
