@@ -48,7 +48,7 @@ export default class RecordList extends Component {
 
                 <ObtainedAction
                     ref={ref => this.obtainedAction = ref}
-                    refresh={this.props.refresh}/>
+                    refresh={this.refresh}/>
             </View>
         )
 

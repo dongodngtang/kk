@@ -4,6 +4,7 @@ import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {postCancelRoom, putChangePrice} from "../../service/RecordDao";
 import {alertOrder, showToast} from "../../utils/ComonHelper";
+import {logMsg} from "../../config/utils";
 
 
 export default class ObtainedAction extends Component {
@@ -15,6 +16,7 @@ export default class ObtainedAction extends Component {
     };
 
     toggle = (type, id) => {
+        logMsg('toggle 操作1')
         this.setState({
             visible: !this.state.visible,
             change_type: type,
@@ -97,10 +99,12 @@ export default class ObtainedAction extends Component {
                                           putChangePrice({id: this.state.id, price: this.price}, data => {
                                               showToast("修改价格成功");
                                               this.toggle && this.toggle('change_price');
+                                              logMsg('toggle 操作2')
                                               this.props.refresh && this.props.refresh();
                                           }, err => {
 
                                           })
+                                          this.price = ''
                                       }}>
                         <Text style={styles.confirmTxt}>确定</Text>
                     </TouchableOpacity>
@@ -108,6 +112,7 @@ export default class ObtainedAction extends Component {
                     <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
                                       onPress={() => {
                                           this.toggle && this.toggle('change_price');
+                                          this.price = ''
                                       }}>
                         <Text style={styles.cancelTxt}>取消</Text>
                     </TouchableOpacity>
@@ -134,6 +139,7 @@ export default class ObtainedAction extends Component {
                                               postCancelRoom({id: this.state.id}, data => {
                                                   showToast("下架成功");
                                                   this.toggle && this.toggle('obtained');
+                                                  logMsg('toggle 操作2')
                                                   this.props.refresh && this.props.refresh();
                                               }, err => {
 

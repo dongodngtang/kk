@@ -17,6 +17,7 @@ export default class HangoutManagementPage extends Component {
     };
 
     refresh = () => {
+        logMsg('刷新3')
         this.listView.refresh && this.listView.refresh()
     }
 
@@ -42,7 +43,7 @@ export default class HangoutManagementPage extends Component {
 
                 <ObtainedAction
                     ref={ref => this.obtainedAction = ref}
-                    refresh={this.props.refresh}/>
+                    refresh={this.refresh}/>
 
             </View>
 
