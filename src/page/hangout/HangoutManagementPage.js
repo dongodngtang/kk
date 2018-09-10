@@ -8,7 +8,7 @@ import RenderItem from '../record/RenderItem'
 import {strNotNull} from "../../utils/ComonHelper";
 import {getRoomRequest} from "../../service/RecordDao";
 import {logMsg} from "../../config/utils";
-
+import ObtainedAction from './ObtainedAction';
 
 export default class HangoutManagementPage extends Component {
 
@@ -17,17 +17,15 @@ export default class HangoutManagementPage extends Component {
 
         props.navigation.setParams({
             onRight: () => router.toHangoutHotelPage(this.refresh),
-            rightTitle:'挂售'
+            rightTitle: '挂售'
         })
     }
 
     state = {
-        visible: false,
-        clickArea: false,
-        index: 1
+        clickArea: false
     };
 
-    refresh = ()=>{
+    refresh = () => {
         this.listView.refresh && this.listView.refresh()
     }
 
@@ -35,99 +33,6 @@ export default class HangoutManagementPage extends Component {
         this.price = ''
     };
 
-
-    clickBtn = () => {
-        if (this.state.index === 1) {
-            return (
-                <TouchableOpacity style={{
-                    width: Metrics.screenWidth - 34,
-                    height: 200,
-                    alignItems: 'center',
-                    backgroundColor: 'white'
-                }}
-                                  activeOpacity={1}
-                                  onPress={() => {
-
-                                  }}>
-                    <View style={styles.roomView}>
-                        <Text style={styles.roomTxt}>修改房间价格</Text>
-                    </View>
-
-                    <View style={styles.changeView}>
-                        <TextInput
-                            keyboardType={'numeric'}
-                            style={{
-                                paddingTop: 0,
-                                paddingBottom: 0,
-                                width: 230,
-                                height: 40,
-                                fontSize: 14
-                            }}
-                            maxLength={11}
-                            numberOfLines={1}
-                            placeholderTextColor={'#DDDDDD'}
-                            placeholder={'输入修改房间价格'}
-                            value={this.price + ''}
-                            clearTextOnFocus={true}
-                            underlineColorAndroid={'transparent'}
-                            onChangeText={txt => {
-                                this.price = txt
-                            }}
-
-                        />
-                    </View>
-
-                    <View style={styles.priceBtnView}>
-                        <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
-                                          onPress={() => {
-                                              this.toggle && this.toggle(1);
-                                          }}>
-                            <Text style={styles.confirmTxt}>确定</Text>
-                        </TouchableOpacity>
-                        <View style={{flex: 1}}/>
-                        <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
-                                          onPress={() => {
-                                              this.toggle && this.toggle(1);
-                                          }}>
-                            <Text style={styles.cancelTxt}>取消</Text>
-                        </TouchableOpacity>
-                    </View>
-                </TouchableOpacity>
-            )
-        } else {
-            return (
-                <TouchableOpacity style={{
-                    width: Metrics.screenWidth - 34,
-                    height: 200,
-                    alignItems: 'center',
-                    backgroundColor: 'white'
-                }}
-                                  activeOpacity={1}
-                                  onPress={() => {
-
-                                  }}>
-                    <Text style={styles.obtainedTxt}>房间下架后，记录将会被删除</Text>
-                    <Text style={[styles.obtainedTxt,{marginTop:2}]}>请问是否下架？</Text>
-
-                    <View style={styles.priceBtnView}>
-                        <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
-                                          onPress={() => {
-                                              this.toggle && this.toggle(2);
-                                          }}>
-                            <Text style={styles.confirmTxt}>确定</Text>
-                        </TouchableOpacity>
-                        <View style={{flex: 1}}/>
-                        <TouchableOpacity style={[styles.priceBtn, styles.cancelBtn]}
-                                          onPress={() => {
-                                              this.toggle && this.toggle(2);
-                                          }}>
-                            <Text style={styles.cancelTxt}>取消</Text>
-                        </TouchableOpacity>
-                    </View>
-                </TouchableOpacity>
-            )
-        }
-    }
 
     render() {
         return (
@@ -144,41 +49,18 @@ export default class HangoutManagementPage extends Component {
                     allLoadedText={'已经没有啦！'}
                     waitingSpinnerText={'加载中...'}
                     separator={this._separator}
-                    emptyView={() => <View style={{flex:1,alignItems: 'center', justifyContent: 'center'}}><Text
+                    emptyView={() => <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}><Text
                         style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
                 />
 
-
-                {this.state.visible ? <TouchableOpacity
-                    activeOpacity={1}
-                    style={{
-                        backgroundColor: 'rgba(0,0,0,0.6)',
-                        position: 'absolute',
-                        height: Metrics.screenHeight - 55,
-                        width: Metrics.screenWidth,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                    onPress={() => {
-                        this.toggle(0)
-                    }}>
-
-                    {this.clickBtn()}
-
-                </TouchableOpacity> : null}
-
+                <ObtainedAction
+                    ref={ref => this.obtainedAction = ref}
+                    refresh={this.props.refresh}/>
 
             </View>
 
         )
     };
-
-    toggle = (index) => {
-        this.setState({
-            visible: !this.state.visible,
-            index: index
-        })
-    }
 
     _separator = () => {
         return (
@@ -198,20 +80,20 @@ export default class HangoutManagementPage extends Component {
 
     searchRefresh = (startFetch, abortFetch) => {
         getRoomRequest({
-            page:1,
+            page: 1,
             page_size: 20,
             request_type: 'on_offer'
         }, data => {
             console.log(`on_offer_recordList`, data)
             startFetch(data.items, 18)
         }, err => {
-            console.log('err',err)
+            console.log('err', err)
             abortFetch()
         })
 
     };
 
     renderItem = (item, index) => {
-        return <RenderItem item={item} type={'hangout'} toggle={this.toggle}/>
+        return <RenderItem item={item} type={'hangout'} toggle={this.obtainedAction.toggle}/>
     };
 }

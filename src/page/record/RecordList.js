@@ -6,12 +6,10 @@ import {
 import {Colors, Images, Metrics} from '../../Themes';
 import {UltimateFlatList} from '../../components';
 import propTypes from 'prop-types';
-import {isEmptyObject} from '../../utils/ComonHelper';
-import styles from './RecordStyles';
-import ItemBottom from "./ItemBottom";
 import RenderItem from './RenderItem'
 import {getRoomRequest} from "../../service/RecordDao";
-
+import styles from "../hangout/HangoutStyles";
+import ObtainedAction from '../hangout/ObtainedAction'
 
 export default class RecordList extends Component {
 
@@ -19,30 +17,38 @@ export default class RecordList extends Component {
         category: propTypes.object
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.type = this.props.category.type
     }
 
-    refresh = ()=>{
-        this.listView.refresh();
+    refresh = () => {
+        this.listView && this.listView.refresh();
     }
 
     render() {
-        return <UltimateFlatList
-            header={() => <View style={{height: 4, backgroundColor: Colors._ECE}}/>}
-            ref={(ref) => this.listView = ref}
-            onFetch={this.onFetch}
-            keyExtractor={(item, index) => `recordList${index}`}  //this is required when you are using FlatList
-            item={this.renderItem}  //this takes two params (item, index)
-            refreshableTitlePull={'下拉刷新'}
-            refreshableTitleRelease={'释放刷新'}
-            dateTitle={'最后刷新'}
-            allLoadedText={'已经没有啦！'}
-            waitingSpinnerText={'加载中...'}
-            separator={this._separator}
-            emptyView={() => <View style={{alignItems: 'center', justifyContent: 'center'}}><Text
-                style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
-        />
+        return (
+            <View style={styles.backgroundStyle2}>
+                <UltimateFlatList
+                    header={() => <View style={{height: 4, backgroundColor: Colors._ECE}}/>}
+                    ref={(ref) => this.listView = ref}
+                    onFetch={this.onFetch}
+                    keyExtractor={(item, index) => `recordList${index}`}  //this is required when you are using FlatList
+                    item={this.renderItem}  //this takes two params (item, index)
+                    refreshableTitlePull={'下拉刷新'}
+                    refreshableTitleRelease={'释放刷新'}
+                    dateTitle={'最后刷新'}
+                    allLoadedText={'已经没有啦！'}
+                    waitingSpinnerText={'加载中...'}
+                    separator={this._separator}
+                    emptyView={() => <View style={{alignItems: 'center', justifyContent: 'center'}}><Text
+                        style={{color: '#F3F3F3', fontSize: 15}}>暂无信息</Text></View>}
+                />
+
+                <ObtainedAction
+                    ref={ref => this.obtainedAction = ref}
+                    refresh={this.props.refresh}/>
+            </View>
+        )
 
     }
 
@@ -64,25 +70,24 @@ export default class RecordList extends Component {
 
     searchRefresh = (startFetch, abortFetch) => {
         getRoomRequest({
-            page:1,
+            page: 1,
             page_size: 20,
             request_type: this.props.category.type
         }, data => {
             console.log(`${this.props.category.type}_recordList`, data)
             startFetch(data.items, 18)
         }, err => {
-            console.log('err',err)
+            console.log('err', err)
             abortFetch()
         })
 
     };
 
 
-
     renderItem = (item, index) => {
 
         return <RenderItem item={item} id={this.props.category.id} type={'record'}
-                           refresh={this.refresh}/>
+                           toggle={this.obtainedAction.toggle}/>
     };
 }
 

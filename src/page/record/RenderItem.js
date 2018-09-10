@@ -17,7 +17,7 @@ export default class RenderItem extends Component {
             )
         } else if (id === 3) {
             return (
-                <ItemBottom item={item} refresh={this.props.refresh}/>
+                <ItemBottom item={item} toggle={this.props.toggle}/>
             )
         }
     };
@@ -39,13 +39,13 @@ export default class RenderItem extends Component {
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.changePrice]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle(1);
+                                      this.props.toggle && this.props.toggle('change_price');
                                   }}>
                     <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle(2);
+                                      this.props.toggle && this.props.toggle('obtained');
                                   }}>
                     <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                 </TouchableOpacity>

@@ -17,14 +17,8 @@ export default class ItemBottom extends Component {
                 {!is_sold && !is_withdrawn ?
                     <TouchableOpacity style={[styles.btnView, styles.obtainedView]}
                                       onPress={() => {
-                                          alertOrder("确认下架？", () => {
-                                              postCancelRoom({id: id}, data => {
-                                                  showToast("下架成功");
-                                                  this.props.refresh && this.props.refresh();
-                                              }, err => {
 
-                                              })
-                                          })
+                                          this.props.toggle &&  this.props.toggle('obtained')
                                       }}>
                         <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                     </TouchableOpacity> : null}
