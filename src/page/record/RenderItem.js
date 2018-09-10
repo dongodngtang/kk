@@ -17,7 +17,7 @@ export default class RenderItem extends Component {
             )
         } else if (id === 3) {
             return (
-                <ItemBottom/>
+                <ItemBottom item={item} refresh={this.props.refresh}/>
             )
         }
     };

@@ -19,8 +19,14 @@ const api = {
     room_list: room_list,//获取酒店房间列表
     sale_room_requests: 'merchant/sale_room_requests',// 创建房间挂售申请
     room_request_list: room_request_list,//房间挂售申请列表
-    contacts:'contacts'
+    contacts:'contacts',
+    cancel_room:cancel_room
 
+}
+
+function cancel_room(body) {
+    const {id} = body;
+    return `merchant/sale_room_requests/${id}/cancel`;
 }
 
 function hotels(body) {

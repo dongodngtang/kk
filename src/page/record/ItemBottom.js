@@ -4,22 +4,59 @@ import styles from './RecordStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {isEmptyObject, logMsg} from "../../config/utils";
+import {alertOrder, showToast} from "../../utils/ComonHelper";
+import {postCancelRoom} from '../../service/RecordDao';
 
 
 export default class ItemBottom extends Component {
 
     render() {
+        const {is_sold, is_withdrawn, id} = this.props.item;
         return (
             <View style={styles.btnPage}>
-                <TouchableOpacity style={[styles.btnView,styles.obtainedView]}>
-                    <Text style={{fontSize:14,color:"#444444"}}>下架</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.btnView,styles.salingView]}>
-                    <Text style={{fontSize:14,color:"#FFFFFF"}}>出售中</Text>
-                </TouchableOpacity>
+                {!is_sold && !is_withdrawn ?
+                    <TouchableOpacity style={[styles.btnView, styles.obtainedView]}
+                                      onPress={() => {
+                                          alertOrder("确认下架？", () => {
+                                              postCancelRoom({id: id}, data => {
+                                                  showToast("下架成功");
+                                                  this.props.refresh && this.props.refresh();
+                                              }, err => {
+
+                                              })
+                                          })
+                                      }}>
+                        <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
+                    </TouchableOpacity> : null}
+
+                <View style={[styles.btnView, styles.salingView, this.judgeColor()]}>
+                    <Text style={{fontSize: 14, color: "#FFFFFF"}}>{this.judgeItem()}</Text>
+                </View>
             </View>
 
         )
+    }
+
+    judgeColor = () => {
+        const {is_sold, is_withdrawn} = this.props.item;
+        if (is_sold) {
+            return {backgroundColor: '#FFBBBB'}
+        } else if (is_withdrawn) {
+            return {backgroundColor: '#DDDDDD'}
+        } else {
+            return {backgroundColor: '#4A90E2'}
+        }
+    }
+
+    judgeItem = () => {
+        const {is_sold, is_withdrawn} = this.props.item;
+        if (is_sold) {
+            return "出售成功"
+        } else if (is_withdrawn) {
+            return "已过期"
+        } else {
+            return "出售中"
+        }
     }
 }
 

@@ -23,6 +23,10 @@ export default class RecordList extends Component {
         this.type = this.props.category.type
     }
 
+    refresh = ()=>{
+        this.listView.refresh();
+    }
+
     render() {
         return <UltimateFlatList
             header={() => <View style={{height: 4, backgroundColor: Colors._ECE}}/>}
@@ -77,7 +81,8 @@ export default class RecordList extends Component {
 
     renderItem = (item, index) => {
 
-        return <RenderItem item={item} id={this.props.category.id} type={'record'}/>
+        return <RenderItem item={item} id={this.props.category.id} type={'record'}
+                           refresh={this.refresh}/>
     };
 }
 
