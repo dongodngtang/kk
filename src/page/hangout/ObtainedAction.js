@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Modal} from 'react-native';
 import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
-import {postCancelRoom} from "../../service/RecordDao";
+import {postCancelRoom, putChangePrice} from "../../service/RecordDao";
 import {alertOrder, showToast} from "../../utils/ComonHelper";
 
 
@@ -20,6 +20,10 @@ export default class ObtainedAction extends Component {
             change_type: type,
             id: id
         })
+    };
+
+    componentDidMount() {
+        this.price = ''
     };
 
 
@@ -90,7 +94,13 @@ export default class ObtainedAction extends Component {
                 <View style={styles.priceBtnView}>
                     <TouchableOpacity style={[styles.priceBtn, styles.confirmBtn]}
                                       onPress={() => {
-                                          this.toggle && this.toggle('change_price');
+                                          putChangePrice({id: this.state.id, price: this.price}, data => {
+                                              showToast("修改价格成功");
+                                              this.toggle && this.toggle('change_price');
+                                              this.props.refresh && this.props.refresh();
+                                          }, err => {
+
+                                          })
                                       }}>
                         <Text style={styles.confirmTxt}>确定</Text>
                     </TouchableOpacity>

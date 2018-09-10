@@ -10,6 +10,13 @@ export function getRoomRequest(body, resolve, reject) {
 }
 
 
+export function putChangePrice(body, resolve, reject) {
+    put(api.change_price(body), body, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
+
 export function postCancelRoom(body, resolve, reject) {
     post(api.cancel_room(body), body, ret => {
         resolve(ret.data)

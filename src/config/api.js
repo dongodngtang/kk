@@ -20,8 +20,14 @@ const api = {
     sale_room_requests: 'merchant/sale_room_requests',// 创建房间挂售申请
     room_request_list: room_request_list,//房间挂售申请列表
     contacts:'contacts',
-    cancel_room:cancel_room
+    cancel_room:cancel_room,//房间挂售下架
+    change_price:change_price,//房间挂售修改金额
 
+}
+
+function change_price(body) {
+    const {id} = body;
+    return `merchant/sale_room_requests/${id}`;
 }
 
 function cancel_room(body) {

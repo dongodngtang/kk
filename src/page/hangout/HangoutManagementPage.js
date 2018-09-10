@@ -29,10 +29,6 @@ export default class HangoutManagementPage extends Component {
         this.listView.refresh && this.listView.refresh()
     }
 
-    componentDidMount() {
-        this.price = ''
-    };
-
 
     render() {
         return (
