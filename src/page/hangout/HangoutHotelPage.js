@@ -152,7 +152,7 @@ export default class HangoutHotelPage extends Component {
 
                             router.toHotelListPage(this.state.date, this._change_hotel)
                         }}>
-                            {isEmpty(hotel_item)? <Text style={styles.text2}>请选择挂售酒店</Text> :
+                            {isEmpty(hotel_item) ? <Text style={styles.text2}>请选择挂售酒店</Text> :
                                 <Text style={styles.timeTxt}>{hotel_item.title}</Text>}
 
                         </TouchableOpacity>
@@ -173,7 +173,7 @@ export default class HangoutHotelPage extends Component {
                             }
 
                         }}>
-                            {isEmpty(room_item)? <Text style={styles.text2}>请选择酒店房型</Text> :
+                            {isEmpty(room_item) ? <Text style={styles.text2}>请选择酒店房型</Text> :
                                 <Text style={styles.timeTxt}>{room_item.title}</Text>}
                         </TouchableOpacity>
                     </View>
@@ -218,7 +218,7 @@ export default class HangoutHotelPage extends Component {
 
                             this.showSpecInfo()
                         }}>
-                            {isStrNull(date.begin_date)? <Text style={styles.text2}>请填写入住时间</Text> :
+                            {isStrNull(date.begin_date) ? <Text style={styles.text2}>请填写入住时间</Text> :
 
                                 <Text
                                     style={styles.timeTxt}>{`${convertDate(date.begin_date, 'M月DD日')} - ${convertDate(date.end_date, 'M月DD日')}`}</Text>
@@ -299,7 +299,7 @@ export default class HangoutHotelPage extends Component {
                     ref={ref => this.popAction = ref}
                 />
 
-                <Loading ref={ref=>this.loading = ref}/>
+                <Loading ref={ref => this.loading = ref}/>
             </View>
         )
     }
@@ -328,7 +328,17 @@ export default class HangoutHotelPage extends Component {
                     }}
                     style={styles.pick_image}>
 
-                    <View style={styles.btn_del}></View>
+                    <TouchableOpacity style={styles.btn_del} onPress={() => {
+                        alertOrder("确认删除？",()=>{
+                            images.shift()
+                            this.setState({
+                                images
+                            })
+
+                        })
+                    }}>
+                        <Text style={{color: '_747474', fontSize: 10}}>删除</Text>
+                    </TouchableOpacity>
 
                     <Image
                         key={'moment' + index}
@@ -370,11 +380,11 @@ export default class HangoutHotelPage extends Component {
             type: 'image/jpeg'
         };
         formData.append('card_img', file);
-        formData.append('price',this.price)
-        formData.append('checkin_date',date.begin_date)
-        formData.append('room_num',this.room_num)
-        formData.append('room_id',room_item.id)
-        formData.append('hotel_id',hotel_item.id)
+        formData.append('price', this.price)
+        formData.append('checkin_date', date.begin_date)
+        formData.append('room_num', this.room_num)
+        formData.append('room_id', room_item.id)
+        formData.append('hotel_id', hotel_item.id)
 
 
         alertOrder("确认挂售？", () => {

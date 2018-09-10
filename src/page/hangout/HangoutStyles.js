@@ -238,8 +238,11 @@ export default StyleSheet.create({
         position: 'absolute',
         height: 15,
         width: 30,
-        backgroundColor: 'red',
-        top: 5,
-        zIndex:9
+        backgroundColor: '#F3F3F3',
+        top: 1,
+        right:1,
+        zIndex:9,
+        alignItems:'center',
+        justifyContent:'center'
     }
 })
