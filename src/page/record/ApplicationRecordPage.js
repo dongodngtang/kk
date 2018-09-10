@@ -24,6 +24,11 @@ export default class ApplicationRecordPage extends Component {
         })
     }
 
+    refresh = ()=>{
+        logMsg('刷新1',this)
+        this.recordListpending && this.recordListpending.refresh();
+
+    }
     render() {
         logMsg('申请记录',this)
         return (
@@ -37,6 +42,7 @@ export default class ApplicationRecordPage extends Component {
                         logMsg(item)
 
                         return <RecordList
+                            ref={ref=> this[`recordList${item.type}`] = ref}
                             tabLabel={item.name}
                             category={item}
                             key={`record${key}`}

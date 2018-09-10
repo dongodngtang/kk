@@ -27,7 +27,7 @@ export default class HangoutHotelPage extends Component {
         super(props)
         props.navigation.setParams({
             onLeft: () => {
-                logMsg('拉萨的法律框架')
+                logMsg('房间挂售申请退出，刷新申请挂售界面')
                 props.params.refresh && props.params.refresh()
                 router.pop()
             }
@@ -337,7 +337,7 @@ export default class HangoutHotelPage extends Component {
 
                         })
                     }}>
-                        <Text style={{color: '#_747474', fontSize: 10}}>删除</Text>
+                        <Text style={{color: '#747474', fontSize: 10}}>删除</Text>
                     </TouchableOpacity>
 
                     <Image
@@ -391,9 +391,9 @@ export default class HangoutHotelPage extends Component {
             this.loading && this.loading.open()
             postRoom_requests(formData, data => {
                 this.loading && this.loading.close()
-                logMsg(data)
+                logMsg('挂售成功',data)
                 showToast("挂售成功");
-                this.props.refresh && this.props.refresh()
+                this.props.params.refresh && this.props.params.refresh()
                 router.pop();
 
             }, err => {

@@ -10,6 +10,7 @@ import RenderItem from './RenderItem'
 import {getRoomRequest} from "../../service/RecordDao";
 import styles from "../hangout/HangoutStyles";
 import ObtainedAction from '../hangout/ObtainedAction'
+import {logMsg} from "../../config/utils";
 
 export default class RecordList extends Component {
 
@@ -22,6 +23,7 @@ export default class RecordList extends Component {
     }
 
     refresh = () => {
+        logMsg('刷新2')
         this.listView && this.listView.refresh();
     }
 
