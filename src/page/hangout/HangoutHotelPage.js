@@ -337,7 +337,7 @@ export default class HangoutHotelPage extends Component {
 
                         })
                     }}>
-                        <Text style={{color: '_747474', fontSize: 10}}>删除</Text>
+                        <Text style={{color: '#_747474', fontSize: 10}}>删除</Text>
                     </TouchableOpacity>
 
                     <Image
@@ -393,7 +393,9 @@ export default class HangoutHotelPage extends Component {
                 this.loading && this.loading.close()
                 logMsg(data)
                 showToast("挂售成功");
+                this.props.refresh && this.props.refresh()
                 router.pop();
+
             }, err => {
                 this.loading && this.loading.close()
                 showToast(err)

@@ -15,6 +15,15 @@ const categories = [{id: 1, name: '审核中', type: 'pending'}, {id: 2, name: '
 
 export default class ApplicationRecordPage extends Component {
 
+    constructor(props) {
+        super(props)
+
+        props.navigation.setParams({
+            onRight: () => router.toHangoutHotelPage(this.refresh),
+            rightTitle: '申请挂售'
+        })
+    }
+
     render() {
         logMsg('申请记录',this)
         return (

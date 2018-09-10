@@ -91,15 +91,26 @@ export const Styles = {
         backgroundColor: "#E54A2E",
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent:'space-between',
         paddingTop: Metrics.statusBarHeight,
         borderColor: Colors._ECE,
-        borderWidth: 0.5,
+        borderWidth: 0.5
     },
     left: {
         height: 44,
-        width: 50,
-        justifyContent: 'center',
-        alignItems: 'center'
+        width:80,
+        flexDirection:'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginLeft:12
+    },
+    right: {
+        height: 44,
+        width:80,
+        flexDirection:'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginRight:12
     },
     navTitle: {
         flex: 1,

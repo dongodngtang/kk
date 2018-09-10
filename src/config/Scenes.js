@@ -138,7 +138,6 @@ class NavBar extends PureComponent {
                     source={Images.left} />}
 
             </TouchableOpacity>
-
             <TouchableOpacity
                 onLongPress={() => {
                     if (__DEV__)
@@ -149,12 +148,11 @@ class NavBar extends PureComponent {
                     style={{ fontSize: 18, color: 'white' }}>{title}</Text>
 
             </TouchableOpacity>
-
             <TouchableOpacity
                 onPress={() => {
                     this.props.onRight && this.props.onRight()
                 }}
-                style={Styles.left}>
+                style={Styles.right}>
 
                 {this.right_content(rightTitle, renderRightButton)}
 

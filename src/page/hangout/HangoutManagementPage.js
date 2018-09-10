@@ -12,15 +12,6 @@ import ObtainedAction from './ObtainedAction';
 
 export default class HangoutManagementPage extends Component {
 
-    constructor(props) {
-        super(props)
-
-        props.navigation.setParams({
-            onRight: () => router.toHangoutHotelPage(this.refresh),
-            rightTitle: '挂售'
-        })
-    }
-
     state = {
         clickArea: false
     };
