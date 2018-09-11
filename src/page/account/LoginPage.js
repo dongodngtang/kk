@@ -61,7 +61,7 @@ export default class LoginPage extends Component {
                         testID="input_phone"
                         ref={ref => this.mobile = ref}
                         placeholder={'请输入手机号'} />
-                    {phoneClear ? this._phoneClear() : null}
+                    {/*{phoneClear ? this._phoneClear() : null}*/}
 
                 </View>
 
@@ -134,7 +134,7 @@ export default class LoginPage extends Component {
         return (
             <TouchableOpacity
                 testID="btn_input_phone_clear"
-                onPress={() => this.mobile.clear()}
+                onPress={() => this.mobile._root.clear()}
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',

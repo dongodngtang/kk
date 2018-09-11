@@ -50,7 +50,7 @@ export default class RegisterPage extends Component {
                                testID="input_phone"
                                ref={ref => this.mobile = ref}
                                placeholder={'请输入手机号'}/>
-                    {phoneClear ? this._phoneClear() : null}
+                    {/*{phoneClear ? this._phoneClear() : null}*/}
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.nextBtn}
