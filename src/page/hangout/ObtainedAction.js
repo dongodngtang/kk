@@ -83,7 +83,6 @@ export default class ObtainedAction extends Component {
                         numberOfLines={1}
                         placeholderTextColor={'#DDDDDD'}
                         placeholder={'输入修改房间价格'}
-                        value={this.price + ''}
                         clearTextOnFocus={true}
                         underlineColorAndroid={'transparent'}
                         onChangeText={txt => {

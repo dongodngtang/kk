@@ -49,7 +49,10 @@ export default class HangoutHotelPage extends Component {
                     type: 'image'
                 }
                 this.state.images.unshift(item)
-                this.setState({images: [...this.state.images]})
+                this.setState({
+                    images: [...this.state.images],
+                    card_img: image.path
+                })
                 if (this.state.images.length > 10) {
                     showToast('图片最多上传9张')
                 }
@@ -191,15 +194,15 @@ export default class HangoutHotelPage extends Component {
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
+                                paddingLeft: 0,
                                 width: 300,
-                                fontSize: 16,
+                                fontSize: 14,
                                 marginLeft: 40
                             }}
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={'请填写酒店房号'}
-                            value={this.room_num + ''}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -220,7 +223,7 @@ export default class HangoutHotelPage extends Component {
 
                             this.showSpecInfo()
                         }}
-                                          style={{paddingRight:100}}>
+                                          style={{paddingRight: 100}}>
                             {isStrNull(date.begin_date) ? <Text style={styles.text2}>请填写入住时间</Text> :
 
                                 <Text
@@ -242,14 +245,14 @@ export default class HangoutHotelPage extends Component {
                                 paddingTop: 0,
                                 paddingBottom: 0,
                                 width: 300,
-                                fontSize: 16,
-                                marginLeft: 40
+                                fontSize: 14,
+                                marginLeft: 40,
+                                paddingLeft: 0
                             }}
                             maxLength={11}
                             numberOfLines={1}
                             placeholderTextColor={'#CCCCCC'}
                             placeholder={'请填写挂售金额'}
-                            value={this.price + ''}
                             clearTextOnFocus={true}
                             underlineColorAndroid={'transparent'}
                             onChangeText={txt => {
@@ -285,17 +288,18 @@ export default class HangoutHotelPage extends Component {
                         }}/>
                         <Text style={styles.promptTxt}>提示：房间出售成功后平台将会抽取价格的10%的服务费</Text>
                     </View>
+
+
+                    <TouchableOpacity style={styles.hangout_btnView} onPress={() => {
+                        this.judgeMessage()
+                    }}>
+                        <Text style={styles.hangout_btnTxt}>准备好了，申请挂售</Text>
+                    </TouchableOpacity>
                 </ScrollView>
 
                 {this.state.timeShow ? <TimeSpecificationInfo
                     _change={this._change}
                     showSpecInfo={this.showSpecInfo}/> : null}
-
-                <TouchableOpacity style={styles.hangout_btnView} onPress={() => {
-                    this.judgeMessage()
-                }}>
-                    <Text style={styles.hangout_btnTxt}>准备好了，申请挂售</Text>
-                </TouchableOpacity>
 
                 <PopAction
                     btnArray={this.selectImage}
@@ -303,6 +307,8 @@ export default class HangoutHotelPage extends Component {
                 />
 
                 <Loading ref={ref => this.loading = ref}/>
+
+
             </View>
         )
     }

@@ -178,10 +178,10 @@ export default StyleSheet.create({
     hangout_btnView: {
         width: Metrics.screenWidth - 34,
         alignSelf: 'center',
-        position: 'absolute',
+        marginTop:60,
+        marginBottom:20,
         paddingTop: 16,
         paddingBottom: 16,
-        bottom: 20,
         backgroundColor: '#E54A2E',
         alignItems: 'center',
         justifyContent: 'center',
