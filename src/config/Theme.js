@@ -92,9 +92,7 @@ export const Styles = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent:'space-between',
-        paddingTop: Metrics.statusBarHeight,
-        borderColor: Colors._ECE,
-        borderWidth: 0.5
+        paddingTop: Metrics.statusBarHeight
     },
     left: {
         height: 44,

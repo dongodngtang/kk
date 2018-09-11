@@ -22,7 +22,6 @@ class ImageLoad extends Component {
                 <Image
                     {...this.props}
                     defaultSource={emptyBg ? emptyBg : Images.empty_image}
-                    loadingIndicatorSource={Images.empty_image}
                     onError={(event) => {
                         this.setState({
                             isErr: true
