@@ -94,7 +94,7 @@ export default class HangoutHotelPage extends Component {
         date: {begin_date: "", end_date: "", counts: 0},
         hotel_item: {},
         room_item: {},
-        card_img: 'http://kkh5.deshpro.com/images/default_img.png',
+        card_img: '',
         images: [{
             type: 'plus',
             source: Images.room_card_add
@@ -104,7 +104,7 @@ export default class HangoutHotelPage extends Component {
     componentDidMount() {
         this.price = '';
         this.room_num = '';
-        this.init();
+        // this.init();
     }
 
     init = () => {
@@ -151,7 +151,8 @@ export default class HangoutHotelPage extends Component {
                         <TouchableOpacity onPress={() => {
 
                             router.toHotelListPage(this.state.date, this._change_hotel)
-                        }}>
+                        }}
+                                          style={{paddingRight: 100}}>
                             {isEmpty(hotel_item) ? <Text style={styles.text2}>请选择挂售酒店</Text> :
                                 <Text style={styles.timeTxt}>{hotel_item.title}</Text>}
 
@@ -172,7 +173,8 @@ export default class HangoutHotelPage extends Component {
                                 router.toHotelRoomListPage(hotel_item, this._change_room);
                             }
 
-                        }}>
+                        }}
+                                          style={{paddingRight: 100}}>
                             {isEmpty(room_item) ? <Text style={styles.text2}>请选择酒店房型</Text> :
                                 <Text style={styles.timeTxt}>{room_item.title}</Text>}
                         </TouchableOpacity>
@@ -189,7 +191,7 @@ export default class HangoutHotelPage extends Component {
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                width: 230,
+                                width: 300,
                                 fontSize: 16,
                                 marginLeft: 40
                             }}
@@ -217,7 +219,8 @@ export default class HangoutHotelPage extends Component {
                         <TouchableOpacity onPress={() => {
 
                             this.showSpecInfo()
-                        }}>
+                        }}
+                                          style={{paddingRight:100}}>
                             {isStrNull(date.begin_date) ? <Text style={styles.text2}>请填写入住时间</Text> :
 
                                 <Text
@@ -238,7 +241,7 @@ export default class HangoutHotelPage extends Component {
                             style={{
                                 paddingTop: 0,
                                 paddingBottom: 0,
-                                width: 230,
+                                width: 300,
                                 fontSize: 16,
                                 marginLeft: 40
                             }}
@@ -329,7 +332,7 @@ export default class HangoutHotelPage extends Component {
                     style={styles.pick_image}>
 
                     <TouchableOpacity style={styles.btn_del} onPress={() => {
-                        alertOrder("确认删除？",()=>{
+                        alertOrder("确认删除？", () => {
                             images.shift()
                             this.setState({
                                 images
@@ -391,7 +394,7 @@ export default class HangoutHotelPage extends Component {
             this.loading && this.loading.open()
             postRoom_requests(formData, data => {
                 this.loading && this.loading.close()
-                logMsg('挂售成功',data)
+                logMsg('挂售成功', data)
                 showToast("挂售成功");
                 this.props.params.refresh && this.props.params.refresh()
                 router.pop();
