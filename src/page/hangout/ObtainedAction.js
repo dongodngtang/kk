@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Modal} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Modal,KeyboardAvoidingView} from 'react-native';
 import styles from './HangoutStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {postCancelRoom, putChangePrice} from "../../service/RecordDao";
@@ -55,7 +55,7 @@ export default class ObtainedAction extends Component {
         const {change_type, id} = this.state;
         console.log("弹窗", this.state);
         if (change_type === 'change_price') {
-            return <TouchableOpacity style={{
+            return <KeyboardAvoidingView style={{
                 width: Metrics.screenWidth - 34,
                 height: 200,
                 alignItems: 'center',
@@ -117,7 +117,7 @@ export default class ObtainedAction extends Component {
                         <Text style={styles.cancelTxt}>取消</Text>
                     </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
+            </KeyboardAvoidingView>
         } else if (change_type === 'obtained') {
             return (
                 <TouchableOpacity style={{
