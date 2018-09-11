@@ -6,6 +6,7 @@ import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
 import {get_thousand_num} from '../../utils/ComonHelper';
 import RenderItem from '../record/RenderItem';
+import {getRoomRequest} from "../../service/RecordDao";
 
 const items = [{
     title: '巴黎人酒店 豪华双人房1天',
@@ -67,7 +68,17 @@ export default class SellInfoPage extends Component {
 
 
     searchRefresh = (startFetch, abortFetch) => {
-        startFetch(items, 6)
+        getRoomRequest({
+            page: 1,
+            page_size: 20,
+            request_type: 'sold'
+        }, data => {
+            console.log(`sold_recordList`, data)
+            startFetch(data.items, 18)
+        }, err => {
+            console.log('err', err)
+            abortFetch()
+        })
 
     };
 
