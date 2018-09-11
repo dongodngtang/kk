@@ -58,7 +58,6 @@ export default class ChangeInfoPage extends Component {
                             width: 230,
                             fontSize: 14
                         }}
-                        maxLength={11}
                         numberOfLines={1}
                         placeholderTextColor={'#DDDDDD'}
                         placeholder={'请输入修改后的姓名'}
@@ -84,7 +83,6 @@ export default class ChangeInfoPage extends Component {
                             width: 230,
                             fontSize: 14
                         }}
-                        maxLength={11}
                         numberOfLines={1}
                         placeholderTextColor={'#DDDDDD'}
                         placeholder={'输入修改手机号'}
