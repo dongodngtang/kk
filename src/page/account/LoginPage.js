@@ -134,7 +134,7 @@ export default class LoginPage extends Component {
         return (
             <TouchableOpacity
                 testID="btn_input_phone_clear"
-                onPress={() => this.mobile._root.clear()}
+                onPress={() => this.mobile.clear()}
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
