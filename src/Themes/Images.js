@@ -17,6 +17,7 @@ const images = {
     sign_return:require('../static/sign_retrun.png'),
     search:require('../static/search.png'),
     down2:require('../static/down2.png'),
+    homeBG:require('../static/homeBG.png'),
     macau: {
         price1: require('../static/macau/price1.png'),
         price2: require('../static/macau/price2.png'),

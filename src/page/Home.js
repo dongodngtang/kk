@@ -7,10 +7,10 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity,ImageBackground} from 'react-native';
 import '../config/storage'
 import {initApp} from "../service/AccountDao";
-
+import {Images} from '../Themes';
 
 export default class App extends Component {
 
@@ -22,7 +22,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground style={styles.container} source={Images.homeBG}>
+
         <TouchableOpacity style={{
           backgroundColor: "#4388D9",
           paddingLeft: 45,
@@ -54,7 +55,7 @@ export default class App extends Component {
         {/*<TouchableOpacity>*/}
         {/*<Text style={{color:"#444444",fontSize:20}}>加入澳门旅行翻倍赚大钱</Text>*/}
         {/*</TouchableOpacity>*/}
-      </View>
+      </ImageBackground>
     );
   }
 }
