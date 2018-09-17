@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './RecordStyles';
 import ItemBottom from './ItemBottom';
 import {Images, Styles, Metrics, Colors} from '../../config/Theme'
-import {convertDate, utcDate} from '../../utils/ComonHelper'
+import {alertOrder, convertDate, utcDate} from '../../utils/ComonHelper'
 
 export default class RenderItem extends Component {
 
@@ -59,7 +59,7 @@ export default class RenderItem extends Component {
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.withdrawPrice]}
                                   onPress={() => {
-
+                                        alertOrder("确认提现？")
                                   }}>
                     <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
                 </TouchableOpacity>

@@ -72,7 +72,7 @@ export const Scenes = () => {
 
         <Scene key="SellInfoPage"
             {...TopNav({
-                title: '成功出售'
+                title: '申请提现'
             })}
             component={SellInfoPage} />
 
