@@ -3,7 +3,8 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, TextInput, Image} fr
 import styles from './RecordStyles';
 import ItemBottom from './ItemBottom';
 import {Images, Styles, Metrics, Colors} from '../../config/Theme'
-import {alertOrder, convertDate, utcDate} from '../../utils/ComonHelper'
+import {alertOrder, showToast, utcDate} from '../../utils/ComonHelper';
+import {postWithdrawals} from '../../service/AccountDao'
 
 export default class RenderItem extends Component {
 
@@ -29,7 +30,7 @@ export default class RenderItem extends Component {
         } else if (type === 'hangout') {
             return this._hangoutBtn(item)
         } else if (type === 'sell') {
-            return this.sellBtn()
+            return this.sellBtn(item)
         }
     };
 
@@ -40,13 +41,13 @@ export default class RenderItem extends Component {
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.changePrice]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle('change_price',id);
+                                      this.props.toggle && this.props.toggle('change_price', id);
                                   }}>
                     <Text style={{fontSize: 14, color: "#E54A2E"}}>修改价格</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.obtainedView2]}
                                   onPress={() => {
-                                      this.props.toggle && this.props.toggle('obtained',id);
+                                      this.props.toggle && this.props.toggle('obtained', id);
                                   }}>
                     <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                 </TouchableOpacity>
@@ -54,12 +55,14 @@ export default class RenderItem extends Component {
         )
     };
 
-    sellBtn = () => {
+    sellBtn = (item) => {
         return (
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.withdrawPrice]}
                                   onPress={() => {
-                                        alertOrder("确认提现？")
+                                      alertOrder("确认提现？", postWithdrawals({request_id: item.id}, data => {
+                                            showToast("提现成功")
+                                      }))
                                   }}>
                     <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
                 </TouchableOpacity>

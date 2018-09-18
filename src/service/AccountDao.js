@@ -62,6 +62,12 @@ export function postRegister(body, resolve, reject) {
   }, reject)
 }
 
+export function postWithdrawals(body, resolve, reject) {
+  post(api.room_withdrawals, body, ret => {
+    resolve(ret)
+  }, reject)
+}
+
 export function postLogin(body, resolve, reject) {
   post(api.account + '/login', body, ret => {
     let login = ret.data
@@ -79,6 +85,14 @@ export function putInfo(body, resolve, reject) {
 
 export function getContacts(resolve, reject) {
     get(api.contacts, {}, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
+
+
+export function getUserInfo(resolve, reject) {
+    get(api.user_info, {},ret => {
         resolve(ret.data)
     }, reject)
 }

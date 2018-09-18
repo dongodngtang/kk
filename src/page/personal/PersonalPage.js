@@ -6,14 +6,23 @@ import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
 import {get_thousand_num} from '../../utils/ComonHelper'
 import {getRoomRequest} from "../../service/RecordDao";
+import {getUserInfo} from "../../service/AccountDao";
 
 export default class PersonalPage extends Component {
 
     state = {
-        sold_count: 0
+        sold_count: 0,
+        user_info: {}
     }
 
     componentDidMount() {
+        getUserInfo(data => {
+            console.log("user_info",data)
+            this.setState({
+                user_info: data
+            })
+        })
+
         getRoomRequest({
             page: 1,
             page_size: 20,
@@ -29,14 +38,15 @@ export default class PersonalPage extends Component {
     }
 
     render() {
+        const {withdrawal_amount,contact,created_at,ext,last_visit,mobile,nick_name,revenue} = this.state.user_info
         return (
             <View style={styles.backgroundStyle2}>
                 <View style={styles.incomeView}>
                     <Text style={styles.incomeTxt}>累计收益 <Text
-                        style={styles.money}>{get_thousand_num(1000)}元</Text></Text>
+                        style={styles.money}>{get_thousand_num(revenue)}元</Text></Text>
 
                     <View style={styles.withdrawView}>
-                        <Text style={styles.withdraw}>已提现 <Text>{get_thousand_num(10000000)}元</Text></Text>
+                        <Text style={styles.withdraw}>已提现 <Text>{get_thousand_num(withdrawal_amount)}元</Text></Text>
                         <Text style={[styles.withdraw, {marginLeft: 56}]}>可提现 <Text
                             style={styles.money3}>{get_thousand_num(10000000)}元</Text></Text>
                     </View>
