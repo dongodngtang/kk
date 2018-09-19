@@ -51,6 +51,10 @@ export default class SellInfoPage extends Component {
         )
     }
 
+    refresh = ()=>{
+        this.listView.refresh();
+    }
+
     _separator = () => {
         return (
             <View style={{height: 1, backgroundColor: '#F3F3F3', width: Metrics.screenWidth}}/>
@@ -83,6 +87,6 @@ export default class SellInfoPage extends Component {
     };
 
     renderItem = (item, index) => {
-        return <RenderItem item={item} type={'sell'}/>
+        return <RenderItem item={item} type={'sell'} refresh={this.refresh}/>
     };
 }

@@ -67,12 +67,12 @@ export default class HotelRoomListPage extends PureComponent {
 
     _discount = (price, discount_amount) => {
         if (strNotNull(discount_amount)) {
-            if(discount_amount>price){
+            if (discount_amount > price) {
                 return price;
-            }else{
+            } else {
                 return price - discount_amount
             }
-        }else{
+        } else {
             return price
         }
     }
@@ -80,7 +80,7 @@ export default class HotelRoomListPage extends PureComponent {
     _renderItem = (item, index) => {
         const {id, images, notes, price, tags, title, discount_amount} = item;
         return (
-            <TouchableOpacity style={styles.itemView} onPress={()=>{
+            <TouchableOpacity style={styles.itemView} onPress={() => {
                 this.props.params._change_room(item)
                 router.pop();
             }}>
@@ -88,32 +88,32 @@ export default class HotelRoomListPage extends PureComponent {
                 <Message item={item}/>
 
                 {/*<View style={styles.priceView}>*/}
-                    {/*<Text style={{color: "#FF3F3F", fontSize: 20}}><Text*/}
-                        {/*style={{color: "#FF3F3F", fontSize: 12}}>¥</Text>{this._discount(price, discount_amount)}</Text>*/}
+                {/*<Text style={{color: "#FF3F3F", fontSize: 20}}><Text*/}
+                {/*style={{color: "#FF3F3F", fontSize: 12}}>¥</Text>{this._discount(price, discount_amount)}</Text>*/}
 
 
-                    {/*<View style={{flexDirection: 'row', alignItems: "center"}}>*/}
-                        {/*<Text style={{color: "#AAAAAA", fontSize: 12, marginRight: 4}}>原价</Text>*/}
-                        {/*<Text*/}
-                            {/*style={{color: "#AAAAAA", fontSize: 12, textDecorationLine: 'line-through'}}>¥{price}</Text>*/}
-                    {/*</View>*/}
+                {/*<View style={{flexDirection: 'row', alignItems: "center"}}>*/}
+                {/*<Text style={{color: "#AAAAAA", fontSize: 12, marginRight: 4}}>原价</Text>*/}
+                {/*<Text*/}
+                {/*style={{color: "#AAAAAA", fontSize: 12, textDecorationLine: 'line-through'}}>¥{price}</Text>*/}
+                {/*</View>*/}
 
 
-                    {/*<TouchableOpacity*/}
-                        {/*style={[styles.reservation, {backgroundColor: item.saleable_num <= 0 ? '#F3F3F3' : '#FF6448'}]}*/}
-                        {/*onPress={() => {*/}
-                            {/*if (item.saleable_num > 0) {*/}
-                                {/*if (isEmptyObject(global.login_user)) {*/}
-                                    {/*router.toLoginFirstPage()*/}
-                                {/*} else*/}
-                                    {/*router.toRoomReservationPage(item, this.state.last_change_time)*/}
-                            {/*}*/}
-                        {/*}}>*/}
-                        {/*<Text style={{*/}
-                            {/*color: item.saleable_num <= 0 ? '#888888' : "#FFFFFF",*/}
-                            {/*fontSize: 14*/}
-                        {/*}}>{item.saleable_num <= 0 ? '售罄' : '预定'}</Text>*/}
-                    {/*</TouchableOpacity>*/}
+                {/*<TouchableOpacity*/}
+                {/*style={[styles.reservation, {backgroundColor: item.saleable_num <= 0 ? '#F3F3F3' : '#FF6448'}]}*/}
+                {/*onPress={() => {*/}
+                {/*if (item.saleable_num > 0) {*/}
+                {/*if (isEmptyObject(global.login_user)) {*/}
+                {/*router.toLoginFirstPage()*/}
+                {/*} else*/}
+                {/*router.toRoomReservationPage(item, this.state.last_change_time)*/}
+                {/*}*/}
+                {/*}}>*/}
+                {/*<Text style={{*/}
+                {/*color: item.saleable_num <= 0 ? '#888888' : "#FFFFFF",*/}
+                {/*fontSize: 14*/}
+                {/*}}>{item.saleable_num <= 0 ? '售罄' : '预定'}</Text>*/}
+                {/*</TouchableOpacity>*/}
                 {/*</View>*/}
             </TouchableOpacity>
         )
@@ -147,7 +147,7 @@ export class ImageMessage extends PureComponent {
                 }}
             >
                 <ImageBackground
-                    emptyBg={Images.crowd_banner}
+                    emptyBg={Images.empty_image}
                     style={{
                         width: 68,
                         height: 68,
@@ -155,7 +155,7 @@ export class ImageMessage extends PureComponent {
                         justifyContent: 'flex-end',
                         alignItems: 'flex-end'
                     }}
-                    source={{uri: images[0]}}>
+                    source={isEmptyObject(images) ? Images.empty_image : {uri: images[0]}}>
                     <View style={styles.counts}>
                         <Text style={{color: '#FFFFFF', fontSize: 9}}>{images.length}张</Text>
                     </View>

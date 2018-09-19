@@ -4,7 +4,7 @@ import styles from './PersonalStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {UltimateFlatList} from '../../components';
-import {get_thousand_num} from '../../utils/ComonHelper'
+import {get_thousand_num, strNotNull} from '../../utils/ComonHelper'
 import {getRoomRequest} from "../../service/RecordDao";
 import {getUserInfo} from "../../service/AccountDao";
 
@@ -17,7 +17,7 @@ export default class PersonalPage extends Component {
 
     componentDidMount() {
         getUserInfo(data => {
-            console.log("user_info",data)
+            console.log("user_info", data)
             this.setState({
                 user_info: data
             })
@@ -35,10 +35,14 @@ export default class PersonalPage extends Component {
         }, err => {
             console.log('err', err)
         })
-    }
+    };
+
+    getWithdrawal = (revenue , withdrawal_amount) => {
+        return Number.parseFloat(revenue) - Number.parseFloat(withdrawal_amount);
+    };
 
     render() {
-        const {withdrawal_amount,contact,created_at,ext,last_visit,mobile,nick_name,revenue} = this.state.user_info
+        const {withdrawal_amount, contact, created_at, ext, last_visit, mobile, nick_name, revenue} = this.state.user_info
         return (
             <View style={styles.backgroundStyle2}>
                 <View style={styles.incomeView}>
@@ -48,7 +52,7 @@ export default class PersonalPage extends Component {
                     <View style={styles.withdrawView}>
                         <Text style={styles.withdraw}>已提现 <Text>{get_thousand_num(withdrawal_amount)}元</Text></Text>
                         <Text style={[styles.withdraw, {marginLeft: 56}]}>可提现 <Text
-                            style={styles.money3}>{get_thousand_num(10000000)}元</Text></Text>
+                            style={styles.money3}>{get_thousand_num(this.getWithdrawal(revenue, withdrawal_amount))}元</Text></Text>
                     </View>
                 </View>
 

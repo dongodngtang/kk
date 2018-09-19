@@ -60,9 +60,16 @@ export default class RenderItem extends Component {
             <View style={styles.btnPage}>
                 <TouchableOpacity style={[styles.btnView, styles.withdrawPrice]}
                                   onPress={() => {
-                                      alertOrder("确认提现？", postWithdrawals({request_id: item.id}, data => {
-                                            showToast("提现成功")
-                                      }))
+                                      alertOrder("确认提现？", () => {
+                                          postWithdrawals({
+                                              request_id: item.id
+                                          }, data => {
+                                              showToast("提现成功");
+                                              this.props.refresh && this.props.refresh()
+                                          }, err => {
+                                              showToast(err)
+                                          })
+                                      });
                                   }}>
                     <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
                 </TouchableOpacity>
