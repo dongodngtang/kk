@@ -42,7 +42,7 @@ export default class PersonalPage extends Component {
     };
 
     render() {
-        const {withdrawal_amount, contact, created_at, ext, last_visit, mobile, nick_name, revenue} = this.state.user_info
+        const {withdrawal_amount, contact, created_at, ext, last_visit, mobile, nick_name, revenue} = this.state.user_info;
         return (
             <View style={styles.backgroundStyle2}>
                 <View style={styles.incomeView}>
