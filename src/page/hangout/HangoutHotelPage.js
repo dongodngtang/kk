@@ -367,11 +367,15 @@ export default class HangoutHotelPage extends Component {
     judgeMessage = () => {
 
         const {date, hotel_item, room_item, card_img} = this.state;
+        console.log("dsjhds",date)
         if (isEmptyObject(hotel_item) || isEmptyObject(room_item) || !strNotNull(this.room_num) || !strNotNull(this.price) || isEmptyObject(date)) {
             showToast("请填写完整信息")
             return;
         } else if (!strNotNull(card_img)) {
             showToast("请上传房卡图片")
+            return;
+        }else if(date.counts > 1){
+            showToast("时间选择不能超过一天")
             return;
         }
         let body = {

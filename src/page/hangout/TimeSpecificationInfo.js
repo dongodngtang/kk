@@ -4,10 +4,10 @@ import {
     ScrollView, FlatList
 } from 'react-native';
 import {Colors, Fonts, Images,Metrics} from '../../Themes';
-import {isEmptyObject, convertDate} from "../../utils/ComonHelper";
+import {isEmptyObject, convertDate,showToast} from "../../utils/ComonHelper";
 import * as Animatable from 'react-native-animatable';
 import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
-import moment from 'moment'
+import moment from 'moment';
 
 LocaleConfig.locales.en = LocaleConfig.locales[''];
 LocaleConfig.locales.fr = {
@@ -167,6 +167,9 @@ export default class TimeSpecificationInfo extends PureComponent {
                 end_date: seleactDatas[seleactDatas.length - 1],
                 counts: seleactDatas.length - 1
             })
+            if(seleactDatas.length - 1 > 1){
+                showToast("时间选择不能超过一天")
+            }
         }
     }
 

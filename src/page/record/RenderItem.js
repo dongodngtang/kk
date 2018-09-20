@@ -8,9 +8,6 @@ import {postWithdrawals} from '../../service/AccountDao'
 
 export default class RenderItem extends Component {
 
-    state = {
-        withdraw: false
-    }
 
     recordBtn = (item) => {
         const {id} = this.props;
@@ -60,12 +57,13 @@ export default class RenderItem extends Component {
     };
 
     sellBtn = (item) => {
+        const {withdrawn_status} = item;
         return (
             <View style={styles.btnPage}>
                 <TouchableOpacity
-                    style={[styles.btnView, this.state.withdraw ? styles.sellsuccess : styles.withdrawPrice]}
+                    style={[styles.btnView, withdrawn_status === 'unsubmit' ? styles.withdrawPrice : styles.sellsuccess]}
                     onPress={() => {
-                        if (!this.state.withdraw) {
+                        if (withdrawn_status === 'unsubmit') {
                             alertOrder("确认提现？", () => {
                                 postWithdrawals({
                                     request_id: item.id
@@ -80,9 +78,8 @@ export default class RenderItem extends Component {
                                 })
                             });
                         }
-
                     }}>
-                    <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
+                    <Text style={{fontSize: 14, color: "#FFFFFF"}}>{this.withdraw_text(withdrawn_status)}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.sellsuccess]}
                                   activeOpacity={1}>
@@ -90,7 +87,17 @@ export default class RenderItem extends Component {
                 </TouchableOpacity>
             </View>
         )
-    }
+    };
+
+    withdraw_text=(withdrawn_status)=>{
+        if(withdrawn_status === 'unsubmit'){
+            return '申请提现'
+        }else if(withdrawn_status === 'pending'){
+            return '提现申请中'
+        }else if(withdrawn_status === 'passed'){
+            return '提现通过'
+        }
+    };
 
 
     render() {
