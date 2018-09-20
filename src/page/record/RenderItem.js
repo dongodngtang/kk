@@ -8,6 +8,10 @@ import {postWithdrawals} from '../../service/AccountDao'
 
 export default class RenderItem extends Component {
 
+    state = {
+        withdraw: false
+    }
+
     recordBtn = (item) => {
         const {id} = this.props;
         if (id === 2) {
@@ -58,19 +62,26 @@ export default class RenderItem extends Component {
     sellBtn = (item) => {
         return (
             <View style={styles.btnPage}>
-                <TouchableOpacity style={[styles.btnView, styles.withdrawPrice]}
-                                  onPress={() => {
-                                      alertOrder("确认提现？", () => {
-                                          postWithdrawals({
-                                              request_id: item.id
-                                          }, data => {
-                                              showToast("提现成功");
-                                              this.props.refresh && this.props.refresh()
-                                          }, err => {
-                                              showToast(err)
-                                          })
-                                      });
-                                  }}>
+                <TouchableOpacity
+                    style={[styles.btnView, this.state.withdraw ? styles.sellsuccess : styles.withdrawPrice]}
+                    onPress={() => {
+                        if (!this.state.withdraw) {
+                            alertOrder("确认提现？", () => {
+                                postWithdrawals({
+                                    request_id: item.id
+                                }, data => {
+                                    showToast("提现成功");
+                                    this.setState({
+                                        withdraw: true
+                                    })
+                                    this.props.refresh && this.props.refresh()
+                                }, err => {
+                                    showToast(err)
+                                })
+                            });
+                        }
+
+                    }}>
                     <Text style={{fontSize: 14, color: "#FFFFFF"}}>申请提现</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.btnView, styles.sellsuccess]}

@@ -75,9 +75,7 @@ export default StyleSheet.create({
     },
     salingView: {
         backgroundColor: '#4A90E2',
-        marginLeft: 16,
-        borderWidth: 1,
-        borderColor: '#4A90E2'
+        marginLeft: 16
     },
     btn: {
         paddingTop: 14,
