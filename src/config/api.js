@@ -9,7 +9,7 @@ const api = {
 
     //production 用来发布正式生产环境
     staging: 'http://106.75.136.9:8801/v10/',
-    production: 'http://test.kkapi.deshpro.com/v1/',
+    production: 'http://kkapi.deshpro.com/v1/',
     recommends: 'recommends',//首页推荐
     hotels: 'hotels',
     login: 'merchant/account/login',//登录

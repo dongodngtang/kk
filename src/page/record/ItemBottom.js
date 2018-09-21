@@ -4,9 +4,9 @@ import styles from './RecordStyles';
 import {Colors, Images, Metrics} from '../../Themes';
 import {CountDownButton, Button, Input} from "../../components";
 import {isEmptyObject, logMsg} from "../../config/utils";
-import {alertOrder, showToast} from "../../utils/ComonHelper";
+import {alertOrder, showToast,convertDate} from "../../utils/ComonHelper";
 import {postCancelRoom} from '../../service/RecordDao';
-
+import moment from 'moment';
 
 export default class ItemBottom extends Component {
 
@@ -18,7 +18,7 @@ export default class ItemBottom extends Component {
                     <TouchableOpacity style={[styles.btnView, styles.obtainedView]}
                                       onPress={() => {
 
-                                          this.props.toggle &&  this.props.toggle('obtained',id)
+                                          this.props.toggle && this.props.toggle('obtained', id)
                                       }}>
                         <Text style={{fontSize: 14, color: "#444444"}}>下架</Text>
                     </TouchableOpacity> : null}
@@ -43,10 +43,10 @@ export default class ItemBottom extends Component {
     }
 
     judgeItem = () => {
-        const {is_sold, is_withdrawn} = this.props.item;
+        const {is_sold, is_withdrawn, checkin_date} = this.props.item;
         if (is_sold) {
             return "出售成功"
-        } else if (is_withdrawn) {
+        } else if (is_withdrawn || moment(convertDate(new Date(), 'YYYY-MM-DD')) > moment(checkin_date)) {
             return "已过期"
         } else {
             return "出售中"
