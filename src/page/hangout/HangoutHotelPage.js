@@ -402,6 +402,7 @@ export default class HangoutHotelPage extends Component {
         alertOrder("确认挂售？", () => {
             this.loading && this.loading.open()
             postRoom_requests(formData, data => {
+
                 this.loading && this.loading.close()
                 logMsg('挂售成功', data)
                 showToast("挂售成功");
