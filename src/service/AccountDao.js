@@ -1,5 +1,5 @@
 import api from '../config/api'
-import {get, post, put, setToken} from '../config/fetch'
+import {get, post, put, setBaseUrl, setToken} from '../config/fetch'
 import {isEmpty, logMsg} from '../config/utils';
 import {showToast} from '../utils/ComonHelper';
 
@@ -29,7 +29,7 @@ export function codeVerify(body, resolve, reject) {
 export function initApp() {
   console.log('初始化APP')
   storage.load({key: 'BaseUrl'}).then(ret => {
-    setBaseURL(ret)
+    setBaseUrl(ret)
     storage.load({key: 'LoginUser'}).then(ret => {
       setLoginUser(ret);
       if (!isEmpty(ret))

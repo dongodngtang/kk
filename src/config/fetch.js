@@ -39,6 +39,7 @@ if (__DEV__) {
 }
 
 export function setBaseUrl(type) {
+  logMsg('当前环境为：'+type)
   if(type === 'test')
   client.setBaseURL(api.test)
   else

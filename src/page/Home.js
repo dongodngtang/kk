@@ -32,6 +32,11 @@ export default class App extends Component {
           paddingRight: 45,
           borderRadius: 1
         }}
+                          onLongPress={()=>{
+                            if(__DEV__){
+                              router.toSwitchBase()
+                            }
+                          }}
                           onPress={() => {
                             global.router.toLoginPage()
                           }}>
