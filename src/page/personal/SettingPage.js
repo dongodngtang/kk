@@ -36,7 +36,13 @@ export default class PersonalPage extends Component {
                     <Image style={{width: 6, height: 15, marginLeft: 12}} source={Images.right}/>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.applicationView, {marginTop: 1}]} onPress={() => {
+                <TouchableOpacity style={[styles.applicationView, {marginTop: 1}]}
+                                  onLongPress={()=>{
+                                     if(__DEV__){
+                                       router.toSwitchBase()
+                                     }
+                                  }}
+                                  onPress={() => {
                     router.toBusinessPage()
                 }}>
                     <Text style={styles.application_withdraw}>联系我们</Text>

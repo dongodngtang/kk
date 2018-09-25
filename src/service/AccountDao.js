@@ -28,11 +28,21 @@ export function codeVerify(body, resolve, reject) {
  */
 export function initApp() {
   console.log('初始化APP')
-  storage.load({key: 'LoginUser'}).then(ret => {
-    setLoginUser(ret);
-    if (!isEmpty(ret))
-      router.toNavigation()
+  storage.load({key: 'BaseUrl'}).then(ret => {
+    setBaseURL(ret)
+    storage.load({key: 'LoginUser'}).then(ret => {
+      setLoginUser(ret);
+      if (!isEmpty(ret))
+        router.toNavigation()
+    })
+  }).catch(err => {
+    storage.load({key: 'LoginUser'}).then(ret => {
+      setLoginUser(ret);
+      if (!isEmpty(ret))
+        router.toNavigation()
+    })
   })
+
 
 }
 
@@ -84,17 +94,16 @@ export function putInfo(body, resolve, reject) {
 }
 
 export function getContacts(resolve, reject) {
-    get(api.contacts, {}, ret => {
-        resolve(ret.data)
-    }, reject)
+  get(api.contacts, {}, ret => {
+    resolve(ret.data)
+  }, reject)
 }
 
 
-
 export function getUserInfo(resolve, reject) {
-    get(api.user_info, {},ret => {
-        resolve(ret.data)
-    }, reject)
+  get(api.user_info, {}, ret => {
+    resolve(ret.data)
+  }, reject)
 }
 
 

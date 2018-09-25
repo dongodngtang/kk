@@ -38,6 +38,13 @@ if (__DEV__) {
   })
 }
 
+export function setBaseUrl(type) {
+  if(type === 'test')
+  client.setBaseURL(api.test)
+  else
+    client.setBaseURL(api.production)
+}
+
 export function setToken(access_token) {
   client.setHeader('x-access-token', access_token)
 }

@@ -18,6 +18,7 @@ import HotelListPage from "../page/hangout/HotelListPage";
 import HotelRoomListPage from "../page/hangout/HotelRoomListPage";
 import {strNotNull} from "../utils/ComonHelper";
 import BusinessPage from "../page/personal/BusinessPage";
+import SwitchBase from "../page/personal/SwitchBase";
 
 let config = {
     titleStyle: { fontSize: 18, color: "#FFFFFF" },
@@ -69,7 +70,11 @@ export const Scenes = () => {
                 hideLeft: true
             })}
             component={ApplicationRecordPage}/>
-
+      <Scene key="SwitchBase"
+             {...TopNav({
+               title: '环境切换'
+             })}
+             component={SwitchBase} />
         <Scene key="SellInfoPage"
             {...TopNav({
                 title: '申请提现'

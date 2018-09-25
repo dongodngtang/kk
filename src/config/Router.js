@@ -1,4 +1,5 @@
 import {ActionConst, Actions} from 'react-native-router-flux';
+import SwitchBase from "../page/personal/SwitchBase";
 
 export default class Router {
 
@@ -80,6 +81,12 @@ export default class Router {
     toSettingPage(){
         this.push({
             name: 'SettingPage'
+        })
+    }
+
+    toSwitchBase(){
+        this.push({
+          name:'SwitchBase'
         })
     }
 
