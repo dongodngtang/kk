@@ -38,9 +38,7 @@ export default class PersonalPage extends Component {
 
                 <TouchableOpacity style={[styles.applicationView, {marginTop: 1}]}
                                   onLongPress={()=>{
-                                     if(__DEV__){
-                                       router.toSwitchBase()
-                                     }
+                                    router.toSwitchBase()
                                   }}
                                   onPress={() => {
                     router.toBusinessPage()
