@@ -1,5 +1,6 @@
 import {ActionConst, Actions} from 'react-native-router-flux';
 import SwitchBase from "../page/personal/SwitchBase";
+import ScanPage from "../page/personal/ScanPage";
 
 export default class Router {
 
@@ -25,6 +26,10 @@ export default class Router {
             route.name,
             {params: route.params}
         )
+    }
+
+    toScanPage(){
+        this.push({name:'ScanPage'})
     }
 
     popToTopRefresh() {

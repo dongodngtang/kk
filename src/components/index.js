@@ -8,6 +8,7 @@ import ImageLoad from "./ImageLoad";
 import RejectPage from "./RejectPage";
 import PopAction from './PopAction'
 import Loading from "./Loading";
+import QRCodeScanner from './qrcode/QRCodeScanner'
 
 export {
     CountDownButton,
@@ -19,5 +20,6 @@ export {
     ImageLoad,
     RejectPage,
     PopAction,
-    Loading
+    Loading,
+    QRCodeScanner
 }

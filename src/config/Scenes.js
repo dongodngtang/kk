@@ -19,6 +19,7 @@ import HotelRoomListPage from "../page/hangout/HotelRoomListPage";
 import {strNotNull} from "../utils/ComonHelper";
 import BusinessPage from "../page/personal/BusinessPage";
 import SwitchBase from "../page/personal/SwitchBase";
+import ScanPage from '../page/personal/ScanPage'
 
 let config = {
     titleStyle: { fontSize: 18, color: "#FFFFFF" },
@@ -112,6 +113,12 @@ export const Scenes = () => {
                    title: '商务合作'
                })}
                component={BusinessPage}/>
+
+        <Scene key="ScanPage"
+               {...TopNav({
+                   title: '扫一扫'
+               })}
+               component={ScanPage}/>
     </Scene>
 
 }
