@@ -3,6 +3,13 @@ import api from '../config/api'
 import {logMsg} from "../config/utils";
 import {setLoginUser} from "./AccountDao";
 
+
+export function postOrderVerification(param,resolve,reject) {
+    post(api.order_verification, param, ret => {
+        resolve(ret.data)
+    }, reject)
+}
+
 export function getRoomRequest(body, resolve, reject) {
     get(api.room_request_list(body), body, ret => {
         resolve(ret.data)

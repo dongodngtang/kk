@@ -64,6 +64,14 @@ export default class PersonalPage extends Component {
                     <Text style={styles.countTxt}>{this.state.sold_count}间</Text>
                     <Image style={{width: 6, height: 15, marginLeft: 12}} source={Images.right}/>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={[styles.applicationView,{marginTop:1}]} onPress={() => {
+                    global.router.toScanPage()
+                }}>
+                    <Text style={styles.application_withdraw}>订单扫码</Text>
+                    <View style={{flex: 1}}/>
+                    <Image style={{width: 6, height: 15, marginLeft: 12}} source={Images.right}/>
+                </TouchableOpacity>
             </View>
 
         )

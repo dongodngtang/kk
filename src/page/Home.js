@@ -41,21 +41,6 @@ export default class App extends Component {
           <Text style={{color: "#FFFFFF", fontSize: 20}}>酒店房间挂售</Text>
         </TouchableOpacity>
 
-          <TouchableOpacity style={{
-              backgroundColor: "#4388D9",
-              paddingLeft: 45,
-              paddingTop: 12,
-              paddingBottom: 12,
-              paddingRight: 45,
-              borderRadius: 1,
-              marginTop: 20
-          }}
-                            onPress={() => {
-                                global.router.toScanPage()
-                            }}>
-              <Text style={{color: "#FFFFFF", fontSize: 20}}>扫码</Text>
-          </TouchableOpacity>
-
 
         {/*<Button onPress={() => {*/}
         {/*router.toRegitser()*/}

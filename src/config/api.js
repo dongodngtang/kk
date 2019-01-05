@@ -24,6 +24,7 @@ const api = {
     change_price: change_price,//房间挂售修改金额
     user_info: 'merchant/account/me',//获取用户个人信息
     room_withdrawals:'merchant/room_withdrawals',//房间提现申请
+    order_verification:'merchant/order_verification'
 
 }
 
